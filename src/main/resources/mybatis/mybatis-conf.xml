@@ -4,6 +4,6 @@
 <configuration>
     <typeAliases>
         <!--之后用于测试-->
-        <typeAlias type="entity.User" alias="User" />
+        <typeAlias type="com.bs.sys.entity.User" alias="User" />
     </typeAliases>
 </configuration>

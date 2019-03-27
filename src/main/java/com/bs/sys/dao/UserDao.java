@@ -17,9 +17,9 @@ public interface UserDao {
     @Options(useGeneratedKeys = true, keyProperty = "id", keyColumn="id")
     Integer adduser(User user);
     @Select("select id from user where userName=#{userName} and passWord=#{passWord}")
-    @Options(useGeneratedKeys = true, keyProperty = "id", keyColumn="id")
     Integer checkLogin(User user);
     @Select("select * from user where id =#{id}")
     User findbyid(Integer id);
-    Integer updateuser(Integer)
+    @UpdateProvider(type=com.bs.sys.common.DynoSqlProvider.class,method="updateEmployeeSql")
+    Integer updateuser(User user);
 }

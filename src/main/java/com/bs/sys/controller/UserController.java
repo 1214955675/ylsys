@@ -63,20 +63,22 @@ public class UserController {
     }
     @ResponseBody
     @RequestMapping("/updatePwd")
-    public UserResponse updatepwd(UserReq userReq,String newpwd){
+    public UserResponse updatepwd(UserReq userReq,@RequestParam("newpwd") String newpwd){
         UserResponse res=new UserResponse();
-        userService.findbyNameandpwd(userReq);
-        if(userReq.getId()>0){
-            if(userService.updatepwd(userReq.getId(), newpwd)){
-
+        int findid=userService.findbyNameandpwd(userReq);
+        if(findid>0){
+            userReq.setId(findid);
+            userReq.setPassWord(newpwd);
+            if(userService.updateUser(userReq)){
+                return res;
+            }else{
+                res.setResultMessage(ResultCode.db_opterror.getMessage());
+                res.setResultCode(ResultCode.db_opterror.getCode());
+                return res;
             }
         }
-        if(ownuser==null){
-            res.setResultMessage(ResultCode.user_notexist.getMessage());
-            res.setResultCode(ResultCode.user_notexist.getCode());
-            return res;
-        }else {
-
-        }
+        res.setResultMessage(ResultCode.user_notexist.getMessage());
+        res.setResultCode(ResultCode.user_notexist.getCode());
+        return res;
     }
 }

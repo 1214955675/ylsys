@@ -65,8 +65,17 @@ public class UserServiceImpl implements UserServiceInf {
     }
 
     @Override
-    public boolean updatepwd(User user) {
-
-        return false;
+    public boolean updateUser(User user) {
+        try {
+            int res=userDao.updateuser(user);
+            if(res>0){
+                return true;
+            }else {
+                return false;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
     }
 }

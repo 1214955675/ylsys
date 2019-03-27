@@ -11,5 +11,5 @@ public interface UserServiceInf {
     Integer createUser(User user);
     Integer findbyNameandpwd(User user);
     User  findbyid(Integer id);
-    boolean updatepwd(User user);
+    boolean updateUser(User user);
 }

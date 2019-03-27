@@ -5,8 +5,8 @@ package com.bs.sys.common.response;
  * 2019/3/26 18:07
  */
 public class BaseResponse {
-        private Integer resultCode;
-        private String  resultMessage;
+        private Integer resultCode=200;
+        private String  resultMessage="success";
 
     public Integer getResultCode() {
         return resultCode;

@@ -1,9 +1,13 @@
 package com.bs.sys.entity;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 /**
  * @author wwj
  * 2019/3/25 09:27
  */
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class User {
 
     private Integer id;

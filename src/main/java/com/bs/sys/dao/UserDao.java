@@ -1,20 +1,25 @@
 package com.bs.sys.dao;
 
 import com.bs.sys.entity.User;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Options;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
+import org.springframework.stereotype.Component;
 
 /**
  * @author wwj
  * 2019/3/26 18:26
  */
 @Mapper
+@Component
 public interface UserDao {
     @Select("select * from user where userName=#{userName}")
     User findbyusername(String userName);
-    @Options(useGeneratedKeys = true, keyProperty = "id")
-    @Insert("INSERT INTO user (userName,nickName, passWord) VALUES (#{userName}, #{nickName}, #{passWord})")
+    @Insert("INSERT INTO user (userName,nickName, passWord,phone) VALUES (#{userName}, #{nickName}, #{passWord},#{phone})")
+    @Options(useGeneratedKeys = true, keyProperty = "id", keyColumn="id")
     Integer adduser(User user);
+    @Select("select id from user where userName=#{userName} and passWord=#{passWord}")
+    @Options(useGeneratedKeys = true, keyProperty = "id", keyColumn="id")
+    Integer checkLogin(User user);
+    @Select("select * from user where id =#{id}")
+    User findbyid(Integer id);
+    Integer updateuser(Integer)
 }

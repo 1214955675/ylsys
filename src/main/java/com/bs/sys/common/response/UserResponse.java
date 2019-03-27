@@ -1,14 +1,18 @@
 package com.bs.sys.common.response;
 
 import com.bs.sys.entity.User;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
- * @author Hu Min
+ * @author wwj
  * 2019/3/26 18:09
  */
-public class UserResponse extends BaseResponse{
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class UserResponse<T> extends BaseResponse{
+    private T user;
     private List<User> userList;
 
     public List<User> getUserList() {
@@ -17,5 +21,13 @@ public class UserResponse extends BaseResponse{
 
     public void setUserList(List<User> userList) {
         this.userList = userList;
+    }
+
+    public Object getObject() {
+        return user;
+    }
+
+    public void setObject(T user) {
+        this.user =  user;
     }
 }

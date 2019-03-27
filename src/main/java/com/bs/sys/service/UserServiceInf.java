@@ -9,4 +9,7 @@ import com.bs.sys.entity.User;
 public interface UserServiceInf {
     boolean checkUserexist(String username);
     Integer createUser(User user);
+    Integer findbyNameandpwd(User user);
+    User  findbyid(Integer id);
+    boolean updatepwd(User user);
 }

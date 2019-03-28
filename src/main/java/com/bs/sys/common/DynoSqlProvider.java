@@ -1,5 +1,6 @@
 package com.bs.sys.common;
 
+import com.bs.sys.entity.Topic;
 import com.bs.sys.entity.User;
 import org.apache.ibatis.jdbc.SQL;
 
@@ -31,7 +32,7 @@ public class DynoSqlProvider {
         }.toString();
 
     }
-    public String updateEmployeeSql(final User user) {
+    public String updateUserSql(final User user) {
         return new SQL() {
             {
                 UPDATE("user");
@@ -49,6 +50,26 @@ public class DynoSqlProvider {
                 }
                 if(user.getPhone()!=null) {
                     SET("phone=#{phone}");
+                }
+                WHERE("id=#{id}");
+            }
+        }.toString();
+    }
+    public String updateTopicSql(final Topic topic) {
+        return new SQL() {
+            {
+                UPDATE("topic");
+                if(topic.getId()!=null) {
+                    SET("id=#{id}");
+                }
+                if(topic.getTopicName()!=null) {
+                    SET("topicName=#{topicName}");
+                }
+                if(topic.getPostNum()!=null) {
+                    SET("postNum=#{postNum}");
+                }
+                if(topic.getImgUrl()!=null) {
+                    SET("imgUrl=#{imgUrl}");
                 }
                 WHERE("id=#{id}");
             }

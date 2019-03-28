@@ -20,6 +20,6 @@ public interface UserDao {
     Integer checkLogin(User user);
     @Select("select * from user where id =#{id}")
     User findbyid(Integer id);
-    @UpdateProvider(type=com.bs.sys.common.DynoSqlProvider.class,method="updateEmployeeSql")
+    @UpdateProvider(type=com.bs.sys.common.DynoSqlProvider.class,method="updateUserSql")
     Integer updateuser(User user);
 }

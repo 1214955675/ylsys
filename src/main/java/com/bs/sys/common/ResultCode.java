@@ -9,7 +9,8 @@ public enum  ResultCode {
     unkown_error(10001,"未知异常"),
     db_opterror(10002,"数据库操作异常"),
     user_notexist(10003,"用户不存在"),
-    user_exist_error(10004,"用户已存在");
+    user_exist_error(10004,"用户已存在"),
+    data_parse_error(10005,"数据转换异常");
 
 
 

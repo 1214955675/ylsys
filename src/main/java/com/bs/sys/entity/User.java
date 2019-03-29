@@ -15,6 +15,15 @@ public class User {
     private String nickName;
     private String passWord;
     private String phone;
+    private String userImg;
+
+    public String getUserImg() {
+        return userImg;
+    }
+
+    public void setUserImg(String userImg) {
+        this.userImg = userImg;
+    }
 
     public Integer getId() {
         return id;

@@ -1,0 +1,7 @@
+com\bs\sys\service\impl\UserServiceImpl.class
+com\bs\sys\controller\UserController.class
+com\bs\sys\service\UserServiceInf.class
+com\bs\sys\common\response\BaseResponse.class
+com\bs\sys\entity\User.class
+com\bs\sys\common\response\UserResponse.class
+com\bs\sys\dao\UserDao.class

@@ -51,6 +51,9 @@ public class DynoSqlProvider {
                 if(user.getPhone()!=null) {
                     SET("phone=#{phone}");
                 }
+                if(user.getUserImg()!=null) {
+                    SET("userImg=#{userImg}");
+                }
                 WHERE("id=#{id}");
             }
         }.toString();

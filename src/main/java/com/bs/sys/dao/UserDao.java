@@ -13,7 +13,8 @@ import org.springframework.stereotype.Component;
 public interface UserDao {
     @Select("select * from user where userName=#{userName}")
     User findbyusername(String userName);
-    @Insert("INSERT INTO user (userName,nickName, passWord,phone) VALUES (#{userName}, #{nickName}, #{passWord},#{phone})")
+    @Insert("INSERT INTO user (userName,nickName, passWord,phone,userImg) VALUES (#{userName}, #{nickName}, " +
+            "#{passWord},#{phone},#{userImg})")
     @Options(useGeneratedKeys = true, keyProperty = "id", keyColumn="id")
     Integer adduser(User user);
     @Select("select id from user where userName=#{userName} and passWord=#{passWord}")

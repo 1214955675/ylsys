@@ -10,8 +10,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import javax.annotation.Resource;
+import java.io.File;
+import java.io.IOException;
+import java.util.UUID;
 
 /**
  * @author wwj
@@ -24,8 +28,15 @@ public class TopicController {
     @Resource
     TopicServiceImpl topicService;
     @RequestMapping("/addTopic")
-    public TopicResponse addtopic(TopicReq topicReq){
+    public TopicResponse addtopic(TopicReq topicReq, @RequestParam("file")CommonsMultipartFile file) throws IOException {
         TopicResponse res=new TopicResponse();
+        if(file!=null){
+            String uuid= UUID.randomUUID().toString();
+            File newfile=
+                    new File("D:/opt/img/"+uuid+file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf('.')));
+            file.transferTo(newfile);
+            topicReq.setImgUrl(newfile.getAbsolutePath());
+        }
         try {int newid=topicService.addTopic(topicReq);
             Topic restopic=new Topic();
             restopic.setId(newid);
@@ -66,8 +77,15 @@ public class TopicController {
         return res;
     }
     @RequestMapping("/updateTopic")
-    public TopicResponse updatetopic(TopicReq topicReq){
+    public TopicResponse updatetopic(TopicReq topicReq,@RequestParam("file")CommonsMultipartFile file) throws IOException {
         TopicResponse res=new TopicResponse();
+        if(file!=null){
+            String uuid= UUID.randomUUID().toString();
+            File newfile=
+                    new File("D:/opt/img/"+uuid+file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf('.')));
+            file.transferTo(newfile);
+            topicReq.setImgUrl(newfile.getAbsolutePath());
+        }
         if(topicService.updatetopicbyid(topicReq)){
             return res;
         }else {

@@ -8,9 +8,14 @@ import com.bs.sys.service.impl.UserServiceImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import javax.annotation.Resource;
+import java.io.File;
+import java.io.IOException;
 import java.lang.invoke.MethodType;
+import java.util.UUID;
 
 /**
  * @author wwj
@@ -29,9 +34,16 @@ public class UserController {
 
     @RequestMapping(value = "/register",method = RequestMethod.POST)
     @ResponseBody
-    public UserResponse register(User user){
+    public UserResponse register(User user, @RequestParam("file") CommonsMultipartFile file) throws IOException {
         UserResponse<User> res=new UserResponse();
         if(!userService.checkUserexist(user.getUserName())){
+            if(file!=null){
+                String uuid=UUID.randomUUID().toString();
+                File newfile=
+                        new File("D:/opt/img/"+uuid+file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf('.')));
+                file.transferTo(newfile);
+                user.setUserImg(newfile.getAbsolutePath());
+            }
             if(userService.createUser(user)>0){
                 User resuser=new User();
                 resuser.setId(user.getId());
@@ -79,6 +91,32 @@ public class UserController {
         }
         res.setResultMessage(ResultCode.user_notexist.getMessage());
         res.setResultCode(ResultCode.user_notexist.getCode());
+        return res;
+    }
+    @ResponseBody
+    @RequestMapping("/updateUser")
+    public UserResponse updateuser(UserReq userReq,@RequestParam("file")CommonsMultipartFile file) throws IOException {
+        UserResponse res=new UserResponse();
+        int findid=userService.findbyNameandpwd(userReq);
+        if(findid>0){
+            userReq.setId(findid);
+            userReq.setNickName(userReq.getNickName());
+            if(file!=null){
+                String uuid=UUID.randomUUID().toString();
+                File newfile=
+                        new File("D:/opt/img/"+uuid+file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf('.')));
+                file.transferTo(newfile);
+                userReq.setUserImg(newfile
+                .getAbsolutePath());
+            }
+            if(userService.updateUser(userReq)){
+                return res;
+            }else{
+                res.setResultMessage(ResultCode.db_opterror.getMessage());
+                res.setResultCode(ResultCode.db_opterror.getCode());
+                return res;
+            }
+        }
         return res;
     }
 }

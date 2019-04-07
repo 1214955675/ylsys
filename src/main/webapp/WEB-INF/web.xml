@@ -17,7 +17,7 @@
         <filter-name>ueditorfilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
-<!--<filter>
+<filter>
     <description>字符集过滤器</description>
     <filter-name>encodingFilter</filter-name>
     <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -30,7 +30,7 @@
 <filter-mapping>
     <filter-name>encodingFilter</filter-name>
     <url-pattern>/*</url-pattern>
-</filter-mapping>-->
+</filter-mapping>
 
 <!--<filter-mapping>
     <filter-name>UeditorFilter</filter-name>
@@ -46,7 +46,7 @@
 <listener>
     <listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
 </listener>
-<servlet>
+<!--<servlet>
     <servlet-name>dispatcher</servlet-name>
     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
     <init-param>
@@ -58,7 +58,7 @@
     <servlet-mapping>
         <servlet-name>dispatcher</servlet-name>
         <url-pattern>/</url-pattern>
-    </servlet-mapping>
+    </servlet-mapping>-->
 <!--<servlet>
     <servlet-name>upload</servlet-name>
     <servlet-class>com.bs.sys.controller.ControllerServlet</servlet-class>
@@ -112,6 +112,6 @@
     <url-pattern>/*</url-pattern>
 </filter-com.bs.sys.mapping>-->
 <welcome-file-list>
-    <welcome-file>/WEB-INF/views/index.jsp</welcome-file>
+    <welcome-file>index.html</welcome-file>
 </welcome-file-list>
 </web-app>

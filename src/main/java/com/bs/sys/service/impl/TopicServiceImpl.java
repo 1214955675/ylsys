@@ -31,7 +31,7 @@ public class TopicServiceImpl implements TopicServiceInf {
 
     @Override
     public List<Topic> getalltopic(int page,int limit) {
-        List<Topic> res=new ArrayList<>();
+        List<Topic> res=new ArrayList<Topic>();
         try {
             res=topicDao.getalltopic((page-1)*limit, limit);
         }catch (Exception e){

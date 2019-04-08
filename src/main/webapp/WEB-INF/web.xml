@@ -9,14 +9,14 @@
     <param-name>contextConfigLocation</param-name>
     <param-value>classpath*:spring/application.xml</param-value>
 </context-param>
-    <filter>
+    <!--<filter>
         <filter-name>ueditorfilter</filter-name>
         <filter-class>com.bs.sys.common.ueditorfilter.myfilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>ueditorfilter</filter-name>
         <url-pattern>/*</url-pattern>
-    </filter-mapping>
+    </filter-mapping>-->
 <filter>
     <description>字符集过滤器</description>
     <filter-name>encodingFilter</filter-name>
@@ -112,6 +112,6 @@
     <url-pattern>/*</url-pattern>
 </filter-com.bs.sys.mapping>-->
 <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
+    <welcome-file>/index.html</welcome-file>
 </welcome-file-list>
 </web-app>

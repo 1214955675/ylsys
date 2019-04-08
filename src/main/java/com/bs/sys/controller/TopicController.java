@@ -28,7 +28,8 @@ public class TopicController {
     @Resource
     TopicServiceImpl topicService;
     @RequestMapping("/addTopic")
-    public TopicResponse addtopic(TopicReq topicReq, @RequestParam("file")CommonsMultipartFile file) throws IOException {
+    public TopicResponse addtopic(TopicReq topicReq,
+                                  @RequestParam(value = "file",required = false)CommonsMultipartFile file) throws IOException {
         TopicResponse res=new TopicResponse();
         if(file!=null){
             String uuid= UUID.randomUUID().toString();
@@ -77,7 +78,8 @@ public class TopicController {
         return res;
     }
     @RequestMapping("/updateTopic")
-    public TopicResponse updatetopic(TopicReq topicReq,@RequestParam("file")CommonsMultipartFile file) throws IOException {
+    public TopicResponse updatetopic(TopicReq topicReq,
+                                     @RequestParam(value = "file",required = false)CommonsMultipartFile file) throws IOException {
         TopicResponse res=new TopicResponse();
         if(file!=null){
             String uuid= UUID.randomUUID().toString();

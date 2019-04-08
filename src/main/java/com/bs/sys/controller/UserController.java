@@ -34,7 +34,7 @@ public class UserController {
 
     @RequestMapping(value = "/register",method = RequestMethod.POST)
     @ResponseBody
-    public UserResponse register(User user, @RequestParam("file") CommonsMultipartFile file) throws IOException {
+    public UserResponse register(User user, @RequestParam(value = "file",required = false) CommonsMultipartFile file) throws IOException {
         UserResponse<User> res=new UserResponse();
         if(!userService.checkUserexist(user.getUserName())){
             if(file!=null){
@@ -95,7 +95,8 @@ public class UserController {
     }
     @ResponseBody
     @RequestMapping("/updateUser")
-    public UserResponse updateuser(UserReq userReq,@RequestParam("file")CommonsMultipartFile file) throws IOException {
+    public UserResponse updateuser(UserReq userReq,
+                                   @RequestParam(value = "file",required = false)CommonsMultipartFile file) throws IOException {
         UserResponse res=new UserResponse();
         int findid=userService.findbyNameandpwd(userReq);
         if(findid>0){

@@ -32,10 +32,6 @@
     <url-pattern>/*</url-pattern>
 </filter-mapping>
 
-<!--<filter-mapping>
-    <filter-name>UeditorFilter</filter-name>
-    <url-pattern>/*</url-pattern>
-</filter-mapping>-->
 
 
 
@@ -46,7 +42,7 @@
 <listener>
     <listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
 </listener>
-<!--<servlet>
+<servlet>
     <servlet-name>dispatcher</servlet-name>
     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
     <init-param>
@@ -58,7 +54,7 @@
     <servlet-mapping>
         <servlet-name>dispatcher</servlet-name>
         <url-pattern>/</url-pattern>
-    </servlet-mapping>-->
+    </servlet-mapping>
 <!--<servlet>
     <servlet-name>upload</servlet-name>
     <servlet-class>com.bs.sys.controller.ControllerServlet</servlet-class>
@@ -68,21 +64,7 @@
     <url-pattern>/ueditor/upload</url-pattern>
 </servlet-mapping>-->
 
-<!--
-    <servlet>
-        <servlet-name>appServlet</servlet-name>
-        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-        <init-param>
-            <param-name>contextConfigLocation</param-name>
-            <param-value>/WEB-INF/ueditorRes/servlet-context.xml</param-value>
-        </init-param>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
 
-    <servlet-mapping>
-        <servlet-name>appServlet</servlet-name>
-        <url-pattern>/</url-pattern>
-    </servlet-mapping>-->
 <!--<filter>
     <filter-name>DruidWebStatFilter</filter-name>
     <filter-class>com.alibaba.druid.support.http.WebStatFilter</filter-class>

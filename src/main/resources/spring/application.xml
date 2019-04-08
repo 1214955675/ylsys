@@ -12,6 +12,7 @@ http://www.springframework.org/schema/context/spring-context.xsd http://www.spri
 http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
     <!-- 加载属性文件 -->
     <context:property-placeholder location="classpath:springconf.properties" />
+
     <context:component-scan base-package="com.bs.sys.service.impl">
     </context:component-scan>
     <mvc:annotation-driven />
@@ -25,7 +26,15 @@ http://www.springframework.org/schema/mvc http://www.springframework.org/schema/
         <property name="password" value="${jdbc.password}"/>
     </bean>
    <!-- 支持multipart/form-data方式，使SpringMVC中获取POST形式的参数-->
-    <bean id="multipartResolver" class="com.bs.sys.common.CommonsMultipartResolverforUeditor">
+    <!--<bean id="multipartResolver" class="com.bs.sys.common.CommonsMultipartResolverforUeditor">
+    </bean>-->
+    <!-- 定义文件上传解析器 -->
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- 设定默认编码 -->
+        <property name="defaultEncoding" value="UTF-8"></property>
+        <!-- 设定文件上传的最大值5MB，5*1024*1024 -->
+        <property name="maxUploadSize" value="5242880"></property>
     </bean>
     <!-- 配置数据源,加载配置,也就是dataSource -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">

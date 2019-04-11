@@ -37,6 +37,8 @@ import java.util.Map;
 public class UploadController {
     @Resource
     UploadServiceImpl uploadService;
+
+
     @RequestMapping(value = "/upload",method = RequestMethod.POST)
     @ResponseBody
     public Object config(HttpServletRequest request, @RequestParam("img") List<MultipartFile> list,

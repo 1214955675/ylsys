@@ -24,6 +24,7 @@ DD_belatedPNG.fix('img,.ie6png');
 <link type="text/css" rel="stylesheet" href="style/biobox2.css" />
 <script type="text/javascript" src="js/biobox.js"></script>
 <script type="text/javascript" src="js/wangEditor.js"></script>
+<!--<script type="text/javascript" src="js/wangEditor.min.js"></script>-->
 </head>
 <body>
 <script type="text/javascript" src="js/borsertocss.js"> </script><!-- 判断在IE9以下浏览器中根据像素的不同而设置的样式 -->		
@@ -124,9 +125,14 @@ $('#dropdownID-1').hover(function(){
 	     </div>
 		</div>
 	</div>
+
 <button id="editorSetBtn">设置内容</button>
 <button id="editorGetBtn1">获取内容1</button>
 <button id="editorGetBtn2">获取内容2</button>
+<div id="editor">
+    <!-- 默认显示 -->
+    <p>欢迎使用 <b>wangEditor</b> 富文本编辑器</p>
+</div>
 <script type="text/javascript">
 $(function(){
 
@@ -138,9 +144,17 @@ $(function(){
     //配置属性名称，绑定请求的图片数据
     //controller会用到，可以随便设置，但是一定要与controller一致
     editor.customConfig.uploadFileName = 'img';
-    //创建编辑器
+    // 限制一次最多上传 10 张图片
+    editor.customConfig.uploadImgMaxLength = 10;
+    editor.customConfig.uploadImgHooks = {
+        customInsert: function (insertImg, result, editor) {
+            var url =result.data;
+            alert(result.data);
+            insertImg(url);
+        }
+    };
+    // //创建编辑器
     editor.create();
-
     $("#editorSetBtn").click(function(){
         //这是设置编辑器内容
         editor.txt.html("dsafdfadsfdafdsfds");
@@ -153,13 +167,12 @@ $(function(){
      $("#editorGetBtn2").click(function(){
     　　　 //获取编辑器的内容，不带样式，纯文本
          alert(editor.txt.text());
-    })
+    });
+
 })
 </script>
-<div id="editor">
-    　<!-- 默认显示 -->
-    <p>欢迎使用 <b>wangEditor</b> 富文本编辑器</p>
-</div>
+
+
 	<div class="top-div">
 	<div class="container clearfix">
 		

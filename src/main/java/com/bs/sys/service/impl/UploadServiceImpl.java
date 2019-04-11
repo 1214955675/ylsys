@@ -1,13 +1,17 @@
 package com.bs.sys.service.impl;
 
 import com.bs.sys.controller.HomeController;
+import com.bs.sys.entity.ImgResultDto;
 import com.bs.sys.service.UploadService;
+import org.apache.struts2.ServletActionContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletResponse;
 import java.io.File;
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -21,18 +25,17 @@ public class UploadServiceImpl implements UploadService {
     private static final Logger logger = LoggerFactory.getLogger(UploadServiceImpl.class);
 
    @Override
-    public boolean upLoadEditorImg(List<MultipartFile> list,String UploadAbsolutePath,
-                                   String UploadRelativePath) {
+    public ImgResultDto upLoadEditorImg(List<MultipartFile> list, String UploadAbsolutePath,
+                                        String UploadRelativePath) throws IOException {
         //工程绝对路径
         String imgUploadAbsolutePath = UploadAbsolutePath;
         //工程相对路径
         String imgUploadRelativePath = UploadRelativePath;
         logger.debug("files.length = " + list.size());
-//        ImgResultDto imgResultDto = new ImgResultDto();
+        ImgResultDto imgResultDto = new ImgResultDto();
         //这里定
         String[] urlData = new String[5];
         int index = 0;
-        try {
             for (MultipartFile img : list) {
                  //获取原始文件名，比如你上传的是　图片．jpg,则fileName＝图片．jpg
                 String fileName = img.getOriginalFilename();
@@ -59,20 +62,18 @@ public class UploadServiceImpl implements UploadService {
 //                commodityImageMapper.insert(commodityImage);
                 //这里的路径是项目路径＋文件路径＋文件名称
                 //这么写不是规范的做法，项目路径应是放在前端处理，只需要发送相对路径和文件名称即可，项目路径由前端加上．
-                urlData[index++] = "http://localhost:8080/lanmei-cms/" + imgUploadRelativePath + finalFileName;
+                urlData[index++] =
+                        "http://localhost:8080/wangeditor/getUploadImg?path=" + uuidname+fileName.substring(fileName.lastIndexOf('.')) ;
+//                ServletActionContext.getResponse().getWriter().write( "http://localhost:8080/wangeditor/getUploadImg?path" +
+//                        "=" + uuidname+fileName.substring(fileName.lastIndexOf('.')) );
                 logger.debug("index = " + index
                         + "  url = " + urlData[0]);
                 //设置异常代号
-//                imgResultDto.setErrno(0);
+                imgResultDto.setErrno(0);
             }
-//            imgResultDto.setData(urlData);
-//            return imgResultDto;
-            return true;
-        } catch (Exception e) {
-            // TODO: handle exception
-            e.printStackTrace();
-            return false;
-        }
+            imgResultDto.setData(urlData);
+            return imgResultDto;
+
 
     }
 

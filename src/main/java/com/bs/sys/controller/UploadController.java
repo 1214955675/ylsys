@@ -27,7 +27,6 @@ import java.io.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 /**
  * @author wwj
@@ -43,7 +42,7 @@ public class UploadController {
     public Object config(HttpServletRequest request, @RequestParam("img") List<MultipartFile> list,
                           HttpServletResponse response) {
         //这里是我在web中定义的两个初始化属性，保存目录的绝对路径和相对路径，你们可以自定义
-        Map<String,Object> map=new HashMap<>();
+        Map<String,Object> map=new HashMap<String,Object>();
 //        ImgResultDto object=new ImgResultDto();
 
         try {

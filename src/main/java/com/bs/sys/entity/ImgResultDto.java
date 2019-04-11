@@ -1,17 +1,11 @@
 package com.bs.sys.entity;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-
 /**
- * @author wwj
- * 2019/4/11 10:21
+ * Created by Windows10 on 2019/4/11/0011.
  */
-@JsonInclude(JsonInclude.Include.NON_NULL)
-public class ImgResultDto<T> {
-
-    private int  errno;//错误代码
-
-    private String[] data;//存放数据
+public class ImgResultDto {
+    private int errno;
+    private String[] data;
 
     public int getErrno() {
         return errno;

@@ -1,7 +1,9 @@
 package com.bs.sys.common;
 
+import com.bs.sys.entity.Post;
 import com.bs.sys.entity.Topic;
 import com.bs.sys.entity.User;
+import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.jdbc.SQL;
 
 import java.util.Map;
@@ -73,6 +75,27 @@ public class DynoSqlProvider {
                 }
                 if(topic.getImgUrl()!=null) {
                     SET("imgUrl=#{imgUrl}");
+                }
+                WHERE("id=#{id}");
+            }
+        }.toString();
+    }
+    public String updatePostSql(final Post post) {
+        return new SQL() {
+            {
+                UPDATE("post");
+
+                if(post.getPostName()!=null) {
+                    SET("postName=#{postName}");
+                }
+                if(post.getTopicId()!=null) {
+                    SET("topicId=#{topicId}");
+                }
+                if(post.getCreateTime()!=null) {
+                    SET("createTime=#{createTime}");
+                }
+                if(post.getContent()!=null){
+                    SET("content=#{content}");
                 }
                 WHERE("id=#{id}");
             }

@@ -6,6 +6,7 @@ import com.bs.sys.service.AdviceService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @author wwj
@@ -21,7 +22,21 @@ public class AdviceServiceImpl implements AdviceService {
         int result= adviceDao.addAdvice(advice);
         if(result>0){
             return true;
-        }
+        }else
+        return false;
+    }
+
+    @Override
+    public List<Advice> getadvices(int page, int limit) {
+        return adviceDao.getadvices(page,limit);
+    }
+
+    @Override
+    public boolean dealadvice(int id) {
+        int result=adviceDao.dealadvice(id);
+        if(result>0){
+            return true;
+        }else
         return false;
     }
 }

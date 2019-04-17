@@ -12,6 +12,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.lang.invoke.MethodType;
@@ -61,11 +63,13 @@ public class UserController {
     }
     @ResponseBody
     @RequestMapping("/login")
-    public UserResponse login(UserReq userReq){
+    public UserResponse login(HttpServletRequest request,UserReq userReq){
         UserResponse res=new UserResponse();
         int resint=userService.findbyNameandpwd(userReq);
         if(resint>0){
             res.setObject(resint);
+            HttpSession session = request.getSession();
+            session.setAttribute("user", userReq);
             return res;
         }else{
             res.setResultCode(ResultCode.user_notexist.getCode());

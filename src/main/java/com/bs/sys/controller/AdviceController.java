@@ -24,6 +24,7 @@ public class AdviceController {
     @RequestMapping("/issueAdvice")
     public AdviceResponse issueAdvice(Advice advice){
         AdviceResponse res=new AdviceResponse();
+        advice.setIsDeal(0);
         if(!adviceService.createAdvice(advice)){
             res.setResultCode(ResultCode.db_opterror.getCode());
             res.setResultMessage(ResultCode.db_opterror.getMessage());

@@ -1,4 +1,9 @@
-
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -10,21 +15,13 @@
 <link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/bootstrap-3.3.4.css">
 <!-- Custom CSS -->
 <link href="css/style.css" rel='stylesheet' type='text/css' />
-<!-- Graph CSS -->
-<link href="css/lines.css" rel='stylesheet' type='text/css' />
 <link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/font-awesome.4.6.0.css"> 
 <!-- jQuery -->
 <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
 
 <!---//webfonts--->  
-<!-- Nav CSS -->
-<link href="css/custom.css" rel="stylesheet">
-<!-- Metis Menu Plugin JavaScript -->
-<script src="js/metisMenu.min.js"></script>
-<script src="js/custom.js"></script>
-<!-- Graph JavaScript -->
-<script src="js/d3.v3.js"></script>
-<script src="js/rickshaw.js"></script>
+<!-- Bootstrap Core JavaScript -->
+<script src="http://www.jq22.com/jquery/bootstrap-3.3.4.js"></script>
 </head>
 <body>
 <div id="wrapper">
@@ -102,7 +99,7 @@
 	        		</ul>
 	      		</li>
 			    <li class="dropdown">
-	        		<a href="#" class="dropdown-toggle avatar" data-toggle="dropdown"><img src="images/1.png"><span class="badge">9</span></a>
+	        		<a href="#" class="dropdown-toggle avatar" data-toggle="dropdown"><img src="images/1.png" alt=""/><span class="badge">9</span></a>
 	        		<ul class="dropdown-menu">
 						<li class="dropdown-menu-header text-center">
 							<strong>Account</strong>
@@ -198,241 +195,149 @@
             <!-- /.navbar-static-side -->
         </nav>
         <div id="page-wrapper">
-        <div class="graphs">
-     	<div class="col_3">
-        	<div class="col-md-3 widget widget1">
-        		<div class="r3_counter_box">
-                    <i class="pull-left fa fa-thumbs-up icon-rounded"></i>
-                    <div class="stats">
-                      <h5><strong>45%</strong></h5>
-                      <span>New Orders</span>
-                    </div>
-                </div>
-        	</div>
-        	<div class="col-md-3 widget widget1">
-        		<div class="r3_counter_box">
-                    <i class="pull-left fa fa-users user1 icon-rounded"></i>
-                    <div class="stats">
-                      <h5><strong>1019</strong></h5>
-                      <span>New Visitors</span>
-                    </div>
-                </div>
-        	</div>
-        	<div class="col-md-3 widget widget1">
-        		<div class="r3_counter_box">
-                    <i class="pull-left fa fa-comment user2 icon-rounded"></i>
-                    <div class="stats">
-                      <h5><strong>1012</strong></h5>
-                      <span>New Users</span>
-                    </div>
-                </div>
-        	</div>
-        	<div class="col-md-3 widget">
-        		<div class="r3_counter_box">
-                    <i class="pull-left fa fa-dollar dollar1 icon-rounded"></i>
-                    <div class="stats">
-                      <h5><strong>$450</strong></h5>
-                      <span>Profit Today</span>
-                    </div>
-                </div>
-        	 </div>
-        	<div class="clearfix"> </div>
-      </div>
+					<div id="newsListId" class="graphs">
+				 <div class="widget_head">问题反馈</div>
 
-					<!----Calender -------->
-					<link rel="stylesheet" href="css/clndr.css" type="text/css" />
-					<script src="js/underscore-min.js" type="text/javascript"></script>
-					<script src= "js/moment-2.2.1.js" type="text/javascript"></script>
-					<script src="js/clndr.js" type="text/javascript"></script>
-					<script src="js/site.js" type="text/javascript"></script>
-					<!----End Calender -------->
+						<div class="content_bottom">
+							<div class="col-md-12 span_3">
+								<div class="bs-example1" data-example-id="contextual-table">
+									<table class="table">
+										<thead>
+										<tr>
+											<th>#</th>
+											<th>ID</th>
+											<th width="100">时间</th>
+											<th>联系方式</th>
+											<th>内容</th>
+											<th>状态</th>
+											<th style="min-width: 20px;"></th>
+										</tr>
+										</thead>
+										<tbody class="topicTbody">
 
-    <div class="content_bottom">
-     <div class="col-md-12 span_3">
-		  <div class="bs-example1" data-example-id="contextual-table">
-				<div>
-					<button type="submit" class="btn btn-primary addTopicBtn">新建圈子</button>
-				</div>
-		    <table class="table">
-		      <thead>
-		        <tr>
-		          <th>#</th>
-		          <th>ID</th>
-		          <th>名称</th>
-		          <th></th>
-		        </tr>
-		      </thead>
-		      <tbody class="topicTbody">
+										</tbody>
+									</table>
+								</div>
+								<ul id="pagination" class="pagination pagination-small m-t-none m-b-none"></ul>
+							</div>
+							<div class="clearfix"> </div>
+						</div>
 
-		      </tbody>
-		    </table>
-		   </div>
-	   </div>
-		<div class="clearfix"> </div>
-	    </div>
-		<div class="copy">
-           <p>Copyright &copy; 2015 </p>
-	    </div>
-		</div>
-       </div>
+				 <div class="copy_layout">
+							<p>Copyright © 2015 Modern. All Rights Reserved | Design by  </p>
+						 </div>
+			</div>
+      	</div>
       <!-- /#page-wrapper -->
    </div>
     <!-- /#wrapper -->
-    <!-- Bootstrap Core JavaScript -->
-    <script src="http://www.jq22.com/jquery/bootstrap-3.3.4.js"></script>
-    <script src="../../lib/layer/layer.js"></script>
+<!-- Nav CSS -->
+<link href="css/custom.css" rel="stylesheet">
+<!-- Metis Menu Plugin JavaScript -->
+<script src="js/metisMenu.min.js"></script>
+<script src="js/custom.js"></script>
+<script type="text/javascript" src="../../js/wangEditor.js"></script>
+<script src="../../lib/layer/layer.js"></script>
+<script src="../../lib/jquery-paginator/jqPaginator.js"></script>
 <script>
-	$(function () {
-	  var editSession = window.sessionStorage.getItem("edit");
-	  var delSession = window.sessionStorage.getItem("del");
-	  var addSession = window.sessionStorage.getItem("add");
-	  if(editSession){
-      layer.msg("修改成功", {time: 2000, icon: 1});
-      window.sessionStorage.removeItem("edit");
-		}
-    if(delSession){
-      layer.msg("删除成功", {time: 2000, icon: 1});
+  $(function () {
+    var editSession = window.sessionStorage.getItem("del");
+    if(editSession){
+      layer.msg("处理成功", {time: 2000, icon: 1});
       window.sessionStorage.removeItem("del");
     }
-    if(addSession){
-      layer.msg("新增成功", {time: 2000, icon: 1});
-      window.sessionStorage.removeItem("add");
+
+    function getMyDate(str){
+      var oDate = new Date(str),
+          oYear = oDate.getFullYear(),
+          oMonth = oDate.getMonth()+1,
+          oDay = oDate.getDate(),
+          oHour = oDate.getHours(),
+          oMin = oDate.getMinutes(),
+          oSen = oDate.getSeconds(),
+          oTime = oYear +'-'+ getzf(oMonth) +'-'+ getzf(oDay);//最后拼接时间
+      return oTime;
+    }
+    //补0操作
+    function getzf(num){
+      if(parseInt(num) < 10){
+        num = '0'+num;
+      }
+      return num;
     }
 
-    //获取圈子
-    var alltopicData = new FormData();
-    alltopicData.append("page", 1);
-    alltopicData.append("limit", 10000);
+		var maxNum = 10;
+    function pageFun(num, callback) {
+      var pages = 1;
+      if(num > 0){
+        if(num % maxNum > 0){
+          pages = parseInt(num / maxNum) + 1;
+        }else{
+          pages = parseInt(num / maxNum);
+        }
+      }
+
+      $.jqPaginator('#pagination', {
+        totalPages: pages,
+        visiblePages: 7,
+        currentPage: 1,
+        onPageChange: callback
+      });
+    }
+
+    //获取反馈
+    var getAllAdviceData = new FormData();
+    getAllAdviceData.append("page", 1);
+    getAllAdviceData.append("limit", 10000);
     $.ajax({
       type: "post",
-      url: "../../topic/getalltopic",
+      url: "../../advice/getAllAdvice",
       // contentType: "application/json;charset=utf-8",
       contentType: false,//这里
       processData: false,//这两个一定设置为false
       dataType: "json",
-      data: alltopicData,
+      data: getAllAdviceData,
       success: function (data) {
         if(data && data.resultCode == 200){
-          data.topicList.forEach(function (item, index) {
+          var dealStatusEl = '';
+          var dealStatusBtn = '';
+          data.adviceList.forEach(function (item, index) {
+						dealStatusEl = item.isDeal == 0 ? '<span style="color: red;">未处理</span>' : '<span>已处理</span>';
+            dealStatusBtn = item.isDeal == 0 ? '<a href="javascript: void(0);" data-id="' + item.id + '" class="del">处理</a>' : '';
             $(".topicTbody").append('<tr>' +
-																		'<th>' + (index + 1) + '</th>' +
-																		'<td>' + item.id + '</td>' +
-																		'<td>' + item.topicName + '</td>' +
-																		'<td>' +
-								'<a href="javascript: void(0);" data-id="' + item.id + '" data-name="' + item.topicName + '" class="edit" style="margin-right: 10px;">编辑</a>' +
-								'<a href="javascript: void(0);" data-id="' + item.id + '" class="del" style="margin-right: 10px;">删除</a>' +
-								'<a href="widgets.html?id=' + item.id + '" class="del">查看新闻</a>' +
+                '<th>' + (index + 1) + '</th>' +
+                '<td>' + item.id + '</td>' +
+                '<td>' + getMyDate(item.createTime) + '</td>' +
+                '<td>' + item.contactWay + '</td>' +
+                '<td>' + item.content + '</td>' +
+                '<td>' + dealStatusEl + '</td>' +
+                '<td>' +
+                dealStatusBtn +
 								'</td>' +
-																		'</tr>');
+                '</tr>');
           });
         }
       }
     });
 
-    //新建圈子
-    $("body").on("click", ".addTopicBtn", function () {
-      layer.open({
-        btn: ['确认', '取消'],
-        title: '新增',
-        skin: 'my-skin',
-        btnAlign: 'c',
-        scrollbar: false,
-        area: ['500px', '200px'],
-        content: '<div><span>名称：</span><input class="addTopicNameInput"></div>',
-        yes: function(index, layero){
-          //按钮【按钮一】的回调
-          var addTopicNameInputVal = $(".addTopicNameInput").val();
-          var formData = new FormData();
-          formData.append("postNum", 0);
-          formData.append("topicName", addTopicNameInputVal);
-          formData.append("imgUrl", '');
-          $.ajax({
-            type: "post",
-            url: "../../topic/addTopic",
-            // contentType: "application/json;charset=utf-8",
-            contentType: false,//这里
-            processData: false,//这两个一定设置为false
-            dataType: "json",
-            data: formData,
-            success: function (data) {
-              if(data && data.resultCode == 200){
-                window.sessionStorage.setItem("add", true);
-                window.location.reload();
-              } else {
-                layer.msg(data.resultMessage, {time: 2000, icon: 2});
-              }
-            },
-            error: function (err) {
-              layer.msg("异常", {time: 2000, icon: 2});
-            }
-          })
-        }
-      });
-      $(".topicNameInput").val(thisName);
-    });
-
-		//编辑圈子
-		$("body").on("click", ".edit", function () {
-		  var thisName = $(this).attr("data-name");
-		  var thisId = $(this).attr("data-id");
-      layer.open({
-        btn: ['确认', '取消'],
-        title: '编辑',
-        skin: 'my-skin',
-        btnAlign: 'c',
-        scrollbar: false,
-        area: ['500px', '200px'],
-        content: '<div><span>名称：</span><input class="topicNameInput"></div>',
-				yes: function(index, layero){
-          //按钮【按钮一】的回调
-					var topicNameVal = $(".topicNameInput").val();
-          var formData = new FormData();
-          formData.append("id", thisId);
-          formData.append("topicName", topicNameVal);
-          formData.append("imgUrl", '');
-          $.ajax({
-            type: "post",
-            url: "../../topic/updateTopic",
-            // contentType: "application/json;charset=utf-8",
-            contentType: false,//这里
-            processData: false,//这两个一定设置为false
-            dataType: "json",
-            data: formData,
-            success: function (data) {
-              if(data && data.resultCode == 200){
-                window.sessionStorage.setItem("edit", true);
-                window.location.reload();
-              } else {
-                layer.msg(data.resultMessage, {time: 2000, icon: 2});
-							}
-            },
-            error: function (err) {
-              layer.msg("异常", {time: 2000, icon: 2});
-            }
-          })
-        }
-      });
-      $(".topicNameInput").val(thisName);
-    });
-
-    //删除圈子
+    //处理反馈
     $("body").on("click", ".del", function () {
       var thisId = $(this).attr("data-id");
-      var formData = new FormData();
-      formData.append("id", thisId);
+      var dealData = new FormData();
+      dealData.append("id", thisId);
 
-      layer.confirm('是否删除？', {
-        title: "删除提示",
+      layer.confirm('是否处理？', {
+        title: "提示",
         btn: ['确定', '取消']
       }, function () {
         $.ajax({
           type: "post",
-          url: "../../topic/delTopic",
+          url: "../../advice/deal",
           // contentType: "application/json;charset=utf-8",
           contentType: false,//这里
           processData: false,//这两个一定设置为false
           dataType: "json",
-          data: formData,
+          data: dealData,
           success: function (data) {
             if(data && data.resultCode == 200){
               window.sessionStorage.setItem("del", true);
@@ -446,7 +351,6 @@
           }
         });
       });
-
 
     });
 

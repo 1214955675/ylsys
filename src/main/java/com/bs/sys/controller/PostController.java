@@ -37,6 +37,19 @@ public class PostController {
         }
         return res;
     }
+    @RequestMapping("/getPostByPostId")
+    public PostResponse getPostByPostId(@RequestParam String postId){
+        PostResponse res=new PostResponse();
+        try {
+            int post_id=Integer.parseInt(postId);
+            res.setPost(postService.getpostbypostid(post_id));
+        }catch (Exception e){
+            e.printStackTrace();
+            res.setResultCode(ResultCode.db_opterror.getCode());
+            res.setResultMessage(ResultCode.db_opterror.getMessage());
+        }
+        return res;
+    }
     @RequestMapping("/getPostByTopicId")
     public PostResponse getPostByTopicId(@RequestParam String topicId){
         PostResponse res=new PostResponse();

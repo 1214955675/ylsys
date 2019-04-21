@@ -25,4 +25,6 @@ public interface PostDao {
     int delpost(int id);
     @UpdateProvider(type=com.bs.sys.common.DynoSqlProvider.class,method="updatePostSql")
     int updatepost(Post post);
+    @Select("select * from post where id =#{id}")
+    Post getpostbypostid(Integer postid);
 }

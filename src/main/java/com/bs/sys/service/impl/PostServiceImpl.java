@@ -51,4 +51,9 @@ public class PostServiceImpl implements PostService {
         }else
         return false;
     }
+
+    @Override
+    public Post getpostbypostid(Integer id) {
+        return postDao.getpostbypostid(id);
+    }
 }

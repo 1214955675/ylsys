@@ -14,4 +14,5 @@ public interface PostService {
     int createPost(Post post);
     boolean delPost(Integer postid);
     boolean updatepost(Post post);
+    Post getpostbypostid(Integer id);
 }

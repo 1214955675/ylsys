@@ -1162,7 +1162,7 @@ input.ysp-button {
 }
 #comment-box .weiboComments {margin-left: 60px;}
 #comment-box .weiboComments .com-textarea {
-	background: url(../images/comment/bg_sharebox.png) no-repeat 100% 50% #FFF;
+	/*background: url(../images/comment/bg_sharebox.png) no-repeat 100% 50% #FFF;*/
     border: 1px solid #e6e6e6;
     border-radius: 1px 1px 1px 1px;
     box-shadow: 0 1px 0 0 #F8F8F8;

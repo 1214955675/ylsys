@@ -2696,3 +2696,8 @@ span.btn_7{
   font-size: 64%;
 }
 }
+
+#side-menu > li.active, #side-menu > li > a.active{
+  /*background-color: rgb(6, 217, 149);*/
+  border-left: 5px solid #06D995;
+}

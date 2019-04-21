@@ -202,7 +202,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							<div class="col-md-12 span_3">
 								<div class="bs-example1" data-example-id="contextual-table">
 									<div>
-										<button type="submit" class="btn btn-primary addTopicBtn">新建新闻</button>
+										<button type="submit" class="btn btn-primary addTopicBtn">新增新闻</button>
 									</div>
 									<table class="table">
 										<thead>
@@ -210,6 +210,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 											<th>#</th>
 											<th>ID</th>
 											<th>名称</th>
+											<th>时间</th>
 											<th></th>
 										</tr>
 										</thead>
@@ -287,6 +288,25 @@ License URL: http://creativecommons.org/licenses/by/3.0/
       var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
       var r = decodeURIComponent(window.location.search.substr(1)).match(reg);  //匹配目标参数
       if (r != null) return unescape(r[2]); return null; //返回参数值
+    }
+
+    function getMyDate(str){
+      var oDate = new Date(str),
+          oYear = oDate.getFullYear(),
+          oMonth = oDate.getMonth()+1,
+          oDay = oDate.getDate(),
+          oHour = oDate.getHours(),
+          oMin = oDate.getMinutes(),
+          oSen = oDate.getSeconds(),
+          oTime = oYear +'-'+ getzf(oMonth) +'-'+ getzf(oDay) +' '+ getzf(oHour) +':'+ getzf(oMin) +':'+ getzf(oSen);//最后拼接时间
+      return oTime;
+    }
+    //补0操作
+    function getzf(num){
+      if(parseInt(num) < 10){
+        num = '0'+num;
+      }
+      return num;
     }
 
     var E = window.wangEditor;
@@ -401,8 +421,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 '<th>' + (index + 1) + '</th>' +
                 '<td>' + item.id + '</td>' +
                 '<td>' + item.postName + '</td>' +
+                '<td>' + getMyDate(item.createTime) + '</td>' +
                 '<td>' +
-                '<a href="javascript: void(0);" data-id="' + item.id + '" data-name="' + item.postName + '" data-content="' + item.content + '" class="edit" style="margin-right: 10px;">编辑</a>' +
+                '<a href="javascript: void(0);" data-id="' + item.id + '" data-name="' + item.postName + '" class="edit" style="margin-right: 10px;">编辑</a>' +
                 '<a href="javascript: void(0);" data-id="' + item.id + '" class="del">删除</a></td>' +
                 '</tr>');
           });
@@ -427,7 +448,23 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			thisEditId = $(this).attr("data-id");
 			thisEditContent = $(this).attr("data-content");
       $("#newsTitle2").val(thisEditName);
-      editor2.txt.html(thisEditContent);
+
+      var getNewsData = new FormData();
+      getNewsData.append("postId", thisEditId);
+      $.ajax({
+        type: "post",
+        url: "../../post/getPostByPostId",
+        // contentType: "application/json;charset=utf-8",
+        contentType: false,//这里
+        processData: false,//这两个一定设置为false
+        dataType: "json",
+        data: getNewsData,
+        success: function (data) {
+          thisEditContent = data.post.content
+          editor2.txt.html(thisEditContent);
+        }
+      });
+
     });
 
     $("body").on("click", "#saveNews2", function () {

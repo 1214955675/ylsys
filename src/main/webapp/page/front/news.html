@@ -122,33 +122,6 @@ $('#dropdownID-1').hover(function(){
 		</div>
 	</div>
     
-    
-	
-    <div class="top-div">
-	<div class="container clearfix">
-		
-       <div class="span3 logo-div logo-img" style="margin-left:0px;">
-        <a href="/" title="医疗器械创新网"><img src="../../images/logo.jpg" class="ie6png" style="display: block;"/></a>
-       </div>
-		
-        <div class="span11 pull-right top-ad" style="position: relative;_float: right;_height: 80px;_overflow: hidden;">
- <a href="javascript:;" class="pull-left" target="_blank" rel="nofollow">
-        <img alt="" src="../../images/img1.jpg" style="width: 100%; display: block;"/></a>
-        
-         <a href="javascript:;" class="pull-left" style="display:none;" target="_blank">
-        <img alt="" src="../../images/img2.jpg" style="width: 100%; display: block;"/></a>
-
-	 <div class="slides-icon-ad slides-ad-point" style="position: absolute;right:60px;">
-				<a href="javascript:void(0);" class="icon-css-on ie6png">&nbsp;</a>
-				<a href="javascript:void(0);" class="icon-css ie6png">&nbsp;</a>	 
-	 </div>
-            
-	</div>
-	</div>
-</div>
-    
- 
-
 <script type="text/javascript">
 	$(function(){
 		var Interval_control = '';
@@ -223,8 +196,8 @@ $('#dropdownID-1').hover(function(){
   <div class="label-div b-30 border-all pt-5 t-20" style="position: relative; padding-left: 0;">
    
   
-   <div class="mmdh pull-left"><a href="">首页</a> > <a href="">投资机构</a> > <a href="">机构标题</a></div> 
-   <div class="mmkey pull-right"><b><a href="">关键字</a></b><b><a href="">关键字</a></b><b><a href="">关键字</a></b><div class="mmclear"></div></div> 
+   <!--<div class="mmdh pull-left"><a href="">首页</a> > <a href="">投资机构</a> > <a href="">机构标题</a></div> -->
+   <!--<div class="mmkey pull-right"><b><a href="">关键字</a></b><b><a href="">关键字</a></b><b><a href="">关键字</a></b><div class="mmclear"></div></div> -->
   
    <div class="mmclear"></div>
    
@@ -232,10 +205,9 @@ $('#dropdownID-1').hover(function(){
    
    
    <div style="margin-top: 14px;" class="clearfix pb-12 pl-25 pr-25">
-						<h1 class="pull-left r-10">标题标题标题标题标题标题标题</h1>
+						<h1 class="pull-left r-10" id="newsTitle"></h1>
 						<div class="pull-left pt-5 none-768" style="_margin-top:-33px; _margin-left:-10px;"> 
                         <span class="like-plug-gz clearfix pull-left r-15">
-                        <a title="感兴趣，关注一下吧" href="javascript:void(0);" class="like-btn pull-right ie6png">关注本文</a>
                         <span class="count pull-left t-5 d-none"></span>
                         </span>
                         </div>
@@ -246,34 +218,21 @@ $('#dropdownID-1').hover(function(){
   <div style="margin-top: 4px;" class="clearfix pl-25 pr-25">
 						<div class="pull-left">
 				 
-				<span class="r-15 pull-left"><span class="fc999 l-5">2013/03/02</span></span>
-				 <span class="r-15 pull-left"><span class="fc999 l-5">涉及行业：软件</span></span>
-			    <span class="fc999 l-20 pull-left">涉及公司：
-                	<span data-obj="News" data-oid="104437" id="obj_hits" class="fc999">Google</span>
-                </span>
+				<span class="r-15 pull-left"><span class="fc999 l-5" id="newsDate"></span></span>
+				 <!--<span class="r-15 pull-left"><span class="fc999 l-5">涉及行业：软件</span></span>-->
+			    <!--<span class="fc999 l-20 pull-left">涉及公司：-->
+                	<!--<span data-obj="News" data-oid="104437" id="obj_hits" class="fc999">Google</span>-->
+                <!--</span>-->
 		</div> 
  </div> 
   
  <div class="view-main t-20 pl-25 pr-25">
- 
-  <table style="width: 100%;" class="fc333 border-all">
-		<tbody><tr>
-			<td style="padding: 5px 12px;width: 25px;font-size: 22px;text-align: center;background: #E8E8E8; line-height: 30px;color: #999">导读</td>
-			<td style="padding: 10px 10px 12px;line-height: 24px;">内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容</td>
-			</tr>
-	</tbody></table>
     
     <div class="view-content" style="margin-top: 18px;">
-      <p>内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内 内容内容内容内容内容</p>
-     
-       <p>内容内容内容内 内 容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容</p>
-       
-       <p style="text-align:center;"><img src="../../images/info_1.jpg" /></p>
-         <p>容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容</p>
+
     </div>
 
-  </div> 
-   
+  </div>
    
   <!--警告：切勿删除-->
   <!--[if IE 6]> <a class="follow-btn ie6png mmmzw"></a><![endif]--> 
@@ -304,7 +263,7 @@ $('#dropdownID-1').hover(function(){
 				<textarea id="commentBoxId" onblur="if(this.value==''){this.value='有什么感想？你也来说说吧！';$(this).next().val('有什么感想？你也来说说吧！')};textCounter($(this), $(this).parents('form').find('#remLen'),140)" onfocus="if(this.value=='有什么感想？你也来说说吧！'){this.value=''};" onmousemove="textCounter($(this), $(this).parents('form').find('#remLen'),140)" onkeyup="textCounter($(this), $(this).parents('form').find('#remLen'),140);" onkeydown="textCounter($(this), $(this).parents('form').find('#remLen'),140);" id="data_content" name="data[content]" style="_width: 98%;">有什么感想？你也来说说吧！</textarea>
 				<input type="hidden" value="有什么感想？你也来说说吧！" id="data_content2">
 				<input type="hidden" value="comment" id="class" name="class">
-				<span class="head-msg">还可以输入<span id="remLen">140</span>字</span>
+				<!--<span class="head-msg">还可以输入<span id="remLen">140</span>字</span>-->
 				<span style="color: #000;position: absolute;left: 0;top: -35px;height: 22px;line-height: 20px;font-family: '微软雅黑';font-size: 14px;">讨论区：</span>
 			</div>
 
@@ -382,7 +341,7 @@ padding: 5px 20px;">评&nbsp;论</a>
 					<li><span>|</span></li>
 					<li><a title="公司博客" href="javascript:;" class="fc666" target="_blank" >公司博客</a></li>
 					<li><span>|</span></li>
-					<li><a title="加入我们" href="javascript:;" class="fc666" target="_blank">加入我们</a></li>
+					<li><a title="问题反馈" href="feedback.html" class="fc666">问题反馈</a></li>
 					<li><span>|</span></li>
 					<li><a title="服务协议" href="javascript:;" class="fc666" target="_blank">服务协议</a></li>
 					<li><span>|</span></li>
@@ -444,12 +403,49 @@ if(addSession){
   window.sessionStorage.removeItem("add");
 }
 
+function getMyDate(str){
+  var oDate = new Date(str),
+      oYear = oDate.getFullYear(),
+      oMonth = oDate.getMonth()+1,
+      oDay = oDate.getDate(),
+      oHour = oDate.getHours(),
+      oMin = oDate.getMinutes(),
+      oSen = oDate.getSeconds(),
+      oTime = oYear +'-'+ getzf(oMonth) +'-'+ getzf(oDay) +' '+ getzf(oHour) +':'+ getzf(oMin) +':'+ getzf(oSen);//最后拼接时间
+  return oTime;
+}
+//补0操作
+function getzf(num){
+  if(parseInt(num) < 10){
+    num = '0'+num;
+  }
+  return num;
+}
+
 function getUrlData(name){
   var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
   var r = decodeURIComponent(window.location.search.substr(1)).match(reg);  //匹配目标参数
   if (r != null) return unescape(r[2]); return null; //返回参数值
 }
 var urlId = getUrlData('id');
+
+// 获取新闻详情
+var getNewsData = new FormData();
+getNewsData.append("postId", urlId);
+$.ajax({
+  type: "post",
+  url: "../../post/getPostByPostId",
+  // contentType: "application/json;charset=utf-8",
+  contentType: false,//这里
+  processData: false,//这两个一定设置为false
+  dataType: "json",
+  data: getNewsData,
+  success: function (data) {
+    $("#newsTitle").html(data.post.postName);
+    $("#newsDate").html(getMyDate(data.post.createTime));
+    $(".view-content").html(data.post.content);
+  }
+});
 
 //获取评论
 var commentsData = new FormData();

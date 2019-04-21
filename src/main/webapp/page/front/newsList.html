@@ -279,7 +279,7 @@ $('#dropdownID-1').hover(function(){
 					<li><span>|</span></li>
 					<li><a title="公司博客" href="javascript:;" class="fc666" target="_blank" >公司博客</a></li>
 					<li><span>|</span></li>
-					<li><a title="加入我们" href="javascript:;" class="fc666" target="_blank">加入我们</a></li>
+					<li><a title="问题反馈" href="feedback.html" class="fc666">问题反馈</a></li>
 					<li><span>|</span></li>
 					<li><a title="服务协议" href="javascript:;" class="fc666" target="_blank">服务协议</a></li>
 					<li><span>|</span></li>
@@ -330,7 +330,7 @@ $('#dropdownID-1').hover(function(){
           oHour = oDate.getHours(),
           oMin = oDate.getMinutes(),
           oSen = oDate.getSeconds(),
-          oTime = oYear +'-'+ getzf(oMonth) +'-'+ getzf(oDay) +'-'+ getzf(oHour) +'-'+ getzf(oMin) +'-'+ getzf(oSen);//最后拼接时间
+          oTime = oYear +'-'+ getzf(oMonth) +'-'+ getzf(oDay) +' '+ getzf(oHour) +':'+ getzf(oMin) +':'+ getzf(oSen);//最后拼接时间
       return oTime;
     }
     //补0操作

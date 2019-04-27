@@ -11,7 +11,7 @@ $(function () {
     formData.append("userName", $("input[name=rname]").val());
     formData.append("passWord", $("input[name=pwd]").val());
     formData.append("nickName", $("input[name=nickname]").val());
-    formData.append("imgUrl", '');
+    formData.append("file", document.getElementById("headImg").files[0]);
     $.ajax({
       type: "post",
       url: "../../user/register",

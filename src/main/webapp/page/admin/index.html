@@ -338,14 +338,15 @@
         btnAlign: 'c',
         scrollbar: false,
         area: ['500px', '200px'],
-        content: '<div><span>名称：</span><input class="addTopicNameInput"></div>',
+        content: '<div><span>图片：</span><input id="fileId" type="file"></div><div><span>名称：</span><input class="addTopicNameInput"></div>',
         yes: function(index, layero){
           //按钮【按钮一】的回调
           var addTopicNameInputVal = $(".addTopicNameInput").val();
           var formData = new FormData();
           formData.append("postNum", 0);
           formData.append("topicName", addTopicNameInputVal);
-          formData.append("imgUrl", '');
+          formData.append("file", document.getElementById("fileId").files[0]);
+
           $.ajax({
             type: "post",
             url: "../../topic/addTopic",
@@ -368,7 +369,6 @@
           })
         }
       });
-      $(".topicNameInput").val(thisName);
     });
 
 		//编辑圈子

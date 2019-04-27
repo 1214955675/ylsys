@@ -378,22 +378,9 @@ function getUrlData(name){
   if (r != null) return unescape(r[2]); return null; //返回参数值
 }
 
-function getCookie(c_name) {
-  if (document.cookie.length>0) {
-    c_start=document.cookie.indexOf(c_name + "=")
-    if (c_start!=-1) {
-      c_start=c_start + c_name.length+1
-      c_end=document.cookie.indexOf(";",c_start)
-      if (c_end==-1) c_end=document.cookie.length
-      return unescape(document.cookie.substring(c_start,c_end))
-    }
-  }
-  return ""
-}
-
 var urlId = getUrlData('id');
-var userId = getCookie('userId');
-var userName = getCookie('userName');
+var userId = window.sessionStorage.getItem("userId");
+var userName = window.sessionStorage.getItem("userName");
 
 // 获取新闻详情
 var getNewsData = new FormData();

@@ -8,7 +8,6 @@
 <script type="text/javascript" src="../../js/bioV4.min.js"></script>
 <script type="text/javascript" src="../../js/jquery.lazyload.mini.js"></script>
 	<script src="../../lib/layer/layer.js"></script>
-	<script src="../../lib/template-web.js"></script>
 
 	<title>新闻详情页</title>
 <meta name="Keywords" content="咨询详情页"/>
@@ -61,98 +60,7 @@ DD_belatedPNG.fix('img,.ie6png');
 	<script type="text/javascript" src="../../js/borsertocss.js"> </script><!-- 判断在IE9以下浏览器中根据像素的不同而设置的样式 -->
  
   <!--头部代码开始-->
-
-    <div class="navbar navbar-fixed-top" style="_position: relative;_z-index: 10000;">
-		<div class="navbar-inner">
-			<div class="container">
-				<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</a>
-				<div class="nav-collapse">
-					<ul class="nav" id="navID">
-					                        
-                        <li class=""><a href="../../index.html"><b>首页</b></a></li>
-					 	<li class=""><a href="cxzx_list.html"><b>创新咨讯</b></a></li>
-						<li class=""><a href="cxfw_list.html"><b>创新服务</b></a></li>
-						<li class=""><a href="xmdata.html"><b>项目数据库</b></a></li>
-						<li class="active"><a href="tzjg_list.html"><b>投资机构</b></a></li>
-						<li class=""><a href="xm_write.html"><b>项目发布</b></a></li>
-                        
-					</ul>
-				</div><!--/.nav-collapse -->
-				<ul class="nav pull-right login-none nav-tips">
-		<li class="ie6png divider-vertical" style="_width: 30px;_height: 40px;_background: url(../../images/icons.png) no-repeat 10px -106px;"><a class="dropdown-toggle clearfix" href="login.html?url=aHR0cDovL3d3dy5iaW9kaXNjb3Zlci5jb20vbmV3cy5odG1sP3BhZ2U9Mg%3D%3D" style="padding: 7px 5px;"><img class="logo-before pull-left" src="../../images/avatar-icon.png" /></a></li>
-	</ul>
-<div class="popup-div tips-div" style="position: absolute;z-index: 10000001;display: none;"></div>
-<script type="text/javascript">
-var tip_show = 1;
-//头部下拉
-var timer1 = "";
-$('#dropdownID-0').hover(function(){
-	var obj = $(this);
-	if(timer1)
-	{
-		clearTimeout(timer1);
-	}
-	timer1 = setTimeout(function(){
-		obj.find('.dropdown-menu').show();
-		tip_show = 0;
-		$(".tips-div").hide();
-		obj.find('.other-icon').css({"background":"#2E2E2E"});
-	}, 500);
-},function(){
-	var obj = $(this);
-	if(timer1)
-	{
-		clearTimeout(timer1);
-	}
-	timer1 = setTimeout(function(){
-		obj.find('.dropdown-menu').hide();
-		$(".tips-div").hide();
-		tip_show = 1;
-		getTips();
-		obj.find('.other-icon').css({"background":"none"});
-	}, 500);
-});
-
-var timer2 = "";
-$('#dropdownID-1').hover(function(){
-	var obj = $(this);
-	if(timer2)
-	{
-		clearTimeout(timer2);
-	}
-	timer2 = setTimeout(function(){
-		obj.find('.dropdown-menu').show();
-		tip_show = 0;
-		$(".tips-div").hide();
-		obj.find('.other-icon').css({"background":"#2E2E2E"});
-	}, 500);
-},function(){
-	var obj = $(this);
-	if(timer2)
-	{
-		clearTimeout(timer2);
-	}
-	timer2 = setTimeout(function(){
-		obj.find('.dropdown-menu').hide();
-		tip_show = 1;
-		getTips();
-		$(".tips-div").hide();
-		obj.find('.other-icon').css({"background":"none"});
-	}, 500);
-});
-</script>				
-
-<ul class="nav pull-right pl-20 myul">
-    <li class=""><a href="register.html">注册</a></li>
-    <li class="l10"><a href="login.html">登录</a></li>
-</ul>
-			</div>
-		</div>
-	</div>
+	<header id="headBox"></header>
     
 <script type="text/javascript">
 	$(function(){
@@ -434,7 +342,8 @@ $('.add_comment_submit').live('click',function(){add_comment_submit_fn(this,$(th
 });
 /*]]>*/
 </script>
-<script type="text/javascript">
+	<script type="text/javascript" src="../../lib/template-web.js"></script>
+	<script type="text/javascript" src="../../js/public/headjs.js"></script><script type="text/javascript">
 //回到顶部
 backToTop('body');
 

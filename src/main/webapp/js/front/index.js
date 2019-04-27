@@ -1,4 +1,11 @@
 $(function () {
+  var userId = window.sessionStorage.getItem("userId");
+  var userName = window.sessionStorage.getItem("userName");
+
+  if(userName){
+    $(".topName").html(userName);
+    $(".loginRegister").hide();
+  }
 
   //获取圈子
   var alltopicData = new FormData();

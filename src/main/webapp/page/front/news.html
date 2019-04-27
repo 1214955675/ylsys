@@ -8,6 +8,7 @@
 <script type="text/javascript" src="../../js/bioV4.min.js"></script>
 <script type="text/javascript" src="../../js/jquery.lazyload.mini.js"></script>
 	<script src="../../lib/layer/layer.js"></script>
+	<script src="../../lib/template-web.js"></script>
 
 	<title>新闻详情页</title>
 <meta name="Keywords" content="咨询详情页"/>
@@ -22,14 +23,45 @@
 <script type="text/javascript">
 DD_belatedPNG.fix('img,.ie6png');
 </script>
-<![endif]--> 
+<![endif]-->
+
+	<script id="commentsId" type="text/html">
+		{{each list value}}
+		<li class="cleaarfix p1">
+			<div class="left post-img">
+				<a href="####"><img src="../../images/hhead.jpg"></a>
+				</div>
+			<div class="post-info">
+				<div style="margin-bottom: 9px;"><a class="fs14 r-10" target="_blank" href="####">张三</a><span class="fc999">4 分钟前</span></div>
+				<div class="fc666 b-5">{{value.content}}</div>
+				<div>
+					<a href="javascript:void(0);" data-id="{{value.id}}" class="comment_reply_comment">回复</a>
+					</div>
+				</div>
+
+			{{each value.list value2}}
+			<div class="comments2List" style="margin: 10px 0 0 65px;">
+				<div class="left post-img">
+					<a href="####"><img src="../../images/hhead.jpg" alt="标题标题"></a>
+					</div>
+				<div class="post-info">
+					<div style="margin-bottom: 9px;"><a class="fs14 r-10" target="_blank" href="####">张三</a><span class="fc999">4 分钟前</span></div>
+					<div class="fc666 b-5">{{value2.content}}</div>
+					</div>
+				</div>
+			{{/each}}
+
+			<div class="clear"></div>
+			</li>
+		{{/each}}
+	</script>
 
 </head>
 <body>
 	<script type="text/javascript" src="../../js/borsertocss.js"> </script><!-- 判断在IE9以下浏览器中根据像素的不同而设置的样式 -->
  
   <!--头部代码开始-->
-   
+
     <div class="navbar navbar-fixed-top" style="_position: relative;_z-index: 10000;">
 		<div class="navbar-inner">
 			<div class="container">
@@ -293,6 +325,15 @@ padding: 5px 20px;">评&nbsp;论</a>
 						<!--<a href="javascript:void(0);" class="comment_reply_comment">回复</a>-->
 					<!--</div>-->
 				<!--</div>-->
+				<!--<div class="comments2List" style="margin-left: 65px;margin-top: 10px;">-->
+					<!--<div class="left post-img">-->
+						<!--<a href="####"><img src="../../images/hhead.jpg" alt="标题标题"></a>-->
+					<!--</div>-->
+					<!--<div class="post-info">-->
+						<!--<div style="line-height: 16px;margin-bottom: 9px;"><a class="fs14 r-10" target="_blank" href="####">张三</a><span class="fc999">4 分钟前</span></div>-->
+						<!--<div class="fc666 b-5">内容内容内容内容内容内容内容内容</div>-->
+					<!--</div>-->
+				<!--</div>-->
 				<!--<div class="clear"></div>-->
 			<!--</li>-->
 
@@ -378,6 +419,7 @@ padding: 5px 20px;">评&nbsp;论</a>
 		});
 	});
 </script>
+	<div id="content"></div>
 <p>Copyright ©2013　　备8888888888号</p>
     
 		</div> 
@@ -392,7 +434,6 @@ $('.add_comment_submit').live('click',function(){add_comment_submit_fn(this,$(th
 });
 /*]]>*/
 </script>
-
 <script type="text/javascript">
 //回到顶部
 backToTop('body');
@@ -427,7 +468,23 @@ function getUrlData(name){
   var r = decodeURIComponent(window.location.search.substr(1)).match(reg);  //匹配目标参数
   if (r != null) return unescape(r[2]); return null; //返回参数值
 }
+
+function getCookie(c_name) {
+  if (document.cookie.length>0) {
+    c_start=document.cookie.indexOf(c_name + "=")
+    if (c_start!=-1) {
+      c_start=c_start + c_name.length+1
+      c_end=document.cookie.indexOf(";",c_start)
+      if (c_end==-1) c_end=document.cookie.length
+      return unescape(document.cookie.substring(c_start,c_end))
+    }
+  }
+  return ""
+}
+
 var urlId = getUrlData('id');
+var userId = getCookie('userId');
+var userName = getCookie('userName');
 
 // 获取新闻详情
 var getNewsData = new FormData();
@@ -459,30 +516,67 @@ $.ajax({
   dataType: "json",
   data: commentsData,
   success: function (r) {
-    r.commentList.forEach(function (item, index) {
-      $(".comments-list").append('<li class="cleaarfix p1">' +
-          '<div class="left post-img">' +
-          '<a href="####"><img src="../../images/hhead.jpg"></a>' +
-          '</div>' +
-          '<div class="post-info">' +
-          '<div style="line-height: 16px;margin-bottom: 9px;"><a class="fs14 r-10" target="_blank" href="####">张三</a><span class="fc999">4 分钟前</span></div>' +
-          '<div class="fc666 b-5">' + item.content + '</div>' +
-          '<div>' +
-          '<a href="javascript:void(0);" class="comment_reply_comment">回复</a>' +
-          '</div>' +
-          '</div>' +
-          '<div class="clear"></div>' +
-          '</li>');
-    });
+    var comment1List = [];
+    var comment2List = [];
+    for(i in r.commentList){
+      if(r.commentList[i].toCommentId != 0){
+        comment2List.push(r.commentList[i])
+      } else {
+        comment1List.push(r.commentList[i])
+      }
+    }
+		for(a in comment1List){
+      comment1List[a].list = []
+      for(b in comment2List){
+				if(comment1List[a].id == comment2List[b].toCommentId){
+          comment1List[a].list.push(comment2List[b])
+				}
+      }
+		}
+    console.log('comment1List', comment1List)
+//    comment1List.forEach(function (item, index) {
+//      item.list.forEach(function (item2, index2) {
+//        $(".comments-list").append('<li class="cleaarfix p1">' +
+//            '<div class="left post-img">' +
+//            '<a href="####"><img src="../../images/hhead.jpg"></a>' +
+//            '</div>' +
+//            '<div class="post-info">' +
+//            '<div style="line-height: 16px;margin-bottom: 9px;"><a class="fs14 r-10" target="_blank" href="####">张三</a><span class="fc999">4 分钟前</span></div>' +
+//            '<div class="fc666 b-5">' + item.content + '</div>' +
+//            '<div>' +
+//            '<a href="javascript:void(0);" data-id="' + item.id + '" class="comment_reply_comment">回复</a>' +
+//            '</div>' +
+//            '</div>' +
+//
+//            '<div class="comments2List" style="margin: 10px 0 0 65px;">' +
+//            '<div class="left post-img">' +
+//            '<a href="####"><img src="../../images/hhead.jpg" alt="标题标题"></a>' +
+//            '</div>' +
+//            '<div class="post-info">' +
+//            '<div style="line-height: 16px;margin-bottom: 9px;"><a class="fs14 r-10" target="_blank" href="####">张三</a><span class="fc999">4 分钟前</span></div>' +
+//        		'<div class="fc666 b-5">' + item2.content + '</div>' +
+//            '</div>' +
+//            '</div>' +
+//
+//            '<div class="clear"></div>' +
+//            '</li>');
+//      })
+//    });
+		var templateData = {
+		  list: comment1List
+		};
+    var html = template('commentsId', templateData);
+    $(".comments-list").append(html);
     $(".rows_count").html(r.commentList.length);
+
   }
 });
 
 // 评论
 $("body").on("click", "#commentBtn", function () {
   var formData = new FormData();
-  formData.append("formUserId", 1);
-  formData.append("formUserName", 'wwj');
+  formData.append("formUserId", userId);
+  formData.append("formUserName", userName);
   formData.append("toCommentId", 0);
   formData.append("toPostId", urlId);
   formData.append("content", $("#commentBoxId").val());
@@ -504,6 +598,46 @@ $("body").on("click", "#commentBtn", function () {
     }
   })
 });
+
+// 回复评论
+$("body").on("click", ".comment_reply_comment", function () {
+  var thisId = $(this).attr("data-id");
+  layer.open({
+    btn: ['确认', '取消'],
+    title: '回复评论',
+    skin: 'my-skin',
+    btnAlign: 'c',
+    scrollbar: false,
+    area: ['500px', '200px'],
+    content: '<div><span>内容：</span><textarea class="topicNameInput" style="width: 380px;"></textarea></div>',
+    yes: function(index, layero){
+      //按钮【按钮一】的回调
+      var formData = new FormData();
+      formData.append("formUserId", userId);
+      formData.append("formUserName", userName);
+      formData.append("toCommentId", thisId);
+      formData.append("toPostId", urlId);
+      formData.append("content", $(".topicNameInput").val());
+      $.ajax({
+        type: "post",
+        url: "../../comment/addComment",
+        // contentType: "application/json;charset=utf-8",
+        contentType: false,//这里
+        processData: false,//这两个一定设置为false
+        dataType: "json",
+        data: formData,
+        success: function (data) {
+          if(data && data.resultCode == 200){
+            window.sessionStorage.setItem("add", true);
+            window.location.reload();
+          } else {
+            layer.msg(data.resultMessage, {time: 2000, icon: 2});
+          }
+        }
+      })
+    }
+  });
+})
 
 </script>
 </body>

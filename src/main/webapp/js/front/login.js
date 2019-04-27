@@ -22,7 +22,7 @@ $(function () {
         if(data && data.resultCode == 200){
           document.cookie = "userId=" + data.object;
           document.cookie = "userName=" + $("#username").val();
-          // window.location.href = "../../index.html";
+          window.location.href = "../../index.html";
         } else {
           layer.msg(data.resultMessage, {time: 2000, icon: 2});
         }

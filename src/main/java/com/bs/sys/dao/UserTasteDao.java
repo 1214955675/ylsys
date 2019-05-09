@@ -17,6 +17,6 @@ public interface UserTasteDao {
             "#{topicId})")
     @Options(useGeneratedKeys = true, keyProperty = "id", keyColumn="id")
     Integer addusertaste(userTaste usertaste);
-    @Select("select topicId,count(*) as count from usertaste where userId = #{userId} GROUP BY topicId ")
+    @Select("select topicId as objectid,count(id) as count from usertaste where userId = #{userId} GROUP BY topicId ORDER BY count(id) DESC ")
     List<Listbysql> getbyuserid(Integer userId);
 }

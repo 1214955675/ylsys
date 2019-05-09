@@ -16,6 +16,8 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import javax.annotation.Resource;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
@@ -71,18 +73,31 @@ public class TopicController {
         TopicResponse res=new TopicResponse();
         int pagenum=0;
         int limitnum=0;
+        List<Topic> topiclist=new ArrayList<>();
+        List<Listbysql> listsql=new ArrayList<>();
         try {
              pagenum=Integer.parseInt(page);
              limitnum=Integer.parseInt(limit);
-             int userid_int=Integer.parseInt(userId);
-             List<Listbysql> listsql=userTasteService.getbyuserid(userid_int);
-
+            topiclist=topicService.getalltopic(pagenum, limitnum);
+            if(userId!=null){
+                 int userid_int=Integer.parseInt(userId);
+                 listsql=userTasteService.getbyuserid(userid_int);
+                 for(int i=0;i<listsql.size();i++){
+                     for(int j=0;j<topiclist.size();j++){
+                         if(listsql.get(i).getObjectid()==topiclist.get(j).getId()){
+                             topiclist.get(j).setTasteCountForPerson(listsql.get(i).getCount());
+                             break;
+                         }
+                     }
+                 }
+                 Collections.sort(topiclist);
+             }
         }catch (NumberFormatException e){
             res.setResultCode(ResultCode.data_parse_error.getCode());
             res.setResultMessage(ResultCode.data_parse_error.getMessage());
             return res;
         }
-        res.setTopicList(topicService.getalltopic(pagenum, limitnum));
+        res.setTopicList(topiclist);
         return res;
     }
     @RequestMapping("/updateTopic")

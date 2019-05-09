@@ -39,7 +39,8 @@ public class PostController {
         return res;
     }
     @RequestMapping("/getPostByPostId")
-    public PostResponse getPostByPostId(@RequestParam String postId,@RequestParam(value = "userId",required = false)String userId,@RequestParam String topicId){
+    public PostResponse getPostByPostId(@RequestParam String postId,@RequestParam(value = "userId",required = false)String userId,
+                                        @RequestParam(value = "topicId",required = false) String topicId){
         PostResponse res=new PostResponse();
         try {
             int post_id=Integer.parseInt(postId);
@@ -47,23 +48,25 @@ public class PostController {
             //收集兴趣
             userTaste userTaste=new userTaste();
             userTaste.setCollectTime(System.currentTimeMillis());
-            int topic=Integer.parseInt(topicId);
-            int userId_int=Integer.parseInt(userId);
-            userTaste.setUserId(userId_int);
-            userTaste.setTopicId(topic);
-            if(!userTasteService.addtaste(userTaste)){
-                res.setResultCode(ResultCode.db_opterror.getCode());
-                res.setResultMessage(ResultCode.db_opterror.getMessage());
-                return res;
-            }else {
-                return res;
+            if(topicId!=null&&userId!=null){
+                int topic=Integer.parseInt(topicId);
+                int userId_int=Integer.parseInt(userId);
+                userTaste.setUserId(userId_int);
+                userTaste.setTopicId(topic);
+                if(!userTasteService.addtaste(userTaste)){
+                    res.setResultCode(ResultCode.db_opterror.getCode());
+                    res.setResultMessage(ResultCode.db_opterror.getMessage());
+                    return res;
+                }else {
+                    return res;
+                }
             }
         }catch (Exception e){
             e.printStackTrace();
             res.setResultCode(ResultCode.db_opterror.getCode());
             res.setResultMessage(ResultCode.db_opterror.getMessage());
-            return res;
         }
+        return res;
     }
     @RequestMapping("/getPostByTopicId")
     public PostResponse getPostByTopicId(@RequestParam String topicId){

@@ -13,7 +13,8 @@ public class CommonsMultipartResolverforUeditor extends CommonsMultipartResolver
     @Override
     public boolean isMultipart(HttpServletRequest request){
         String url=request.getRequestURI();
-        if(url!=null||url.contains("/ueditor")){
+//        if(url!=null||url.contains("/ueditor")){
+        if(url.contains("/ueditor")){
             return false;
         }else{
             return true;

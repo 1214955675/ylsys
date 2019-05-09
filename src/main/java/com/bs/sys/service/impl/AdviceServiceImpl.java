@@ -19,6 +19,7 @@ public class AdviceServiceImpl implements AdviceService {
     @Override
     public boolean createAdvice(Advice advice) {
         advice.setCreateTime(System.currentTimeMillis());
+        advice.setIsDeal(0);
         int result= adviceDao.addAdvice(advice);
         if(result>0){
             return true;

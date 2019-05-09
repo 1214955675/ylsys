@@ -3,9 +3,10 @@ package com.bs.sys.controller;
 import com.bs.sys.common.ResultCode;
 import com.bs.sys.common.request.TopicReq;
 import com.bs.sys.common.response.TopicResponse;
+import com.bs.sys.entity.Listbysql;
 import com.bs.sys.entity.Topic;
-import com.bs.sys.service.TopicServiceInf;
 import com.bs.sys.service.impl.TopicServiceImpl;
+import com.bs.sys.service.impl.userTasteServiceImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,6 +16,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import javax.annotation.Resource;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -27,6 +29,8 @@ import java.util.UUID;
 public class TopicController {
     @Resource
     TopicServiceImpl topicService;
+    @Resource
+    userTasteServiceImpl userTasteService;
     @RequestMapping("/addTopic")
     public TopicResponse addtopic(TopicReq topicReq,
                                   @RequestParam(value = "file",required = false)CommonsMultipartFile file) throws IOException {
@@ -38,6 +42,7 @@ public class TopicController {
             file.transferTo(newfile);
             topicReq.setImgUrl(newfile.getAbsolutePath());
         }
+
         try {int newid=topicService.addTopic(topicReq);
             Topic restopic=new Topic();
             restopic.setId(newid);
@@ -62,13 +67,16 @@ public class TopicController {
     }
     @RequestMapping("/getalltopic")
     public TopicResponse getalltopic(TopicReq topicReq, @RequestParam(value = "page",defaultValue = "1")String page,
-                                     @RequestParam(value = "limit",defaultValue = "10")String limit){
+                                     @RequestParam(value = "limit",defaultValue = "10")String limit,@RequestParam(value = "userId",required = false)String userId){
         TopicResponse res=new TopicResponse();
         int pagenum=0;
         int limitnum=0;
         try {
              pagenum=Integer.parseInt(page);
              limitnum=Integer.parseInt(limit);
+             int userid_int=Integer.parseInt(userId);
+             List<Listbysql> listsql=userTasteService.getbyuserid(userid_int);
+
         }catch (NumberFormatException e){
             res.setResultCode(ResultCode.data_parse_error.getCode());
             res.setResultMessage(ResultCode.data_parse_error.getMessage());

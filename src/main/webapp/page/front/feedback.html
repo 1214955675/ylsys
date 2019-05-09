@@ -194,28 +194,33 @@ DD_belatedPNG.fix('img,.ie6png');
 //回到顶部
 backToTop('body');
 
-$("body").on("click", "#feedBackBtn", function () {
   //反馈
-   var adviceData = new FormData();
-   adviceData.append("content", $("#contentId").val());
-   adviceData.append("contactWay", $("#emailId").val());
-   $.ajax({
-     type: "post",
-     url: "../../advice/issueAdvice",
-     // contentType: "application/json;charset=utf-8",
-     contentType: false,//这里
-     processData: false,//这两个一定设置为false
-     dataType: "json",
-     data: adviceData,
-     success: function (data) {
-       if(data && data.resultCode == 200){
-         window.sessionStorage.setItem("add", true);
-         window.location.reload();
-       } else {
-         layer.msg(data.resultMessage, {time: 2000, icon: 2});
-       }
-     }
-   });
+$("body").on("click", "#feedBackBtn", function () {
+  if($("#contentId").val() != '' && $("#emailId").val() != ''){
+    var adviceData = new FormData();
+    adviceData.append("content", $("#contentId").val());
+    adviceData.append("contactWay", $("#emailId").val());
+    $.ajax({
+      type: "post",
+      url: "../../advice/issueAdvice",
+      // contentType: "application/json;charset=utf-8",
+      contentType: false,//这里
+      processData: false,//这两个一定设置为false
+      dataType: "json",
+      data: adviceData,
+      success: function (data) {
+        if(data && data.resultCode == 200){
+          window.sessionStorage.setItem("add", true);
+          window.location.reload();
+        } else {
+          layer.msg(data.resultMessage, {time: 2000, icon: 2});
+        }
+      }
+    });
+  } else {
+    layer.msg('请填写相关信息', {time: 2000, icon: 0});
+  }
+
 });
 
 </script>

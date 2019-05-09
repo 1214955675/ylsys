@@ -24,6 +24,7 @@ var headData = '<div class="navbar navbar-fixed-top" style="_position: relative;
     '<li class="loginRegister"><a href="register.html">注册</a></li>' +
     '<li class="loginRegister l10"><a href="login.html">登录</a></li>' +
     '<li><a href="####" class="topName"></a></li>' +
+    '<li style="display: none;" class="logoutBtn"><a href="####">退出</a></li>' +
     '</ul>' +
     '</div>' +
     '</div>' +
@@ -39,8 +40,15 @@ var userName = window.sessionStorage.getItem("userName");
 if(userName){
     $(".topName").html(userName);
     $(".loginRegister").hide();
+    $(".logoutBtn").show();
 }
 
+// 退出
+$(".logoutBtn").click(function () {
+  window.sessionStorage.removeItem("userId");
+  window.sessionStorage.removeItem("userName");
+  window.location.href = '../../index.html'
+});
 var pageName = window.location.pathname;
 pageName = pageName.split('/')[pageName.split('/').length - 1];
 pageName = pageName.split('.')[0];

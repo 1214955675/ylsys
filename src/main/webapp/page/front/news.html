@@ -200,17 +200,15 @@ DD_belatedPNG.fix('img,.ie6png');
 	            <input type="hidden" value="0" id="data_pid" name="data[pid]">
 	            <input type="hidden" value="" id="data_share" name="data[share]">
 	            <input type="hidden" value="aHR0cDovL3d3dy5iaW9kaXNjb3Zlci5jb20vbmV3cy9wb2xpdGljcy8xMDQ0MzcuaHRtbCNDQw==" id="data_url" name="data[url]">
-				<textarea id="commentBoxId" onblur="if(this.value==''){this.value='有什么感想？你也来说说吧！';$(this).next().val('有什么感想？你也来说说吧！')};textCounter($(this), $(this).parents('form').find('#remLen'),140)" onfocus="if(this.value=='有什么感想？你也来说说吧！'){this.value=''};" onmousemove="textCounter($(this), $(this).parents('form').find('#remLen'),140)" onkeyup="textCounter($(this), $(this).parents('form').find('#remLen'),140);" onkeydown="textCounter($(this), $(this).parents('form').find('#remLen'),140);" id="data_content" name="data[content]" style="_width: 98%;">有什么感想？你也来说说吧！</textarea>
-				<input type="hidden" value="有什么感想？你也来说说吧！" id="data_content2">
-				<input type="hidden" value="comment" id="class" name="class">
+				<textarea id="commentBoxId" style="_width: 98%;"></textarea>
 				<!--<span class="head-msg">还可以输入<span id="remLen">140</span>字</span>-->
 				<span style="color: #000;position: absolute;left: 0;top: -35px;height: 22px;line-height: 20px;font-family: '微软雅黑';font-size: 14px;">讨论区：</span>
 			</div>
 
 			<div class="post-toolbar">
 				<div class="post-options"></div>
-				<a href="javascript:void(0);" id="commentBtn" style="background-color: #CF261F;color: #fff;
-padding: 5px 20px;">评&nbsp;论</a>
+				<button id="commentBtn" style="background-color: #CF261F;color: #fff;
+padding: 5px 20px;">评论</button>
 				<!-- loadding -->
 			</div>
 		</div>
@@ -470,29 +468,39 @@ $.ajax({
 
 // 评论
 $("body").on("click", "#commentBtn", function () {
-  var formData = new FormData();
-  formData.append("formUserId", userId);
-  formData.append("formUserName", userName);
-  formData.append("toCommentId", 0);
-  formData.append("toPostId", urlId);
-  formData.append("content", $("#commentBoxId").val());
-  $.ajax({
-    type: "post",
-    url: "../../comment/addComment",
-    // contentType: "application/json;charset=utf-8",
-    contentType: false,//这里
-    processData: false,//这两个一定设置为false
-    dataType: "json",
-    data: formData,
-    success: function (data) {
-      if(data && data.resultCode == 200){
-        window.sessionStorage.setItem("add", true);
-        window.location.reload();
-      } else {
-        layer.msg(data.resultMessage, {time: 2000, icon: 2});
-      }
+  if(userName){
+    console.log($("#commentBoxId").val())
+    if($("#commentBoxId").val() != ''){
+//      var formData = new FormData();
+//      formData.append("formUserId", userId);
+//      formData.append("formUserName", userName);
+//      formData.append("toCommentId", 0);
+//      formData.append("toPostId", urlId);
+//      formData.append("content", $("#commentBoxId").val());
+//      $.ajax({
+//        type: "post",
+//        url: "../../comment/addComment",
+//        // contentType: "application/json;charset=utf-8",
+//        contentType: false,//这里
+//        processData: false,//这两个一定设置为false
+//        dataType: "json",
+//        data: formData,
+//        success: function (data) {
+//          if(data && data.resultCode == 200){
+//            window.sessionStorage.setItem("add", true);
+//            window.location.reload();
+//          } else {
+//            layer.msg(data.resultMessage, {time: 2000, icon: 2});
+//          }
+//        }
+//      })
+		} else {
+      layer.msg('请输入评论内容', {time: 2000, icon: 0});
     }
-  })
+	} else {
+    layer.msg('请先登录', {time: 2000, icon: 0});
+	}
+
 });
 
 // 回复评论

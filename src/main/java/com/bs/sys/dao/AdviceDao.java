@@ -20,4 +20,6 @@ public interface AdviceDao {
     List<Advice> getadvices(@Param("page") int page, @Param("limit") int limit);
     @Update("update advice set isDeal = 1 where id =#{id}")
     int dealadvice(int id);
+    @Select("select * from advice where id =#{id}")
+    Advice getbyid(int id);
 }

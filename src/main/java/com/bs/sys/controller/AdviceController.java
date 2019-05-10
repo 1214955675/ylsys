@@ -1,6 +1,7 @@
 package com.bs.sys.controller;
 
 import com.bs.sys.common.ResultCode;
+import com.bs.sys.common.SendEmailUtil;
 import com.bs.sys.common.response.AdviceResponse;
 import com.bs.sys.entity.Advice;
 import com.bs.sys.service.impl.AdviceServiceImpl;
@@ -47,8 +48,10 @@ public class AdviceController {
         return res;
     }
     @RequestMapping("/deal")
-    public AdviceResponse dealadvice(Advice advice){
+    public AdviceResponse dealadvice(Advice advice,@RequestParam String subject,@RequestParam String content){
         AdviceResponse res=new AdviceResponse();
+        Advice needdeal=adviceService.getbyid(advice.getId());
+        SendEmailUtil.send(needdeal.getContactWay(),subject,content);
         if(!adviceService.dealadvice(advice.getId())){
             res.setResultCode(ResultCode.db_opterror.getCode());
             res.setResultMessage(ResultCode.db_opterror.getMessage());

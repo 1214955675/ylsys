@@ -40,4 +40,9 @@ public class AdviceServiceImpl implements AdviceService {
         }else
         return false;
     }
+
+    @Override
+    public Advice getbyid(int id) {
+        return adviceDao.getbyid(id);
+    }
 }

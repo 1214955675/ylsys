@@ -383,6 +383,8 @@ var userName = window.sessionStorage.getItem("userName");
 // 获取新闻详情
 var getNewsData = new FormData();
 getNewsData.append("postId", urlId);
+//getNewsData.append("topicId", urlId);
+getNewsData.append("userId", userId);
 $.ajax({
   type: "post",
   url: "../../post/getPostByPostId",

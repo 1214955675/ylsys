@@ -6,12 +6,18 @@ import com.bs.sys.entity.Post;
 import com.bs.sys.entity.userTaste;
 import com.bs.sys.service.impl.PostServiceImpl;
 import com.bs.sys.service.impl.userTasteServiceImpl;
+import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 /**
@@ -28,8 +34,31 @@ public class PostController {
     @Resource
     userTasteServiceImpl userTasteService;
     @RequestMapping("/createPost")
-    public PostResponse createPost(Post post){
+    public PostResponse createPost(HttpServletRequest request,Post post, @RequestParam(value = "file",required = false) CommonsMultipartFile file) throws IOException {
         PostResponse res=new PostResponse();
+        if(file!=null){
+            // 获取项目路径
+            String realPath = request.getServletContext()
+                    .getRealPath("");
+            String onurl="";
+            InputStream inputStream =file.getInputStream();
+            String contextPath = request.getContextPath();
+            // 服务器根目录的路径
+//                String path = realPath.replace(contextPath.substring(1), "");
+//                String path=realPath.substring(0,realPath.lastIndexOf('/'));
+            // 根目录下新建文件夹upload，存放上传图片
+            String uploadPath = realPath + "upload";
+            // 获取文件名称
+            String filename = file.getOriginalFilename();
+            // 将文件上传的服务器根目录下的upload文件夹
+            File file1 = new File(uploadPath, filename);
+            FileUtils.copyInputStreamToFile(inputStream, file1);
+            // 返回图片访问路径
+            String url = request.getScheme() + "://" + request.getServerName()
+                    + ":" + request.getServerPort() + "/upload/" + filename;
+            onurl=url;
+            post.setPostImg(onurl);
+        }
         post.setCreateTime(System.currentTimeMillis());
         int createint=postService.createPost(post);
         if(createint==0){

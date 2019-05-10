@@ -1,7 +1,6 @@
 package com.bs.sys.controller;
 
 import com.bs.sys.common.ResultCode;
-import com.bs.sys.common.SendEmailUtil;
 import com.bs.sys.common.request.UserReq;
 import com.bs.sys.common.response.UserResponse;
 import com.bs.sys.entity.User;

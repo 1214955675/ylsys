@@ -14,6 +14,15 @@ public class Post {
     private Long createTime;
     private Integer topicId;
     private Integer clickNum;
+    private String postImg;
+
+    public String getPostImg() {
+        return postImg;
+    }
+
+    public void setPostImg(String postImg) {
+        this.postImg = postImg;
+    }
 
     public Integer getClickNum() {
         return clickNum;

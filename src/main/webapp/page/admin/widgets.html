@@ -67,6 +67,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							<label class="control-label">标题</label>
 							<input id="newsTitle" type="text" class="form-control1 ng-invalid ng-invalid-required ng-touched">
 						</div>
+						<div class="form-group">
+							<label class="control-label">图片</label>
+							<input id="newsPicAddID" type="file">
+						</div>
 
 						<div class="form-group">
 							<label class="control-label">内容</label>
@@ -89,7 +93,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							<label class="control-label">标题</label>
 							<input id="newsTitle2" type="text" class="form-control1 ng-invalid ng-invalid-required ng-touched">
 						</div>
-
+						<div class="form-group">
+							<label class="control-label">图片</label>
+							<input id="newsPicEditID" type="file">
+						</div>
 						<div class="form-group">
 							<label class="control-label">内容</label>
 							<div id="editor2"></div>
@@ -216,6 +223,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
       createPostData.append("postName", $("#newsTitle").val());
       createPostData.append("content", editor.txt.html());
       createPostData.append("topicId", urlId);
+      createPostData.append("file", document.getElementById("newsPicAddID").files[0]);
       $.ajax({
         type: "post",
         url: "../../post/createPost",
@@ -299,13 +307,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
       });
 
     });
-
+//		编辑新闻确认提交
     $("body").on("click", "#saveNews2", function () {
       var updatePostData = new FormData();
       updatePostData.append("id", thisEditId);
       updatePostData.append("postName", $("#newsTitle2").val());
       updatePostData.append("content", editor2.txt.html());
       updatePostData.append("topicId", urlId);
+      updatePostData.append("file", document.getElementById("newsPicEditID").files[0]);
       $.ajax({
         type: "post",
         url: "../../post/updatePost",

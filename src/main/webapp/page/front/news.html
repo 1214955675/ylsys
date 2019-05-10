@@ -28,10 +28,13 @@ DD_belatedPNG.fix('img,.ie6png');
 		{{each list value}}
 		<li class="cleaarfix p1">
 			<div class="left post-img">
-				<a href="####"><img src="../../images/hhead.jpg"></a>
+				<!--<a href="####"><img src="../../images/hhead.jpg"></a>-->
+				<a href="####"><img src="{{value.fromUserImg}}"></a>
 				</div>
 			<div class="post-info">
-				<div style="margin-bottom: 9px;"><a class="fs14 r-10" target="_blank" href="####">张三</a><span class="fc999">4 分钟前</span></div>
+				<div style="margin-bottom: 9px;"><a class="fs14 r-10" target="_blank" href="####">{{value.fromUserName}}</a>
+					<!--<span class="fc999">4 分钟前</span>-->
+				</div>
 				<div class="fc666 b-5">{{value.content}}</div>
 				<div>
 					<a href="javascript:void(0);" data-id="{{value.id}}" class="comment_reply_comment">回复</a>
@@ -41,10 +44,12 @@ DD_belatedPNG.fix('img,.ie6png');
 			{{each value.list value2}}
 			<div class="comments2List" style="margin: 10px 0 0 65px;">
 				<div class="left post-img">
-					<a href="####"><img src="../../images/hhead.jpg" alt="标题标题"></a>
+					<a href="####"><img src="{{value2.fromUserImg}}" alt="标题标题"></a>
 					</div>
 				<div class="post-info">
-					<div style="margin-bottom: 9px;"><a class="fs14 r-10" target="_blank" href="####">张三</a><span class="fc999">4 分钟前</span></div>
+					<div style="margin-bottom: 9px;"><a class="fs14 r-10" target="_blank" href="####">{{value2.fromUserName}}</a>
+						<!--<span class="fc999">4 分钟前</span>-->
+					</div>
 					<div class="fc666 b-5">{{value2.content}}</div>
 					</div>
 				</div>
@@ -278,25 +283,6 @@ padding: 5px 20px;">评论</button>
 		 
 			<div class="clearfix" style="background:#EDEDED;">
 				
-         
-                <ul class="about-ul">
-					<li>客服电话 400-100-8884 - More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a></li>
-					<li><span>|</span></li>
-					<li><a title="广告投放" href="javascript:;" class="fc666" target="_blank">广告投放</a></li>
-					<li><span>|</span></li>
-					<li><a title="企业服务" href="javascript:;" class="fc666" target="_blank">企业服务</a></li>
-					<li><span>|</span></li>
-					<li><a title="公司博客" href="javascript:;" class="fc666" target="_blank" >公司博客</a></li>
-					<li><span>|</span></li>
-					<li><a title="问题反馈" href="feedback.html" class="fc666">问题反馈</a></li>
-					<li><span>|</span></li>
-					<li><a title="服务协议" href="javascript:;" class="fc666" target="_blank">服务协议</a></li>
-					<li><span>|</span></li>
-                     <li id="zk_btn" class="ie6png down-class">
-                   	 <a title="友情链接" href="javascript:void(0);" class="fc666">友情链接</a>
-                    </li>
-				    <div class="clear"></div>
-				</ul>
 			</div>
     
     <div class="friend-link border-all t-20 b-20">
@@ -383,8 +369,10 @@ var userName = window.sessionStorage.getItem("userName");
 // 获取新闻详情
 var getNewsData = new FormData();
 getNewsData.append("postId", urlId);
-//getNewsData.append("topicId", urlId);
-getNewsData.append("userId", userId);
+if (userId) {
+  getNewsData.append("userId", userId);
+}
+
 $.ajax({
   type: "post",
   url: "../../post/getPostByPostId",
@@ -429,7 +417,6 @@ $.ajax({
 				}
       }
 		}
-    console.log('comment1List', comment1List)
 //    comment1List.forEach(function (item, index) {
 //      item.list.forEach(function (item2, index2) {
 //        $(".comments-list").append('<li class="cleaarfix p1">' +
@@ -471,31 +458,30 @@ $.ajax({
 // 评论
 $("body").on("click", "#commentBtn", function () {
   if(userName){
-    console.log($("#commentBoxId").val())
     if($("#commentBoxId").val() != ''){
-//      var formData = new FormData();
-//      formData.append("formUserId", userId);
-//      formData.append("formUserName", userName);
-//      formData.append("toCommentId", 0);
-//      formData.append("toPostId", urlId);
-//      formData.append("content", $("#commentBoxId").val());
-//      $.ajax({
-//        type: "post",
-//        url: "../../comment/addComment",
-//        // contentType: "application/json;charset=utf-8",
-//        contentType: false,//这里
-//        processData: false,//这两个一定设置为false
-//        dataType: "json",
-//        data: formData,
-//        success: function (data) {
-//          if(data && data.resultCode == 200){
-//            window.sessionStorage.setItem("add", true);
-//            window.location.reload();
-//          } else {
-//            layer.msg(data.resultMessage, {time: 2000, icon: 2});
-//          }
-//        }
-//      })
+      var formData = new FormData();
+      formData.append("fromUserId", userId);
+      formData.append("fromUserName", userName);
+      formData.append("toCommentId", 0);
+      formData.append("toPostId", urlId);
+      formData.append("content", $("#commentBoxId").val());
+      $.ajax({
+        type: "post",
+        url: "../../comment/addComment",
+        // contentType: "application/json;charset=utf-8",
+        contentType: false,//这里
+        processData: false,//这两个一定设置为false
+        dataType: "json",
+        data: formData,
+        success: function (data) {
+          if(data && data.resultCode == 200){
+            window.sessionStorage.setItem("add", true);
+            window.location.reload();
+          } else {
+            layer.msg(data.resultMessage, {time: 2000, icon: 2});
+          }
+        }
+      })
 		} else {
       layer.msg('请输入评论内容', {time: 2000, icon: 0});
     }
@@ -519,8 +505,8 @@ $("body").on("click", ".comment_reply_comment", function () {
     yes: function(index, layero){
       //按钮【按钮一】的回调
       var formData = new FormData();
-      formData.append("formUserId", userId);
-      formData.append("formUserName", userName);
+      formData.append("fromUserId", userId);
+      formData.append("fromUserName", userName);
       formData.append("toCommentId", thisId);
       formData.append("toPostId", urlId);
       formData.append("content", $(".topicNameInput").val());

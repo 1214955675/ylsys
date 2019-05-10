@@ -20,6 +20,9 @@ $(function () {
   var alltopicData = new FormData();
   alltopicData.append("page", 1);
   alltopicData.append("limit", 10);
+  if (userId) {
+    alltopicData.append("userId", userId);
+  }
   $.ajax({
     type: "post",
     url: "../../topic/getalltopic",
@@ -51,15 +54,15 @@ $(function () {
                 $(".list1").append('<div class="news-list b-30 clearfix">' +
                     '<div class="spanm3 pull-left" style="padding-top:7px;">' +
                     '<a href="javascript:;" rel="bookmark" style="display: block;" target="_blank">' +
-                    '<img src="images/y.jpg"/>' +
+                    '<img style="width: 200px;height: 120px;" src="'+item.postImg+'"/>' +
                     '</a>' +
                     '</div>' +
                     '<div class="offsetindex3 intro">' +
                     '<h1><a href="page/front/news.html?id='+item.id+'" rel="bookmark">'+item.postName+'</a></h1>' +
                     '<p class="t-5 fc666" style=" margin-bottom:0;">标题标题标标题标题标题标题标题标题题标题标题标题标题标题标题题标题标题标题标题标题。</p>' +
-                    '<div class="myxm"><span><a href="">北京</a></span>  <span class="two"><a href="">项目分类</a></span>   2013/03/02</div>' +
+                    // '<div class="myxm"><span><a href="">北京</a></span>  <span class="two"><a href="">项目分类</a></span>   2013/03/02</div>' +
                     '<div class="clearfix">' +
-                    '<a class="follow-btn pr-10 ie6png news-follow-btn" href="javascript:void(0);" title="1人关注	2人分享	3人评论" data-id="104423" data-type="news">6人</a>' +
+                    // '<a class="follow-btn pr-10 ie6png news-follow-btn" href="javascript:void(0);" title="1人关注	2人分享	3人评论" data-id="104423" data-type="news">6人</a>' +
                     '<a class="read-btn ie6png" href="javascript:void(0);" title="370次阅读">370次</a>' +
                     '</div>' +
                     '</div>' +
@@ -71,7 +74,7 @@ $(function () {
 
         //获取圈子里所有新闻2
         var getPostByTopicIdData2 = new FormData();
-        getPostByTopicIdData2.append("topicId", data.topicList[2].id);
+        getPostByTopicIdData2.append("topicId", data.topicList[1].id);
         $.ajax({
           type: "post",
           url: "../../post/getPostByTopicId",
@@ -87,7 +90,7 @@ $(function () {
                     '<div class="clearfix">' +
                     '<div class="span1 pull-left">' +
                     '<a href="javascript:;" rel="bookmark" target="_blank">' +
-                    '<img class="lazyloadimg" alt="标题标题" src="images/i2.jpg"/>' +
+                    '<img style="width: 60px;height: 60px;" class="lazyloadimg" alt="标题标题" src="'+item.postImg+'"/>' +
                     '</a>' +
                     '</div>' +
                     '<div class="offset1 intro">' +
@@ -97,7 +100,7 @@ $(function () {
                     '<div class="intro l-20">' +
                     '<p class="t-15 fc666 mmbuttom">标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题。</p>' +
                 '<div class="clearfix">' +
-                    '<a class="follow-btn pr-10 ie6png" href="javascript:void(0);" title="1人关注">1人</a>' +
+                    // '<a class="follow-btn pr-10 ie6png" href="javascript:void(0);" title="1人关注">1人</a>' +
                 '<a class="read-btn ie6png" href="javascript:void(0);" title="277次浏览">277次</a>' +
                 '</div>' +
                 '</div>' +
@@ -108,7 +111,7 @@ $(function () {
         });
 
 
-        //获取圈子里所有新闻2
+        //获取圈子里所有新闻3
         var getPostByTopicIdData3 = new FormData();
         getPostByTopicIdData3.append("topicId", data.topicList[2].id);
         $.ajax({

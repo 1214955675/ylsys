@@ -386,7 +386,7 @@
         btnAlign: 'c',
         scrollbar: false,
         area: ['500px', '200px'],
-        content: '<div><span>名称：</span><input class="topicNameInput"></div>',
+        content: '<div style="display: flex;margin-bottom: 10px;"><span>图片：</span><input id="fileId2" type="file"></div><div><span>名称：</span><input class="topicNameInput"></div>',
 				yes: function(index, layero){
           //按钮【按钮一】的回调
 					var topicNameVal = $(".topicNameInput").val();
@@ -394,6 +394,7 @@
           formData.append("id", thisId);
           formData.append("topicName", topicNameVal);
           formData.append("imgUrl", '');
+          formData.append("file", document.getElementById("fileId2").files[0]);
           $.ajax({
             type: "post",
             url: "../../topic/updateTopic",

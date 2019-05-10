@@ -161,31 +161,67 @@ License URL: http://creativecommons.org/licenses/by/3.0/
       var dealData = new FormData();
       dealData.append("id", thisId);
 
-      layer.confirm('是否处理？', {
-        title: "提示",
-        btn: ['确定', '取消']
-      }, function () {
-        $.ajax({
-          type: "post",
-          url: "../../advice/deal",
-          // contentType: "application/json;charset=utf-8",
-          contentType: false,//这里
-          processData: false,//这两个一定设置为false
-          dataType: "json",
-          data: dealData,
-          success: function (data) {
-            if(data && data.resultCode == 200){
-              window.sessionStorage.setItem("del", true);
-              window.location.reload();
-            } else {
-              layer.msg(data.resultMessage, {time: 2000, icon: 2});
+      layer.open({
+        btn: ['确认', '取消'],
+        title: '处理反馈',
+        skin: 'my-skin',
+        btnAlign: 'c',
+        scrollbar: false,
+        area: ['500px', '200px'],
+        content: '<div style="display: flex;margin-bottom: 10px;"><span>邮件主题：</span><input type="text" class="mailTitle"></div><div><span>邮件内容：</span><input type="text" class="mailContent"></div>',
+        yes: function(index, layero){
+          //按钮【按钮一】的回调
+          dealData.append("subject", $(".mailTitle").val());
+          dealData.append("content", $(".mailContent").val());
+
+          $.ajax({
+            type: "post",
+            url: "../../advice/deal",
+            // contentType: "application/json;charset=utf-8",
+            contentType: false,//这里
+            processData: false,//这两个一定设置为false
+            dataType: "json",
+            data: dealData,
+            success: function (data) {
+              if(data && data.resultCode == 200){
+                window.sessionStorage.setItem("del", true);
+                window.location.reload();
+              } else {
+                layer.msg(data.resultMessage, {time: 2000, icon: 2});
+              }
+            },
+            error: function (err) {
+              layer.msg("异常", {time: 2000, icon: 2});
             }
-          },
-          error: function (err) {
-            layer.msg("异常", {time: 2000, icon: 2});
-          }
-        });
-      });
+          });
+        }
+      })
+
+//      layer.confirm('是否处理？', {
+//        title: "提示",
+//        btn: ['确定', '取消']
+//      }, function () {
+//        $.ajax({
+//          type: "post",
+//          url: "../../advice/deal",
+//          // contentType: "application/json;charset=utf-8",
+//          contentType: false,//这里
+//          processData: false,//这两个一定设置为false
+//          dataType: "json",
+//          data: dealData,
+//          success: function (data) {
+//            if(data && data.resultCode == 200){
+//              window.sessionStorage.setItem("del", true);
+//              window.location.reload();
+//            } else {
+//              layer.msg(data.resultMessage, {time: 2000, icon: 2});
+//            }
+//          },
+//          error: function (err) {
+//            layer.msg("异常", {time: 2000, icon: 2});
+//          }
+//        });
+//      });
 
     });
 

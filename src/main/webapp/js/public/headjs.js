@@ -25,6 +25,7 @@ var headData = '<div class="navbar navbar-fixed-top" style="_position: relative;
     '<li class="loginRegister l10"><a href="login.html">登录</a></li>' +
     '<li><a href="####" class="topName"></a></li>' +
     '<li style="display: none;" class="logoutBtn"><a href="####">退出</a></li>' +
+    '<li><a href="feedback.html">问题反馈</a></li>' +
     '</ul>' +
     '</div>' +
     '</div>' +

@@ -13,5 +13,5 @@ public interface TopicServiceInf {
     boolean delTopicbyid(int id);
     List<Topic> getalltopic(int page,int limit);
     boolean updatetopicbyid(Topic topic);
-
+    void addclicknum(int id);
 }

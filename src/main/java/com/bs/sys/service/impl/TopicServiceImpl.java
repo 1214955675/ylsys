@@ -66,4 +66,9 @@ public class TopicServiceImpl implements TopicServiceInf {
         }
         return false;
     }
+
+    @Override
+    public void addclicknum(int id) {
+
+    }
 }

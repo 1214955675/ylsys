@@ -1,7 +1,6 @@
 package com.bs.sys.dao;
 
 import com.bs.sys.entity.Post;
-import javafx.geometry.Pos;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
@@ -27,4 +26,6 @@ public interface PostDao {
     int updatepost(Post post);
     @Select("select * from post where id =#{id}")
     Post getpostbypostid(Integer postid);
+
+    void addclicknum(int id);
 }

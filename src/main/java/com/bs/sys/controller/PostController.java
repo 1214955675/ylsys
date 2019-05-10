@@ -44,7 +44,10 @@ public class PostController {
         PostResponse res=new PostResponse();
         try {
             int post_id=Integer.parseInt(postId);
-            res.setPost(postService.getpostbypostid(post_id));
+            Post getpost=postService.getpostbypostid(post_id);
+            res.setPost(getpost);
+            getpost.setClickNum(getpost.getClickNum()+1);
+            postService.updatepost(getpost);
             //收集兴趣
             userTaste userTaste=new userTaste();
             userTaste.setCollectTime(System.currentTimeMillis());

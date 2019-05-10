@@ -13,6 +13,15 @@ public class Post {
     private String content;
     private Long createTime;
     private Integer topicId;
+    private Integer clickNum;
+
+    public Integer getClickNum() {
+        return clickNum;
+    }
+
+    public void setClickNum(Integer clickNum) {
+        this.clickNum = clickNum;
+    }
 
     public String getPostName() {
         return postName;

@@ -7,6 +7,7 @@ import com.bs.sys.entity.Listbysql;
 import com.bs.sys.entity.Topic;
 import com.bs.sys.service.impl.TopicServiceImpl;
 import com.bs.sys.service.impl.userTasteServiceImpl;
+import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,12 +15,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.UUID;
 
 /**
  * @author wwj
@@ -34,15 +36,32 @@ public class TopicController {
     @Resource
     userTasteServiceImpl userTasteService;
     @RequestMapping("/addTopic")
-    public TopicResponse addtopic(TopicReq topicReq,
+    public TopicResponse addtopic(HttpServletRequest request,TopicReq topicReq,
                                   @RequestParam(value = "file",required = false)CommonsMultipartFile file) throws IOException {
         TopicResponse res=new TopicResponse();
         if(file!=null){
-            String uuid= UUID.randomUUID().toString();
-            File newfile=
-                    new File("D:/opt/img/"+uuid+file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf('.')));
-            file.transferTo(newfile);
-            topicReq.setImgUrl(newfile.getAbsolutePath());
+            // 获取项目路径
+            String realPath = request.getServletContext()
+                    .getRealPath("");
+            String onurl="";
+            InputStream inputStream =file.getInputStream();
+            String contextPath = request.getContextPath();
+            // 服务器根目录的路径
+//                String path = realPath.replace(contextPath.substring(1), "");
+//                String path=realPath.substring(0,realPath.lastIndexOf('/'));
+            // 根目录下新建文件夹upload，存放上传图片
+            String uploadPath = realPath + "upload";
+            // 获取文件名称
+            String filename = file.getOriginalFilename();
+            // 将文件上传的服务器根目录下的upload文件夹
+            File file1 = new File(uploadPath, filename);
+            FileUtils.copyInputStreamToFile(inputStream, file1);
+            // 返回图片访问路径
+            String url = request.getScheme() + "://" + request.getServerName()
+                    + ":" + request.getServerPort() + "/upload/" + filename;
+            onurl=url;
+
+            topicReq.setImgUrl(onurl);
         }
 
         try {int newid=topicService.addTopic(topicReq);
@@ -101,15 +120,32 @@ public class TopicController {
         return res;
     }
     @RequestMapping("/updateTopic")
-    public TopicResponse updatetopic(TopicReq topicReq,
+    public TopicResponse updatetopic(HttpServletRequest request,TopicReq topicReq,
                                      @RequestParam(value = "file",required = false)CommonsMultipartFile file) throws IOException {
         TopicResponse res=new TopicResponse();
         if(file!=null){
-            String uuid= UUID.randomUUID().toString();
-            File newfile=
-                    new File("D:/opt/img/"+uuid+file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf('.')));
-            file.transferTo(newfile);
-            topicReq.setImgUrl(newfile.getAbsolutePath());
+            // 获取项目路径
+            String realPath = request.getServletContext()
+                    .getRealPath("");
+            String onurl="";
+            InputStream inputStream =file.getInputStream();
+            String contextPath = request.getContextPath();
+            // 服务器根目录的路径
+//                String path = realPath.replace(contextPath.substring(1), "");
+//                String path=realPath.substring(0,realPath.lastIndexOf('/'));
+            // 根目录下新建文件夹upload，存放上传图片
+            String uploadPath = realPath + "upload";
+            // 获取文件名称
+            String filename = file.getOriginalFilename();
+            // 将文件上传的服务器根目录下的upload文件夹
+            File file1 = new File(uploadPath, filename);
+            FileUtils.copyInputStreamToFile(inputStream, file1);
+            // 返回图片访问路径
+            String url = request.getScheme() + "://" + request.getServerName()
+                    + ":" + request.getServerPort() + "/upload/" + filename;
+            onurl=url;
+
+            topicReq.setImgUrl(onurl);
         }
         if(topicService.updatetopicbyid(topicReq)){
             return res;

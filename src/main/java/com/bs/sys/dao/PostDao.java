@@ -17,8 +17,8 @@ import java.util.List;
 public interface PostDao {
     @Select("select * from post where topicId = #{topicId}")
     List<Post> getpostbytopicid(Integer topicId);
-    @Insert("insert into post (postName,createTime,topicId,content) " +
-            "values (#{postName},#{createTime},#{topicId},#{content})")
+    @Insert("insert into post (postName,createTime,topicId,content,postImg) " +
+            "values (#{postName},#{createTime},#{topicId},#{content},#{postImg})")
     int insertPost(Post post);
     @Delete("delete from post where id =#{id}")
     int delpost(int id);

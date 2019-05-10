@@ -9,10 +9,8 @@ import com.bs.sys.service.impl.UserServiceImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import sun.rmi.runtime.Log;
 
 import javax.annotation.Resource;
-import java.sql.Date;
 import java.util.List;
 
 /**
@@ -44,6 +42,11 @@ public class CommentController {
     public CommentResponse getcomments(int PostId){
         CommentResponse res=new CommentResponse();
         List<Comment> list=commentService.getcommentsbypostid(PostId);
+        for(int i=0;i<list.size();i++){
+            int userid=list.get(i).getFromUserId();
+            list.get(i).setFromUserName(userService.findbyid(userid).getUserName());
+            list.get(i).setFromUserImg(userService.findbyid(userid).getUserImg());
+        }
         if(list==null){
             res.setResultCode(ResultCode.db_opterror.getCode());
             res.setResultMessage(ResultCode.db_opterror.getMessage());

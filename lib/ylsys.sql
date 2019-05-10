@@ -11,7 +11,7 @@
  Target Server Version : 80013
  File Encoding         : 65001
 
- Date: 09/05/2019 23:47:00
+ Date: 10/05/2019 21:27:30
 */
 
 SET NAMES utf8mb4;
@@ -28,7 +28,7 @@ CREATE TABLE `advice`  (
   `contactWay` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `isDeal` int(10) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of advice
@@ -49,7 +49,7 @@ CREATE TABLE `comment`  (
   `content` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `commentTime` bigint(50) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of comment
@@ -67,14 +67,16 @@ CREATE TABLE `post`  (
   `content` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `createTime` bigint(50) NULL DEFAULT NULL,
   `topicId` int(11) NULL DEFAULT NULL,
+  `clickNum` int(50) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of post
 -- ----------------------------
-INSERT INTO `post` VALUES (1, 'test', '23sdas', 1555506286899, 1);
-INSERT INTO `post` VALUES (2, '123123问问', '<p><img style=\"max-width: 100%;\" src=\"http://localhost:8080/upload/b9b2e998bfe585b9e7b1b3e59388e9b281b344.jpg\">啊实打实大<br></p>', 1557407854219, 1);
+INSERT INTO `post` VALUES (1, 'test', '23sdas<p><img src=\"\" style=\"max-width:100%;\"><img src=\"http://localhost:8080/upload/b9b2e998bfe585b9e7b1b3e59388e9b281b344.jpg\" style=\"max-width: 100%;\"><br></p>', 1555506286899, 1, 1);
+INSERT INTO `post` VALUES (2, '123123问问', '<p><img style=\"max-width: 100%;\" src=\"http://localhost:8080/upload/b9b2e998bfe585b9e7b1b3e59388e9b281b344.jpg\">啊实打实大<br></p>', 1557407854219, 1, 1);
+INSERT INTO `post` VALUES (3, '试试撒', '<p>阿萨是多少</p>', 1557416861770, 1, 1);
 
 -- ----------------------------
 -- Table structure for topic
@@ -86,7 +88,7 @@ CREATE TABLE `topic`  (
   `postNum` int(50) NULL DEFAULT NULL,
   `imgUrl` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of topic
@@ -105,14 +107,16 @@ CREATE TABLE `user`  (
   `passWord` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `nickName` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `phone` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `userImg` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES (1, 'wwj', '123', 'j', '18161214978');
-INSERT INTO `user` VALUES (3, 'lll', '123', 'ggg', NULL);
+INSERT INTO `user` VALUES (1, 'wwj', '123', 'j', '18161214978', NULL);
+INSERT INTO `user` VALUES (3, 'lll', '123', 'ggg', NULL, NULL);
+INSERT INTO `user` VALUES (4, '去问问', '123', '去', NULL, 'http://localhost:8080/upload/b9b2e998bfe585b9e7b1b3e59388e9b281b344.jpg');
 
 -- ----------------------------
 -- Table structure for usertaste

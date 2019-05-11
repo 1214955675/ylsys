@@ -2,8 +2,10 @@ package com.bs.sys.webSocket;
 
 import com.alibaba.fastjson.JSONObject;
 import com.bs.sys.entity.Message;
+import com.bs.sys.service.UserServiceInf;
 import com.bs.sys.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.context.ContextLoader;
 
 import javax.websocket.*;
 import javax.websocket.server.PathParam;
@@ -23,22 +25,23 @@ import java.util.concurrent.CopyOnWriteArraySet;
 @ServerEndpoint("/websocketMsg/{userId}")
 public class WebSocketMsg {
 
-    String username;
+    String username="";
     //静态变量，用来记录当前在线连接数。应该把它设计成线程安全的。
-    private static int onlineCount = 0;
+    public static int onlineCount = 0;
     //concurrent包的线程安全Set，用来存放每个客户端对应的MyWebSocket对象。若要实现服务端与单一客户端通信的话，可以使用Map来存放，其中Key可以为用户标识
-    private static CopyOnWriteArraySet<WebSocketMsg> webSocketSet = new CopyOnWriteArraySet<WebSocketMsg>();
+    public static CopyOnWriteArraySet<WebSocketMsg> webSocketSet = new CopyOnWriteArraySet<WebSocketMsg>();
 
-    public static HashMap<String,WebSocketMsg> socketMap=new HashMap<String, WebSocketMsg>();
+    public static HashMap<Integer,String> idandnameMap=new HashMap<Integer, String>();
     public static ConcurrentHashMap<Integer,Session> websocketMap=new ConcurrentHashMap<Integer, Session>();
     //定义一个数组，用于存放所有的登录用户,显示在聊天页面的用户列表栏中
-    private  static List<String> names=new ArrayList<String>();
-    private  static List<Integer> ids=new ArrayList<Integer>();
+    public  static List<String> names=new ArrayList<String>();
+    public  static List<Integer> ids=new ArrayList<Integer>();
     //与某个客户端的连接会话，需要通过它来给客户端发送数据
     private Session session;
     private int userId;
     @Autowired
-    UserServiceImpl userService;
+    UserServiceImpl userServic1e;
+    private UserServiceInf userService = (UserServiceInf) ContextLoader.getCurrentWebApplicationContext().getBean("userService");
     /**
      * 连接建立成功调用的方法
      *
@@ -63,6 +66,7 @@ public class WebSocketMsg {
             String nickname=userService.findbyid(userid_int).getNickName();
             this.username=nickname;
             names.add(nickname);
+            idandnameMap.put(userid_int,nickname);
             System.out.println("用户"+nickname+"进入聊天室");
             Message message = new Message();
             message.setAlert("用户"+nickname+"进入聊天室");
@@ -71,7 +75,7 @@ public class WebSocketMsg {
             //将聊天信息广播给所有通信管道(sockets)
             broadcast(webSocketSet, JSONObject.toJSON(message).toString());
         }catch (Exception e){
-
+            e.printStackTrace();
         }
         addOnlineCount();           //在线数加1
         System.out.println("有新连接加入！当前在线人数为" + getOnlineCount());
@@ -100,6 +104,7 @@ public class WebSocketMsg {
         webSocketSet.remove(this);
         //将用户名从names中剔除，用于刷新好友列表
         names.remove(this.username);
+        idandnameMap.remove(userId);
         Message message = new Message();
         System.out.println("用户"+this.username+"退出聊天室");
         message.setAlert(this.username+"退出当前聊天室！！！");

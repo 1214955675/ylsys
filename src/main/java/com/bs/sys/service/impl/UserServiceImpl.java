@@ -4,7 +4,6 @@ import com.bs.sys.dao.UserDao;
 import com.bs.sys.entity.User;
 import com.bs.sys.service.UserServiceInf;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 
@@ -12,7 +11,7 @@ import javax.annotation.Resource;
  * @author wwj
  * 2019/3/26 18:25
  */
-@Service
+@Service(value = "userService")
 public class UserServiceImpl implements UserServiceInf {
     @Resource
     UserDao userDao;

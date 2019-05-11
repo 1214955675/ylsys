@@ -1,9 +1,7 @@
 package com.bs.sys.entity;
 
 
-
-import java.sql.Timestamp;
-import java.util.Date;
+import java.util.List;
 
 /**
  * @author wwj
@@ -17,6 +15,42 @@ public class Message {
     private int toId;
     private String messageText;
     private Long messageDate;
+    private String formatDate;
+    private String alert;
+    private List<String> names;
+    private int type;
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
+    public List<String> getNames() {
+        return names;
+    }
+
+    public void setNames(List<String> names) {
+        this.names = names;
+    }
+
+    public String getAlert() {
+        return alert;
+    }
+
+    public void setAlert(String alert) {
+        this.alert = alert;
+    }
+
+    public String getFormatDate() {
+        return formatDate;
+    }
+
+    public void setFormatDate(String formatDate) {
+        this.formatDate = formatDate;
+    }
 
     public Message() {
     }

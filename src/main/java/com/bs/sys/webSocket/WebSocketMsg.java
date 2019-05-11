@@ -2,9 +2,9 @@ package com.bs.sys.webSocket;
 
 import com.alibaba.fastjson.JSONObject;
 import com.bs.sys.entity.Message;
+import com.bs.sys.service.MessageService;
 import com.bs.sys.service.UserServiceInf;
-import com.bs.sys.service.impl.UserServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.web.context.ContextLoader;
 
 import javax.websocket.*;
@@ -23,6 +23,7 @@ import java.util.concurrent.CopyOnWriteArraySet;
  * @author uptop
  */
 @ServerEndpoint("/websocketMsg/{userId}")
+@Component
 public class WebSocketMsg {
 
     String username="";
@@ -39,9 +40,12 @@ public class WebSocketMsg {
     //与某个客户端的连接会话，需要通过它来给客户端发送数据
     private Session session;
     private int userId;
-    @Autowired
-    UserServiceImpl userServic1e;
+//    @Autowired
+//    UserServiceImpl userServic1e;
+//    @Autowired
+//    MessageServiceImpl messageServi1ce;
     private UserServiceInf userService = (UserServiceInf) ContextLoader.getCurrentWebApplicationContext().getBean("userService");
+    private MessageService messageService=(MessageService) ContextLoader.getCurrentWebApplicationContext().getBean("messageService");
     /**
      * 连接建立成功调用的方法
      *
@@ -125,7 +129,7 @@ public class WebSocketMsg {
      */
     @OnMessage
     public void onMessage(String message, Session session) throws IOException {
-        // 把客户端的消息解析为JSON对象
+        // 把客户端的消息解析为JSON对象并入库
         Message message1=  JSONObject.parseObject(message,Message.class);
         // 在消息中添加发送日期
         message1.setMessageDate(System.currentTimeMillis());
@@ -133,7 +137,8 @@ public class WebSocketMsg {
         SimpleDateFormat sdFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String retStrFormatNowDate = sdFormatter.format(nowTime);
         message1.setFormatDate(retStrFormatNowDate);
-        // -----------------------把消息发送给所有连接的会话--------------------------------
+        message1.setFromName(userService.findbyid(message1.getFromId()).getUserName());
+        messageService.addmessage(message1);
         //将客户端消息转成json对象
         //如果是群聊，就像消息广播给所有人
         if(message1.getType()==1){

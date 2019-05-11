@@ -2,7 +2,7 @@
 $(function () {
   var userId = window.sessionStorage.getItem("userId");
   var userName = window.sessionStorage.getItem("userName");
-
+  $("#msgID").attr("href", 'page/front/msg.html?id='+userId+'&name='+userName)
   if(userName){
     $(".topName").html(userName);
     $(".loginRegister").hide();
@@ -59,11 +59,11 @@ $(function () {
                     '</div>' +
                     '<div class="offsetindex3 intro">' +
                     '<h1><a href="page/front/news.html?id='+item.id+'" rel="bookmark">'+item.postName+'</a></h1>' +
-                    '<p class="t-5 fc666" style=" margin-bottom:0;">标题标题标标题标题标题标题标题标题题标题标题标题标题标题标题题标题标题标题标题标题。</p>' +
+                    // '<p class="t-5 fc666" style=" margin-bottom:0;">标题标题标标题标题标题标题标题标题题标题标题标题标题标题标题题标题标题标题标题标题。</p>' +
                     // '<div class="myxm"><span><a href="">北京</a></span>  <span class="two"><a href="">项目分类</a></span>   2013/03/02</div>' +
                     '<div class="clearfix">' +
                     // '<a class="follow-btn pr-10 ie6png news-follow-btn" href="javascript:void(0);" title="1人关注	2人分享	3人评论" data-id="104423" data-type="news">6人</a>' +
-                    '<a class="read-btn ie6png" href="javascript:void(0);" title="370次阅读">370次</a>' +
+                    '<a class="read-btn ie6png" href="javascript:void(0);">'+(item.clickNum || 0)+'</a>' +
                     '</div>' +
                     '</div>' +
                     '</div>');
@@ -98,10 +98,10 @@ $(function () {
                     '</div>' +
                     '</div>' +
                     '<div class="intro l-20">' +
-                    '<p class="t-15 fc666 mmbuttom">标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题。</p>' +
+                    // '<p class="t-15 fc666 mmbuttom">标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题标题。</p>' +
                 '<div class="clearfix">' +
                     // '<a class="follow-btn pr-10 ie6png" href="javascript:void(0);" title="1人关注">1人</a>' +
-                '<a class="read-btn ie6png" href="javascript:void(0);" title="277次浏览">277次</a>' +
+                '<a class="read-btn ie6png" href="javascript:void(0);">'+(item.clickNum || 0)+'</a>' +
                 '</div>' +
                 '</div>' +
                 '</div>');

@@ -43,14 +43,24 @@
 			background-color: #B5B5B5;
 		}
 
-		#hz-message-body{
+		#hz-message-body, .msgBox{
 			width: 460px;
 			height: 340px;
 			background-color: #E0C4DA;
-			padding: 10px 20px;
 			overflow:auto;
 		}
-
+		.msgBox{
+			position: relative;
+			padding: 10px 20px;
+		}
+		.readMore{
+			position: absolute;
+			bottom: 10px;
+			left: 50%;
+			transform: translateX(-50%);
+			cursor: pointer;
+			display: none;
+		}
 		#hz-message-input{
 			width: 500px;
 			height: 92px;
@@ -134,14 +144,17 @@
 		正在与<span id="toUserName"></span>聊天
 		<hr style="margin: 0px;"/>
 		<!-- 主体 -->
-		<div id="hz-message-body">
+		<div class="msgBox">
+			<div id="hz-message-body">
+			</div>
+			<div class="readMore">查看更多</div>
 		</div>
 		<!-- 功能条 -->
 		<div id="">
 			<button>表情</button>
 			<button>图片</button>
 			<button id="videoBut">视频</button>
-			<button onclick="send()" style="float: right;">发送</button>
+			<button id="sendBtnID" disabled onclick="send()" style="float: right;">发送</button>
 		</div>
 		<!-- 输入框 -->
 		<div contenteditable="true" id="hz-message-input">
@@ -154,6 +167,12 @@
 		在线人数:<span id="onlineCount">0</span>
 		<!-- 主体 -->
 		<div id="hz-group-body">
+
+		</div>
+
+		<div class="chatNow"></div>
+		聊天记录:
+		<div id="chatHistory">
 
 		</div>
 	</div>
@@ -185,8 +204,27 @@
 <script type="text/javascript" src="../../lib/template-web.js"></script>
 <script type="text/javascript" src="../../js/public/headjs.js"></script>
 <script type="text/javascript">
-  var username = window.sessionStorage.getItem("userName");
-  var userId = window.sessionStorage.getItem("userId");
+  function getCookie(key){
+		/* Cookie 字符串 */
+    var theCookie = "" + window.document.cookie;
+		/* 找到cookieName的位置 */
+    var ind = theCookie.indexOf(key);
+		/* 如果未找到cookieName，返回空字符串 */
+    if(ind == -1 || key == ""){
+      return "";
+    }
+		/* 确定分号的位置 */
+    var ind1 = theCookie.indexOf(';', ind);
+    if(ind1 == -1){
+      ind1 = theCookie.length;
+    }
+		/* 读取Cookie值 */
+    return unescape(theCookie.substring(ind + key.length + 1, ind1));
+  }
+	console.log(getCookie('userName'))
+	console.log(getCookie('userId'))
+  var username = getCookie('userName');
+  var userId = getCookie('userId');
   var toId = null;
   var toName = null;
   function getUrlData(name){
@@ -194,13 +232,124 @@
     var r = decodeURIComponent(window.location.search.substr(1)).match(reg);  //匹配目标参数
     if (r != null) return unescape(r[2]); return null; //返回参数值
   }
-  userId = getUrlData('id')
-  username = getUrlData('name')
+//  userId = getUrlData('id')
+//  username = getUrlData('name')
   $("#talks").html(username + '[' + userId + ']');
   //消息对象数组
   var msgObjArr = new Array();
 
   var websocket = null;
+
+//  获取用户之前的聊天人信息，不包括聊天记录
+  var getChatformData = new FormData();
+  getChatformData.append("userId", userId);
+  $.ajax({
+    type: 'post',
+    url: "../../IM/getAllWithYourChat",
+    contentType: false,//这里
+    processData: false,//这两个一定设置为false
+    dataType: "json",
+    data: getChatformData,
+    success: function (data) {
+      data.userList.forEach(function (item, index) {
+        $("#chatHistory").append("<div data-name='"+item.userName+"' data-id='"+item.id+"' class=\"hz-group-list\"><span class='hz-group-list-username'>" + item.nickName + "</span><span id=\"" + item.id + "-status\">[在线]"+item.id+"</span><div id=\"hz-badge-" + item.id + "\" class='hz-badge'>0</div></div>");
+      })
+      $(".hz-group-list[data-id="+userId+"]").css('cursor', 'no-drop')
+    },
+    error: function (xhr, status, error) {
+      console.log("ajax错误！");
+    }
+  });
+
+  //  获取和谁的聊天记录 后端默认七天的记录
+	function getChat(whoseId) {
+    var getChatWithformData = new FormData();
+    getChatWithformData.append("userId", userId);
+    getChatWithformData.append("whoseId", whoseId);
+    $("#hz-message-body").html('');
+    $.ajax({
+      type: 'post',
+      url: "../../IM/getMsgByWho",
+      contentType: false,//这里
+      processData: false,//这两个一定设置为false
+      dataType: "json",
+      data: getChatWithformData,
+      success: function (data) {
+				data.messageList.forEach(function (item, index) {
+					var el = ''
+					if(item.toId == whoseId){
+            el = "<p class='hz-message-list-username'>"+item.toId+"：</p>" +
+                "<div class=\"hz-message-list-text left\">" +
+                "<span>" + item.messageText + "</span>" +
+                "</div>"
+					} else {
+            el = "<div class=\"hz-message-list-text right\">" +
+                "<span>" + item.messageText + "</span>" +
+                "</div>"
+					}
+          $("#hz-message-body").append(
+              "<div class=\"hz-message-list\">" +
+							el +
+//              "<div class=\"hz-message-list-text left\">" +
+//              "<span>" + item.messageText + "</span>" +
+//              "</div>" +
+              "<div style=\" clear: both; \"></div>" +
+              "</div>");
+        })
+      },
+      error: function (xhr, status, error) {
+        console.log("ajax错误！");
+      }
+    });
+  }
+
+
+  //  qq的“查看更多消息”
+	function readMore(id) {
+    var moreChatWithformData = new FormData();
+    moreChatWithformData.append("userId", userId);
+    moreChatWithformData.append("whoseId", id);
+    moreChatWithformData.append("fromTime", (Date.parse(new Date())) - 604800000); // 7天
+    moreChatWithformData.append("toTime", Date.parse(new Date()));
+    $("#hz-message-body").html('');
+    $.ajax({
+      type: 'post',
+      url: "../../IM/getMsgByWhoByTime",
+      contentType: false,//这里
+      processData: false,//这两个一定设置为false
+      dataType: "json",
+      data: moreChatWithformData,
+      success: function (data) {
+        data.messageList.forEach(function (item, index) {
+          var el = ''
+          if(item.toId == id){
+            el = "<p class='hz-message-list-username'>"+item.toId+"：</p>" +
+                "<div class=\"hz-message-list-text left\">" +
+                "<span>" + item.messageText + "</span>" +
+                "</div>"
+          } else {
+            el = "<div class=\"hz-message-list-text right\">" +
+                "<span>" + item.messageText + "</span>" +
+                "</div>"
+          }
+          $("#hz-message-body").append(
+              "<div class=\"hz-message-list\">" +
+              el +
+//              "<div class=\"hz-message-list-text left\">" +
+//              "<span>" + item.messageText + "</span>" +
+//              "</div>" +
+              "<div style=\" clear: both; \"></div>" +
+              "</div>");
+        })
+      },
+      error: function (xhr, status, error) {
+        console.log("ajax错误！");
+      }
+    });
+  }
+  $("body").on("click", ".readMore", function () {
+    readMore(toId); // toName
+  })
 
   //判断当前浏览器是否支持WebSocket， springboot是项目名
   if ('WebSocket' in window) {
@@ -373,7 +522,7 @@
     if (srcUserName == username) {
       $("#hz-message-body").append(
           "<div class=\"hz-message-list\">" +
-          "<p class='hz-message-list-username'>"+msgUserName+"：</p>" +
+          "<p class='hz-message-list-username'>"+srcUserName+"：</p>" +
           "<div class=\"hz-message-list-text left\">" +
           "<span>" + message + "</span>" +
           "</div>" +
@@ -446,10 +595,13 @@
   $("body").on("click", ".hz-group-list", function () {
     toId = $(this).attr('data-id')
     toName = $(this).attr('data-name')
+		$(".readMore").show();
     if (toId == userId) {
       alert('自己不能给自己发消息哦')
       return
     }
+    $("#sendBtnID").attr('disabled', false)
+    getChat(toId)
     $(".hz-group-list").css("background-color", "");
     $(this).css("background-color", "whitesmoke");
     $("#toUserName").text($(this).find(".hz-group-list-username").text());
@@ -458,6 +610,7 @@
     $("#hz-message-body").empty();
     $("#hz-badge-" + $("#toUserName").text()).text("0");
     $("#hz-badge-" + $("#toUserName").text()).css("opacity", "0");
+    console.log(msgObjArr)
     if (msgObjArr.length > 0) {
       for (var i = 0; i < msgObjArr.length; i++) {
         var obj = msgObjArr[i];
@@ -477,6 +630,10 @@
                 leftOrRight = "left";
               }
 
+              if (toId == obj.toUserName) {
+                leftOrRight = "left";
+              }
+
               //但是如果点击的是自己，群聊的逻辑就不太一样了
               if (username == toUserName && msgUserName != toUserName) {
                 leftOrRight = "left";
@@ -486,7 +643,7 @@
                 leftOrRight = "right";
               }
 
-              var magUserName = leftOrRight == "left" ? "<p class='hz-message-list-username'>"+msgUserName+"：</p>" : "";
+              var magUserName = leftOrRight == "left" ? "<p class='hz-message-list-username'>"+toId+"：</p>" : "";
 
               $("#hz-message-body").append(
                   "<div class=\"hz-message-list\">" +

@@ -31,7 +31,52 @@ DD_belatedPNG.fix('img,.ie6png');
   <header id="headBox"></header>
 
     <!--轮播图及其导航-->
-    
+
+  <div class="span12" style="margin-top: 30px;">
+    <input type="text" id="searchKey">
+    <span id="searchBtn" style="cursor: pointer;">搜索</span>
+  </div>
+
+  <div style="display: none;" class="listBox span8">
+    <div class="label-div t-20 border-all">
+      <div class="l-15">
+        <h3 class="label-title border-b b-15 small clearfix" style="padding-bottom: 14px;">
+          <a href="javascript:;" class="pull-left r-10">新闻</a>
+          <a href="####" title="更多" class="more-add ie6png pull-right">&nbsp;</a>
+        </h3>
+      </div>
+      <div class="label-main">
+
+        <!--图文解说开始-->
+        <div class="hr l-15 t-15 b-20"></div>
+
+        <!--第一个结束-->
+        <div class="postList"></div>
+        <!---->
+      </div>
+    </div>
+  </div>
+
+  <div style="display: none;" class="listBox span8">
+    <div class="label-div t-20 border-all">
+      <div class="l-15">
+        <h3 class="label-title border-b b-15 small clearfix" style="padding-bottom: 14px;">
+          <a href="javascript:;" class="pull-left r-10">圈子</a>
+          <a href="####" title="更多" class="more-add ie6png pull-right">&nbsp;</a>
+        </h3>
+      </div>
+      <div class="label-main">
+
+        <!--图文解说开始-->
+        <div class="hr l-15 t-15 b-20"></div>
+
+        <!--第一个结束-->
+        <div class="topicList"></div>
+        <!---->
+      </div>
+    </div>
+  </div>
+
      <div class="top-div" style="display: none">
 	<div class="container clearfix">
        <div class="span3 logo-div logo-img" style="margin-left:0px;">
@@ -131,549 +176,9 @@ DD_belatedPNG.fix('img,.ie6png');
 
 
 	<div class="hr tp-div-nexthr" style="margin-top: 0;margin-bottom: 0;padding: 0;"></div>
-	<div class="container pb-15" style="display: none">
-	<!-- Example row of columns -->
-	<div class="row">
-		<div class="span12">
-       
-       <!--搜索-->
-       
-       
-	   <div class="clearfix">
-         
-				<div class="pull-left classifyDIV pt-10 my1D6597">项目数据库	<span>欢迎<a href="">提交新项目</a>,让产品快速打响知名度,赢得投资人青睐</span></div>
-				
-                <div class="pull-right t-20 classifySearch" style="position: relative;">
-                  <form action="?" method="get" style="margin:0px; padding:0px;" id="mmsearchform">
-					<input id="search-input" type="text"  class="search-input pull-left span4" value=""/>
-					<a href="javascript:void(0);" title="搜索" class="search-btn-css pull-left search-btn"></a>
-                  </form>
-				</div>
-		 </div>
-									
-          <!--搜索结束--> 
-  <!-- <div class="mmdata">欢迎<a href="">提交新项目</a>,让产品快速打响知名度,赢得投资人青睐</div>-->        
-          
-  <div class="mylistshow b-20  t-20" id="mmlistshow">
-  <div class="downjiao"><img src="../../images/downjiao.jpg" alt="hide" /></div>
-  <dl class="mydllist">
-  <dd>关注疾病：</dd>
-  <dd class="selected"><span class="ml"></span><span class="mm"><a href="">全部</a></span><span class="mr"></span></dd>
-      <dd class="selected"><span class="ml"></span><span class="mm"><a href="">全部</a></span><span class="mr"></span></dd>
-      <dd><span class="ml"></span><span class="mm"><a href="">脑病</a><i>15</i></span><span class="mr"></span></dd>
-      <dd><span class="ml"></span><span class="mm"><a href="">眼病</a><i>15</i></span><span class="mr"></span></dd>
-      <dd><span class="ml"></span><span class="mm"><a href="">耳病</a><i>15</i></span><span class="mr"></span></dd>
-      <dd><span class="ml"></span><span class="mm"><a href="">鼻病</a><i>15</i></span><span class="mr"></span></dd>
-      <dd><span class="ml"></span><span class="mm"><a href="">颈病</a><i>15</i></span><span class="mr"></span></dd>
-      <dd><span class="ml"></span><span class="mm"><a href="">皮肤病</a><i>15</i></span><span class="mr"></span></dd>
-      <dd><span class="ml"></span><span class="mm"><a href="">胸病</a><i>15</i></span><span class="mr"></span></dd>
-      <dd><span class="ml"></span><span class="mm"><a href="">背部</a><i>15</i></span><span class="mr"></span></dd>
-      <dd><span class="ml"></span><span class="mm"><a href="">胳膊</a><i>15</i></span><span class="mr"></span></dd>
-      <dd><span class="ml"></span><span class="mm"><a href="">腹背</a><i>15</i></span><span class="mr"></span></dd>
-      <dd><span class="ml"></span><span class="mm"><a href="">男性股沟</a><i>15</i></span><span class="mr"></span></dd>
-      <dd><span class="ml"></span><span class="mm"><a href="">四肢</a><i>15</i></span><span class="mr"></span></dd>
-      <dd><span class="ml"></span><span class="mm"><a href="">腿</a><i>15</i></span><span class="mr"></span></dd>
-      <dd><span class="ml"></span><span class="mm"><a href="">臀</a><i>15</i></span><span class="mr"></span></dd>
-      <dd><span class="ml"></span><span class="mm"><a href="">腰</a><i>15</i></span><span class="mr"></span></dd>
-      <dd><span class="ml"></span><span class="mm"><a href="">全身</a><i>15</i></span><span class="mr"></span></dd>
-      <dd><span class="ml"></span><span class="mm"><a href="">女性骨盆</a><i>15</i></span><span class="mr"></span></dd>
-  </dl>
- 
-  </div>
-         
-            
- <!--列表开始-->     
-                         
-   <!--第一个    左对齐      pull-left-->                                  
-  <div class="label-div b-20 border-all pb-10 pt-5 pull-left" style="width:47%; width:47% \9; position: relative; padding-left: 0; height:auto;">
-  
-   <div class="clearfix pt-3">
-		  <div class="index-news-img spanm3 pull-left pt-5">
-			<a href="javascript:;" title="标题标题标题" target="_blank" rel="bookmark">
-             <img class="lazyloadimg" alt="标题标题标题标题标题标题" src="../../images/xmdata1.jpg"/></a>
-		 </div>
-         
-         
-  	<div class="offset3 intro mmwidth">
-		<h1>
-        <a title="标题标题标题标题" target="_blank" href="javascript:;">标题标题标题标题标题标题标题标</a>
-        </h1>
-	    <p class="t-1 mt1">内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容。</p>
-    
-      <div class="clearfix" style="height:auto;margin-top:0px;">
-			<div class="pull-left myxx">	
-          <i class="mr">2013/03/02</i>	
-                <i class="m"><a href="javascript:;" target="_blank">北京</a></i>  
-                <i class="m"><a href="javascript:;" target="_blank">项目分类</a></i>
-        	</div>
-            <div class="mmclear"></div>
-          <div class="">
-			<a class="follow-btn pr-10 ie6png" href="javascript:void(0);" title="0人关注	0人分享	3人评论" data-id="104417" data-type="news">3人</a>
-			<a class="read-btn ie6png" href="javascript:void(0);" title="277次阅读">277次</a>
-		 </div>
-         
-	</div>
- 
-    </div>
-  
-    </div>
-   
-     
-</div>
-    <!--第一个结束-->      
-    
-   <!--第二个       右对齐    pull-right-->                                  
- <div class="label-div b-20 border-all pb-10 pt-5 pull-right" style="width:47%; width:47% \9; position: relative; padding-left: 0;">
-   <div class="clearfix pt-3">
-		  <div class="index-news-img spanm3 pull-left pt-5">
-						<a href="javascript:;" title="标题标题标题" target="_blank" rel="bookmark">
-                        <img class="lazyloadimg" alt="标题标题标题标题标题标题" src="../../images/xmdata1.jpg"/></a>
-		 </div>
-         
-         
-  	<div class="offset3 intro mmwidth">
-		<h1>
-        <a title="标题标题标题标题" target="_blank" href="javascript:;">标题标题标题标题标题标题标题标</a>
-        </h1>
-	    <p class="t-1 mt1">内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容。</p>
-    
-      <div class="clearfix" style="height: auto;margin-top:0px;">
-			<div class="pull-left myxx">	
-          <i class="mr">2013/03/02</i>	
-                <i class="m"><a href="javascript:;" target="_blank">北京</a></i>  
-                <i class="m"><a href="javascript:;" target="_blank">项目分类</a></i>
-        	</div>
-            <div class="mmclear"></div>
-          <div class="">
-			<a class="follow-btn pr-10 ie6png" href="javascript:void(0);" title="0人关注	0人分享	3人评论" data-id="104417" data-type="news">3人</a>
-			<a class="read-btn ie6png" href="javascript:void(0);" title="277次阅读">277次</a>
-		 </div>
-          <div class="mmclear"></div>
-	</div>
- 
-    </div>
-  
-    </div>
-   
-     
-</div>
-    <!--第二个结束-->     
-    
-    
-     <!--第三个    左对齐      pull-left-->                                  
-  <div class="label-div b-20 border-all pb-10 pt-5 pull-left" style="width:47%; width:47% \9; position: relative; padding-left: 0; height:auto;">
-   <div class="clearfix pt-3">
-		  <div class="index-news-img spanm3 pull-left pt-5">
-						<a href="javascript:;" title="标题标题标题" target="_blank" rel="bookmark">
-                        <img class="lazyloadimg" alt="标题标题标题标题标题标题" src="../../images/xmdata1.jpg"/></a>
-		 </div>
-         
-         
-  	<div class="offset3 intro mmwidth">
-		<h1>
-        <a title="标题标题标题标题" target="_blank" href="javascript:;">标题标题标题标题标题标题标题标</a>
-        </h1>
-	    <p class="t-1 mt1">内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容。</p>
-    
-      <div class="clearfix" style="height:auto;margin-top:0px;">
-			<div class="pull-left myxx">	
-          <i class="mr">2013/03/02</i>	
-                <i class="m"><a href="javascript:;" target="_blank">北京</a></i>  
-                <i class="m"><a href="javascript:;" target="_blank">项目分类</a></i>
-        	</div>
-            <div class="mmclear"></div>
-          <div class="">
-			<a class="follow-btn pr-10 ie6png" href="javascript:void(0);" title="0人关注	0人分享	3人评论" data-id="104417" data-type="news">3人</a>
-			<a class="read-btn ie6png" href="javascript:void(0);" title="277次阅读">277次</a>
-		 </div>
-         
-	</div>
- 
-    </div>
-  
-    </div>
-   
-     
-</div>
-    <!--第三个结束-->      
-    
-   <!--第皿个       右对齐    pull-right-->                                  
- <div class="label-div b-20 border-all pb-10 pt-5 pull-right" style="width:47%; width:47% \9; position: relative; padding-left: 0;">
-   <div class="clearfix pt-3">
-		  <div class="index-news-img spanm3 pull-left pt-5">
-						<a href="javascript:;" title="标题标题标题" target="_blank" rel="bookmark">
-                        <img class="lazyloadimg" alt="标题标题标题标题标题标题" src="../../images/xmdata1.jpg"/></a>
-		 </div>
-         
-         
-  	<div class="offset3 intro mmwidth">
-		<h1>
-        <a title="标题标题标题标题" target="_blank" href="javascript:;">标题标题标题标题标题标题标题标</a>
-        </h1>
-	    <p class="t-1 mt1">内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容。</p>
-    
-      <div class="clearfix" style="height: auto;margin-top:0px;">
-			<div class="pull-left myxx">	
-            <i class="mr">2013/03/02</i>	
-                <i class="m"><a href="javascript:;" target="_blank">北京</a></i>  
-                <i class="m"><a href="javascript:;" target="_blank">项目分类</a></i>
-        	</div>
-            <div class="mmclear"></div>
-          <div class="">
-			<a class="follow-btn pr-10 ie6png" href="javascript:void(0);" title="0人关注	0人分享	3人评论" data-id="104417" data-type="news">3人</a>
-			<a class="read-btn ie6png" href="javascript:void(0);" title="277次阅读">277次</a>
-		 </div>
-          <div class="mmclear"></div>
-	</div>
- 
-    </div>
-  
-    </div>
-   
-     
-</div>
-    <!--第皿个结束--> 
-    
-    
-    
-     <!--第一个    左对齐      pull-left-->                                  
-  <div class="label-div b-20 border-all pb-10 pt-5 pull-left" style="width:47%; width:47% \9; position: relative; padding-left: 0; height:auto;">
-   <div class="clearfix pt-3">
-		  <div class="index-news-img spanm3 pull-left pt-5">
-						<a href="javascript:;" title="标题标题标题" target="_blank" rel="bookmark">
-                        <img class="lazyloadimg" alt="标题标题标题标题标题标题" src="../../images/xmdata1.jpg"/></a>
-		 </div>
-         
-         
-  	<div class="offset3 intro mmwidth">
-		<h1>
-        <a title="标题标题标题标题" target="_blank" href="javascript:;">标题标题标题标题标题标题标题标</a>
-        </h1>
-	    <p class="t-1 mt1">内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容。</p>
-    
-      <div class="clearfix" style="height:auto;margin-top:0px;">
-			<div class="pull-left myxx">	
-            <i class="mr">2013/03/02</i>	
-                <i class="m"><a href="javascript:;" target="_blank">北京</a></i>  
-                <i class="m"><a href="javascript:;" target="_blank">项目分类</a></i>
-        	</div>
-            <div class="mmclear"></div>
-          <div class="">
-			<a class="follow-btn pr-10 ie6png" href="javascript:void(0);" title="0人关注	0人分享	3人评论" data-id="104417" data-type="news">3人</a>
-			<a class="read-btn ie6png" href="javascript:void(0);" title="277次阅读">277次</a>
-		 </div>
-         
-	</div>
- 
-    </div>
-  
-    </div>
-   
-     
-</div>
-    <!--第一个结束-->      
-    
-   <!--第二个       右对齐    pull-right-->                                  
- <div class="label-div b-20 border-all pb-10 pt-5 pull-right" style="width:47%; width:47% \9; position: relative; padding-left: 0;">
-   <div class="clearfix pt-3">
-		  <div class="index-news-img spanm3 pull-left pt-5">
-						<a href="javascript:;" title="标题标题标题" target="_blank" rel="bookmark">
-                        <img class="lazyloadimg" alt="标题标题标题标题标题标题" src="../../images/xmdata1.jpg"/></a>
-		 </div>
-         
-         
-  	<div class="offset3 intro mmwidth">
-		<h1>
-        <a title="标题标题标题标题" target="_blank" href="javascript:;">标题标题标题标题标题标题标题标</a>
-        </h1>
-	    <p class="t-1 mt1">内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容。</p>
-    
-      <div class="clearfix" style="height: auto;margin-top:0px;">
-			<div class="pull-left myxx">	
-           <i class="mr">2013/03/02</i>	
-                <i class="m"><a href="javascript:;" target="_blank">北京</a></i>  
-                <i class="m"><a href="javascript:;" target="_blank">项目分类</a></i>
-        	</div>
-            <div class="mmclear"></div>
-          <div class="">
-			<a class="follow-btn pr-10 ie6png" href="javascript:void(0);" title="0人关注	0人分享	3人评论" data-id="104417" data-type="news">3人</a>
-			<a class="read-btn ie6png" href="javascript:void(0);" title="277次阅读">277次</a>
-		 </div>
-          <div class="mmclear"></div>
-	</div>
- 
-    </div>
-  
-    </div>
-   
-     
-</div>
-    <!--第二个结束-->     
-    
-    
-     <!--第三个    左对齐      pull-left-->                                  
-  <div class="label-div b-20 border-all pb-10 pt-5 pull-left" style="width:47%; width:47% \9; position: relative; padding-left: 0; height:auto;">
-   <div class="clearfix pt-3">
-		  <div class="index-news-img spanm3 pull-left pt-5">
-						<a href="javascript:;" title="标题标题标题" target="_blank" rel="bookmark">
-                        <img class="lazyloadimg" alt="标题标题标题标题标题标题" src="../../images/xmdata1.jpg"/></a>
-		 </div>
-         
-         
-  	<div class="offset3 intro mmwidth">
-		<h1>
-        <a title="标题标题标题标题" target="_blank" href="javascript:;">标题标题标题标题标题标题标题标</a>
-        </h1>
-	    <p class="t-1 mt1">内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容。</p>
-    
-      <div class="clearfix" style="height:auto;margin-top:0px;">
-			<div class="pull-left myxx">	
-            <i class="mr">2013/03/02</i>	
-                <i class="m"><a href="javascript:;" target="_blank">北京</a></i>  
-                <i class="m"><a href="javascript:;" target="_blank">项目分类</a></i>
-        	</div>
-            <div class="mmclear"></div>
-          <div class="">
-			<a class="follow-btn pr-10 ie6png" href="javascript:void(0);" title="0人关注	0人分享	3人评论" data-id="104417" data-type="news">3人</a>
-			<a class="read-btn ie6png" href="javascript:void(0);" title="277次阅读">277次</a>
-		 </div>
-         
-	</div>
- 
-    </div>
-  
-    </div>
-   
-     
-</div>
-    <!--第三个结束-->      
-    
-   <!--第皿个       右对齐    pull-right-->                                  
- <div class="label-div b-20 border-all pb-10 pt-5 pull-right" style="width:47%; width:47% \9; position: relative; padding-left: 0;">
-   <div class="clearfix pt-3">
-		  <div class="index-news-img spanm3 pull-left pt-5">
-						<a href="javascript:;" title="标题标题标题" target="_blank" rel="bookmark">
-                        <img class="lazyloadimg" alt="标题标题标题标题标题标题" src="../../images/xmdata1.jpg"/></a>
-		 </div>
-         
-         
-  	<div class="offset3 intro mmwidth">
-		<h1>
-        <a title="标题标题标题标题" target="_blank" href="javascript:;">标题标题标题标题标题标题标题标</a>
-        </h1>
-	    <p class="t-1 mt1">内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容。</p>
-    
-      <div class="clearfix" style="height: auto;margin-top:0px;">
-			<div class="pull-left myxx">	
-           <i class="mr">2013/03/02</i>	
-                <i class="m"><a href="javascript:;" target="_blank">北京</a></i>  
-                <i class="m"><a href="javascript:;" target="_blank">项目分类</a></i>
-        	</div>
-            <div class="mmclear"></div>
-          <div class="">
-			<a class="follow-btn pr-10 ie6png" href="javascript:void(0);" title="0人关注	0人分享	3人评论" data-id="104417" data-type="news">3人</a>
-			<a class="read-btn ie6png" href="javascript:void(0);" title="277次阅读">277次</a>
-		 </div>
-          <div class="mmclear"></div>
-	</div>
- 
-    </div>
-  
-    </div>
-   
-     
-</div>
-    <!--第皿个结束--> 
-    
-  <!--第三个    左对齐      pull-left-->                                  
-  <div class="label-div b-20 border-all pb-10 pt-5 pull-left" style="width:47%; width:47% \9; position: relative; padding-left: 0; height:auto;">
-   <div class="clearfix pt-3">
-		  <div class="index-news-img spanm3 pull-left pt-5">
-						<a href="javascript:;" title="标题标题标题" target="_blank" rel="bookmark">
-                        <img class="lazyloadimg" alt="标题标题标题标题标题标题" src="../../images/xmdata1.jpg"/></a>
-		 </div>
-         
-         
-  	<div class="offset3 intro mmwidth">
-		<h1>
-        <a title="标题标题标题标题" target="_blank" href="javascript:;">标题标题标题标题标题标题标题标</a>
-        </h1>
-	    <p class="t-1 mt1">内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容。</p>
-    
-      <div class="clearfix" style="height:auto;margin-top:0px;">
-			<div class="pull-left myxx">	
-            <i class="mr">2013/03/02</i>	
-                <i class="m"><a href="javascript:;" target="_blank">北京</a></i>  
-                <i class="m"><a href="javascript:;" target="_blank">项目分类</a></i>
-        	</div>
-            <div class="mmclear"></div>
-          <div class="">
-			<a class="follow-btn pr-10 ie6png" href="javascript:void(0);" title="0人关注	0人分享	3人评论" data-id="104417" data-type="news">3人</a>
-			<a class="read-btn ie6png" href="javascript:void(0);" title="277次阅读">277次</a>
-		 </div>
-         
-	</div>
- 
-    </div>
-  
-    </div>
-   
-     
-</div>
-    <!--第三个结束-->      
-    
-   <!--第皿个       右对齐    pull-right-->                                  
- <div class="label-div b-20 border-all pb-10 pt-5 pull-right" style="width:47%; width:47% \9; position: relative; padding-left: 0;">
-   <div class="clearfix pt-3">
-		  <div class="index-news-img spanm3 pull-left pt-5">
-						<a href="javascript:;" title="标题标题标题" target="_blank" rel="bookmark">
-                        <img class="lazyloadimg" alt="标题标题标题标题标题标题" src="../../images/xmdata1.jpg"/></a>
-		 </div>
-         
-         
-  	<div class="offset3 intro mmwidth">
-		<h1>
-        <a title="标题标题标题标题" target="_blank" href="javascript:;">标题标题标题标题标题标题标题标</a>
-        </h1>
-        
-	    <p class="t-1 mt1">内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容。</p>
-    
-     	 <div class="clearfix" style="height: auto;margin-top:0px;">
-                <div class="pull-left myxx">
-                 <i class="mr">2013/03/02</i>	
-                <i class="m"><a href="javascript:;" target="_blank">北京</a></i>  
-                <i class="m"><a href="javascript:;" target="_blank">项目分类</a></i>
-                
-                </div>
-         <div class="mmclear"></div>
-          <div class="">
-			<a class="follow-btn pr-10 ie6png" href="javascript:void(0);" title="0人关注	0人分享	3人评论" data-id="104417" data-type="news">3人</a>
-			<a class="read-btn ie6png" href="javascript:void(0);" title="277次阅读">277次</a>
-		 </div>
-         
-          <div class="mmclear"></div>
-	</div>
-    
-    
- 
-    </div>
-  
-    </div>
-   
-     
-</div>
-    <!--第皿个结束-->     
-  
-    
-  <!--列表结束-->         
-
-<div class="mmclear"></div>            
- 
-<div class="pagination center pagination-large pt-20">
-<ul id="yw1" class="yiiPager">
-<li class="previous"><a href="javascript:;">《</a></li>
-<li class="page"><a href="?page=1">1</a></li>
-<li class="page selected"><a href="?page=2">2</a></li>
-<li class="page"><a href="?page=3">3</a></li>
-<li class="page"><a href="?page=4">4</a></li>
-<li class="page"><a href="?page=5">5</a></li>
-<li class="page"><a href="?page=6">6</a></li>
-<li class="page"><a href="?page=7">7</a></li>
-<li class="next"><a href="javascript:;">》</a></li>
-</ul>		    </div>
-		</div>
-        
-      
-      <!--右侧代码-->  
-       <div class="span4">
-			
-        
-            
-            <div class="label-div t-20 border-all">
-				<div class="l-15">
-               		 <h3 class="label-title border-b b-15 small clearfix" style="padding-bottom: 14px;">关注咨询</h3>
-                </div>
-				<div class="label-main tody-hot l-15" >
-					<ul>
-					  <li><a href="">标题标题标题标题标题标题</a></li>
-                      <li><a href="">标题标题标题标题标题标题</a></li>
-                      <li><a href="">标题标题标题标题标题标题</a></li>
-                      <li><a href="">标题标题标题标题标题标题</a></li>
-                      <li><a href="">标题标题标题标题标题标题</a></li>
-                      <li><a href="">标题标题标题标题标题标题</a></li>
-                      <li><a href="">标题标题标题标题标题标题</a></li>
-                      <li><a href="">标题标题标题标题标题标题</a></li>
-					</ul>
-				</div>
-			</div>
-            
-            
-            
-             <div class="label-div t-20 border-all">
-				<div class="l-15">
-               		 <h3 class="label-title border-b b-15 small clearfix" style="padding-bottom: 14px;">最多分享</h3>
-                </div>
-				<div class="label-main tody-hot l-15" >
-					<ul>
-					  <li><a href="">标题标题标题标题标题标题</a></li>
-                      <li><a href="">标题标题标题标题标题标题</a></li>
-                      <li><a href="">标题标题标题标题标题标题</a></li>
-                      <li><a href="">标题标题标题标题标题标题</a></li>
-                      <li><a href="">标题标题标题标题标题标题</a></li>
-                      <li><a href="">标题标题标题标题标题标题</a></li>
-                      <li><a href="">标题标题标题标题标题标题</a></li>
-                      <li><a href="">标题标题标题标题标题标题</a></li>
-					</ul>
-				</div>
-			</div>
-            
-            
-            
-             <div class="label-div t-20 border-all">
-				<div class="l-15">
-               		 <h3 class="label-title border-b b-15 small clearfix" style="padding-bottom: 14px;">最多评论</h3>
-                </div>
-				<div class="label-main tody-hot l-15" >
-					<ul>
-					  <li><a href="">标题标题标题标题标题标题题标题</a></li>
-                      <li><a href="">标题标题标题标题标题标题标题标题</a></li>
-                      <li><a href="">标题标题标题标题标题标题标题标题</a></li>
-                      <li><a href="">标题标题标题标题标题标题标题标题</a></li>
-                      <li><a href="">标题标题标题标题标题标题标题标题</a></li>
-                      <li><a href="">标题标题标题标题标题标题标 标题</a></li>
-                      <li><a href="">标题标题标题标题标题标题标题标题</a></li>
-                      <li><a href="">标题标题标题标题标题标题标题标题</a></li>
-                      <li><a href="">标题标题标题标题标题标题标题标题</a></li>
-                      <li><a href="">标题标题标题标题标题标题标题标题</a></li>
-					</ul>
-				</div>
-			</div>
-            
-          
-             
-            
-	 
-            
-		</div>
-	</div>
-</div>
 
 <!--右侧代码结束-->
 
-
-<!-- /container -->
-
-  <div class="container">
- 
- 	<div class="hr"></div>
-    
-    </div>
-  
-<!-- /container -->
-
-</div>
-    
- 
 <div class="footer">
 		 
 			<!--<p class="fc999 b-5 footer-info">致力于前沿生物科技和成功商业模式的传播</p>-->
@@ -719,6 +224,66 @@ DD_belatedPNG.fix('img,.ie6png');
 <script type="text/javascript">
 //回到顶部
 backToTop('body');
+
+// 搜索
+$("#searchBtn").click(function () {
+  $(".listBox").show();
+  var searchFormData = new FormData();
+  searchFormData.append("key", $("#searchKey").val());
+  $.ajax({
+    type: "post",
+    url: "../../searchAll",
+    // contentType: "application/json;charset=utf-8",
+    contentType: false,//这里
+    processData: false,//这两个一定设置为false
+    dataType: "json",
+    data: searchFormData,
+    success: function (data) {
+//      新闻
+      data.Post.forEach(function (item, index) {
+        $(".postList").append('<div class="news-list b-30 clearfix">' +
+            '<div class="spanm3 pull-left" style="padding-top:7px;">' +
+            '<a href="javascript:;" rel="bookmark" style="display: block;" target="_blank">' +
+            '<img style="width: 200px;height: 120px;" src="'+item.postImg+'"/>' +
+            '</a>' +
+            '</div>' +
+            '<div class="offsetindex3 intro">' +
+            '<h1><a target="_blank" href="news.html?id='+item.id+'" rel="bookmark">'+item.postName+'</a></h1>' +
+            // '<p class="t-5 fc666" style=" margin-bottom:0;">标题标题标标题标题标题标题标题标题题标题标题标题标题标题标题题标题标题标题标题标题。</p>' +
+            // '<div class="myxm"><span><a href="">北京</a></span>  <span class="two"><a href="">项目分类</a></span>   2013/03/02</div>' +
+            '<div class="clearfix">' +
+            // '<a class="follow-btn pr-10 ie6png news-follow-btn" href="javascript:void(0);" title="1人关注	2人分享	3人评论" data-id="104423" data-type="news">6人</a>' +
+            '<a class="read-btn ie6png" href="javascript:void(0);">'+(item.clickNum || 0)+'</a>' +
+            '</div>' +
+            '</div>' +
+            '</div>');
+      })
+
+      //      圈子
+      data.Topic.forEach(function (item, index) {
+        $(".topicList").append('<div class="news-list b-30 clearfix">' +
+            '<div class="spanm3 pull-left" style="padding-top:7px;">' +
+            '<a href="javascript:;" rel="bookmark" style="display: block;" target="_blank">' +
+            '<img style="width: 200px;height: 120px;" src="'+item.imgUrl+'"/>' +
+            '</a>' +
+            '</div>' +
+            '<div class="offsetindex3 intro">' +
+            '<h1><a target="_blank" href="newsList.html?id='+item.id+'" rel="bookmark">'+item.topicName+'</a></h1>' +
+            // '<p class="t-5 fc666" style=" margin-bottom:0;">标题标题标标题标题标题标题标题标题题标题标题标题标题标题标题题标题标题标题标题标题。</p>' +
+            // '<div class="myxm"><span><a href="">北京</a></span>  <span class="two"><a href="">项目分类</a></span>   2013/03/02</div>' +
+            '<div class="clearfix">' +
+            // '<a class="follow-btn pr-10 ie6png news-follow-btn" href="javascript:void(0);" title="1人关注	2人分享	3人评论" data-id="104423" data-type="news">6人</a>' +
+//            '<a class="read-btn ie6png" href="javascript:void(0);">'+(item.clickNum || 0)+'</a>' +
+            '</div>' +
+            '</div>' +
+            '</div>');
+      })
+
+
+    }
+  });
+})
+
 </script>
 </body>
 </html>

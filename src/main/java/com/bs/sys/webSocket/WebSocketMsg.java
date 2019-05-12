@@ -67,7 +67,7 @@ public class WebSocketMsg {
             this.userId=userid_int;
             ids.add(userid_int);
             this.websocketMap.put(userid_int,session);
-            String nickname=userService.findbyid(userid_int).getNickName();
+            String nickname=userService.findbyid(userid_int).getUserName();
             this.username=nickname;
             names.add(nickname);
             idandnameMap.put(userid_int,nickname);
@@ -137,7 +137,7 @@ public class WebSocketMsg {
         SimpleDateFormat sdFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String retStrFormatNowDate = sdFormatter.format(nowTime);
         message1.setFormatDate(retStrFormatNowDate);
-        message1.setFromName(userService.findbyid(message1.getFromId()).getUserName());
+//        message1.setFromName(userService.findbyid(message1.getFromId()).getUserName());
         messageService.addmessage(message1);
         //将客户端消息转成json对象
         //如果是群聊，就像消息广播给所有人

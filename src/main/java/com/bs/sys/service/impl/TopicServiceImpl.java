@@ -71,4 +71,9 @@ public class TopicServiceImpl implements TopicServiceInf {
     public void addclicknum(int id) {
 
     }
+
+    @Override
+    public List<Topic> searchall(String key) {
+        return topicDao.searchall(key);
+    }
 }

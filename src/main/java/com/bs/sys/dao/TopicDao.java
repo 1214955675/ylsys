@@ -20,4 +20,6 @@ public interface TopicDao {
     List<Topic> getalltopic(@Param("page")int page,@Param("limit")int limit);
     @UpdateProvider(type=com.bs.sys.common.DynoSqlProvider.class,method="updateTopicSql")
     int updatetopic(Topic topic);
+    @Select("select * from topic where topicName like CONCAT('%',#{key},'%') ")
+    List<Topic> searchall(String key);
 }

@@ -3,7 +3,6 @@ package com.bs.sys.service.impl;
 import com.bs.sys.dao.PostDao;
 import com.bs.sys.entity.Post;
 import com.bs.sys.service.PostService;
-import javafx.geometry.Pos;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -55,5 +54,10 @@ public class PostServiceImpl implements PostService {
     @Override
     public Post getpostbypostid(Integer id) {
         return postDao.getpostbypostid(id);
+    }
+
+    @Override
+    public List<Post> searchall(String key) {
+        return postDao.searchpost(key);
     }
 }

@@ -1,7 +1,6 @@
 package com.bs.sys.service;
 
 import com.bs.sys.entity.Post;
-import javafx.geometry.Pos;
 
 import java.util.List;
 
@@ -15,4 +14,5 @@ public interface PostService {
     boolean delPost(Integer postid);
     boolean updatepost(Post post);
     Post getpostbypostid(Integer id);
+    List<Post> searchall(String key);
 }

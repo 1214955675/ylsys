@@ -26,6 +26,7 @@ public interface PostDao {
     int updatepost(Post post);
     @Select("select * from post where id =#{id}")
     Post getpostbypostid(Integer postid);
-
+    @Select("select * from post where postName like CONCAT('%',#{key},'%') or content like CONCAT('%',#{key},'%') ")
+    List<Post> searchpost(String key);
     void addclicknum(int id);
 }

@@ -14,4 +14,5 @@ public interface TopicServiceInf {
     List<Topic> getalltopic(int page,int limit);
     boolean updatetopicbyid(Topic topic);
     void addclicknum(int id);
+    List<Topic> searchall(String key);
 }

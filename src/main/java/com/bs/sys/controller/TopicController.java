@@ -155,4 +155,17 @@ public class TopicController {
         }
         return res;
     }
+    @RequestMapping("/search")
+    public TopicResponse searchtopic(@RequestParam String key){
+        TopicResponse res=new TopicResponse();
+        try {
+            List<Topic> topics=topicService.searchall(key);
+            res.setTopicList(topics);
+        }catch ( Exception e){
+            e.printStackTrace();
+            res.setResultMessage(ResultCode.db_opterror.getMessage());
+            res.setResultCode(ResultCode.db_opterror.getCode());
+        }
+        return res;
+    }
 }

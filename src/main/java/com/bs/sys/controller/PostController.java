@@ -143,4 +143,16 @@ public class PostController {
         }
         return res;
     }
+    @RequestMapping("/search")
+    public  PostResponse seacrhpost(@RequestParam String key){
+        PostResponse res=new PostResponse();
+        try {
+            res.setPostlist(postService.searchall(key));
+        }catch (Exception e){
+            e.printStackTrace();
+            res.setResultCode(ResultCode.db_opterror.getCode());
+            res.setResultMessage(ResultCode.db_opterror.getMessage());
+        }
+        return res;
+    }
 }

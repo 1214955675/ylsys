@@ -94,6 +94,9 @@ public class DynoSqlProvider {
                 if(post.getCreateTime()!=null) {
                     SET("createTime=#{createTime}");
                 }
+                if(post.getClickNum()!=null) {
+                    SET("clickNum=#{clickNum}");
+                }
                 if(post.getContent()!=null){
                     SET("content=#{content}");
                 }

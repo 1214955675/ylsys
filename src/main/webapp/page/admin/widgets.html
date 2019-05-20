@@ -264,7 +264,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 '<td>' + item.postName + '</td>' +
                 '<td>' + getMyDate(item.createTime) + '</td>' +
                 '<td>' +
-                '<a href="javascript: void(0);" data-id="' + item.id + '" data-name="' + item.postName + '" class="edit" style="margin-right: 10px;">编辑</a>' +
+                '<a href="javascript: void(0);" data-id="' + item.id + '" data-name="' + item.postName + '" data-topicid="' + item.topicId + '" class="edit" style="margin-right: 10px;">编辑</a>' +
                 '<a href="javascript: void(0);" data-id="' + item.id + '" class="del">删除</a></td>' +
                 '</tr>');
           });
@@ -281,6 +281,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     var thisEditId;
     var thisEditName;
     var thisEditContent;
+    var topicid;
     $("body").on("click", ".edit", function () {
       $("#newsListId").hide();
       $("#newsAddId").hide();
@@ -288,10 +289,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			thisEditName = $(this).attr("data-name");
 			thisEditId = $(this).attr("data-id");
 			thisEditContent = $(this).attr("data-content");
+      topicid = $(this).attr("data-topicid");
       $("#newsTitle2").val(thisEditName);
 
       var getNewsData = new FormData();
       getNewsData.append("postId", thisEditId);
+      getNewsData.append("topicId", topicid);
       $.ajax({
         type: "post",
         url: "../../post/getPostByPostId",

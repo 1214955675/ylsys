@@ -59,7 +59,7 @@ $(function () {
                       '</a>' +
                       '</div>' +
                       '<div class="offsetindex3 intro">' +
-                      '<h1><a href="page/front/news.html?id='+item.id+'" rel="bookmark">'+item.postName+'</a></h1>' +
+                      '<h1><a href="page/front/news.html?id='+item.id+'&topicid='+item.topicId+'" rel="bookmark">'+item.postName+'</a></h1>' +
                       // '<p class="t-5 fc666" style=" margin-bottom:0;">标题标题标标题标题标题标题标题标题题标题标题标题标题标题标题题标题标题标题标题标题。</p>' +
                       // '<div class="myxm"><span><a href="">北京</a></span>  <span class="two"><a href="">项目分类</a></span>   2013/03/02</div>' +
                       '<div class="clearfix">' +
@@ -97,7 +97,7 @@ $(function () {
                       '</a>' +
                       '</div>' +
                       '<div class="offset1 intro">' +
-                      '<h1><a href="page/front/news.html?id='+item.id+'" title="标题" rel="bookmark" >'+item.postName+'</a></h1>' +
+                      '<h1><a href="page/front/news.html?id='+item.id+'&topicid='+item.topicId+'" title="标题" rel="bookmark" >'+item.postName+'</a></h1>' +
                       '</div>' +
                       '</div>' +
                       '<div class="intro l-20">' +
@@ -129,7 +129,7 @@ $(function () {
             success: function (data) {
               if(data && data.resultCode == 200){
                 data.postlist.forEach(function (item, index) {
-                  $(".list3").append('<li><a href="page/front/news.html?id='+item.id+'">'+item.postName+'</a></li>');
+                  $(".list3").append('<li><a href="page/front/news.html?id='+item.id+'&topicid='+item.topicId+'">'+item.postName+'</a></li>');
                 })
               }
             }

@@ -248,13 +248,13 @@ DD_belatedPNG.fix('img,.ie6png');
                 '<div class="news-list">' +
                 '<div class="clearfix pt-3">' +
                 '<div class="index-news-img spanm3 pull-left pt-5" style="margin-right: 10px;">' +
-                '<a href="news.html?id=' + item.id + '">' +
+                '<a href="news.html?id=' + item.id + '&topicid='+item.topicId+'">' +
                 '<img style="width: 200px;height:120px;" class="lazyloadimg" src="'+item.postImg+'"/>' +
                 '</a>' +
                 '</div>' +
                 '<div class="intro">' +
                 '<h1>' +
-                '<a href="news.html?id=' + item.id + '">' + item.postName + '</a>' +
+                '<a href="news.html?id=' + item.id + '&topicid='+item.topicId+'">' + item.postName + '</a>' +
                 '</h1>' +
 //                '<p class="t-1" style="margin: 20px 0;">' + getMyDate(item.createTime) + '</p>' +
                 '<a class="read-btn ie6png" href="javascript:void(0);">'+(item.clickNum || 0)+'</a>' +

@@ -186,7 +186,8 @@ DD_belatedPNG.fix('img,.ie6png');
 </div>
   <script type="text/javascript">
 	$(document).ready(function(){
-		var flag = 0;
+    var userId = window.sessionStorage.getItem("userId");
+    var flag = 0;
 		$(".friend-link").hide();
 		//Down
 		$("#zk_btn").click(function(){
@@ -233,6 +234,9 @@ DD_belatedPNG.fix('img,.ie6png');
     //获取圈子里所有新闻
     var getPostByTopicIdData = new FormData();
     getPostByTopicIdData.append("topicId", urlId);
+    if (userId) {
+      getPostByTopicIdData.append("userId", userId);
+    }
     $.ajax({
       type: "post",
       url: "../../post/getPostByTopicId",

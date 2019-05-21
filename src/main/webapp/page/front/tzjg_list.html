@@ -7,7 +7,7 @@
 <script type="text/javascript" src="../../js/jquery1.4.js"></script>
 <script type="text/javascript" src="../../js/bioV4.min.js"></script>
 <script type="text/javascript" src="../../js/jquery.lazyload.mini.js"></script>
-<title>投资机构</title>
+<title>常见问题</title>
 <meta name="Keywords" content="投资机构"/>
 <meta name="Description" content="投资机构。"/>
 <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
@@ -799,7 +799,10 @@ DD_belatedPNG.fix('img,.ie6png');
     
  
 <div class="footer">
-		 
+		 <div>
+       <ul class="listUl">
+       </ul>
+     </div>
 			<!--<p class="fc999 b-5 footer-info">致力于前沿生物科技和成功商业模式的传播</p>-->
 			<div class="clearfix" style="background:#EDEDED;">
 				
@@ -844,6 +847,45 @@ DD_belatedPNG.fix('img,.ie6png');
 <script type="text/javascript">
 //回到顶部
 backToTop('body');
+
+function getMyDate(str){
+  var oDate = new Date(str),
+      oYear = oDate.getFullYear(),
+      oMonth = oDate.getMonth()+1,
+      oDay = oDate.getDate(),
+      oHour = oDate.getHours(),
+      oMin = oDate.getMinutes(),
+      oSen = oDate.getSeconds(),
+      oTime = oYear +'-'+ getzf(oMonth) +'-'+ getzf(oDay) +' '+ getzf(oHour) +':'+ getzf(oMin) +':'+ getzf(oSen);//最后拼接时间
+  return oTime;
+}
+
+//获取常见问题
+var getPostByTopicIdData = new FormData();
+getPostByTopicIdData.append("page", '1');
+getPostByTopicIdData.append("limit", '10');
+$.ajax({
+  type: "post",
+  url: "../../advice/getAdvicesWithAnswer",
+  // contentType: "application/json;charset=utf-8",
+  contentType: false,//这里
+  processData: false,//这两个一定设置为false
+  dataType: "json",
+  data: getPostByTopicIdData,
+  success: function (data) {
+    if(data && data.resultCode == 200){
+//      data.adviceList.forEach(function (item, index) {
+//        $(".listUl").append('<li>' +
+//            '<div>'+item.answer+'</div>' +
+//            '<div>'+item.contactWay+'</div>' +
+//            '<div>'+item.content+'</div>' +
+////            '<div>'+getMyDate(item.createTime)+'</div>' +
+//            '</li>')
+      })
+    }
+  }
+});
+
 </script>
 </body>
 </html>

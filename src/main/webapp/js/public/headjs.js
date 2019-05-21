@@ -28,7 +28,7 @@ var headData = '<div class="navbar navbar-fixed-top" style="_position: relative;
     '<li class="loginRegister l10"><a href="login.html">登录</a></li>' +
     '<li><a href="####" class="topName"></a></li>' +
     '<li style="display: none;" class="logoutBtn"><a href="####">退出</a></li>' +
-    '<li style="display: none;" class="logoutBtn"><a href="msg.html?id='+userId+'&name='+userName+'">聊天测试</a></li>' +
+    '<li style="display: none;" class="logoutBtn"><a id="msgID" target="_blank" href="####">聊天测试</a></li>' +
     '<li><a href="feedback.html">问题反馈</a></li>' +
     '</ul>' +
     '</div>' +
@@ -44,6 +44,11 @@ if(userName){
     $(".loginRegister").hide();
     $(".logoutBtn").show();
 }
+
+$("#msgID").click(function () {
+  window.open('msg.html?id='+userId+'&name='+userName)
+  return false
+})
 
 // 退出
 $(".logoutBtn").click(function () {

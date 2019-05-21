@@ -60,4 +60,9 @@ public class PostServiceImpl implements PostService {
     public List<Post> searchall(String key) {
         return postDao.searchpost(key);
     }
+
+    @Override
+    public List<Post> gethotpost(int page, int limit) {
+        return postDao.gethotpost((page-1)*limit, limit);
+    }
 }

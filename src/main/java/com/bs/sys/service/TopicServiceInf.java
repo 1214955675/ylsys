@@ -15,4 +15,5 @@ public interface TopicServiceInf {
     boolean updatetopicbyid(Topic topic);
     void addclicknum(int id);
     List<Topic> searchall(String key);
+    Topic findbyid(int id);
 }

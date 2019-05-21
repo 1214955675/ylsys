@@ -8,4 +8,5 @@ import java.util.List;
 public interface userTasteServiceInf {
     boolean addtaste(userTaste usertaste);
     List<Listbysql> getbyuserid(int userId);
+    List<Listbysql> getpostidlistbyuserid(int userId);
 }

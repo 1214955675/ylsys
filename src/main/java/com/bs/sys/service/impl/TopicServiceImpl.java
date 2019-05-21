@@ -76,4 +76,9 @@ public class TopicServiceImpl implements TopicServiceInf {
     public List<Topic> searchall(String key) {
         return topicDao.searchall(key);
     }
+
+    @Override
+    public Topic findbyid(int id) {
+        return topicDao.findbyid(id);
+    }
 }

@@ -2,9 +2,12 @@ package com.bs.sys.controller;
 
 import com.bs.sys.common.ResultCode;
 import com.bs.sys.common.response.PostResponse;
+import com.bs.sys.entity.Listbysql;
 import com.bs.sys.entity.Post;
+import com.bs.sys.entity.Topic;
 import com.bs.sys.entity.userTaste;
 import com.bs.sys.service.impl.PostServiceImpl;
+import com.bs.sys.service.impl.TopicServiceImpl;
 import com.bs.sys.service.impl.userTasteServiceImpl;
 import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Controller;
@@ -18,6 +21,8 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -30,6 +35,8 @@ import java.util.List;
 public class PostController {
     @Resource
     PostServiceImpl postService;
+    @Resource
+    TopicServiceImpl topicService;
 
     @Resource
     userTasteServiceImpl userTasteService;
@@ -61,6 +68,9 @@ public class PostController {
         }
         post.setCreateTime(System.currentTimeMillis());
         int createint=postService.createPost(post);
+        Topic gettopic=topicService.findbyid(post.getTopicId());
+        gettopic.setClickNum(gettopic.getClickNum()+1);
+        topicService.updatetopicbyid(gettopic);
         if(createint==0){
             res.setResultCode(ResultCode.db_opterror.getCode());
             res.setResultMessage(ResultCode.db_opterror.getMessage());
@@ -84,7 +94,8 @@ public class PostController {
                 int topic=Integer.parseInt(topicId);
                 int userId_int=Integer.parseInt(userId);
                 userTaste.setUserId(userId_int);
-                userTaste.setTopicId(topic);
+                userTaste.setTopicId(-1);
+                userTaste.setPostId(post_id);
                 if(!userTasteService.addtaste(userTaste)){
                     res.setResultCode(ResultCode.db_opterror.getCode());
                     res.setResultMessage(ResultCode.db_opterror.getMessage());
@@ -100,12 +111,74 @@ public class PostController {
         }
         return res;
     }
+    @RequestMapping("/getHotPost")
+    public PostResponse getHotPost(@RequestParam(value = "page",defaultValue = "1")String page,
+                                   @RequestParam(value = "limit",defaultValue = "10")String limit,
+                                    @RequestParam(value = "userId",required = false)String userId){
+        PostResponse res=new PostResponse();
+        try {
+            int page_int=Integer.parseInt(page);
+            int limit_int=Integer.parseInt(limit);
+            List<Post> list=postService.gethotpost(page_int,limit_int);
+            List<Listbysql> listsql=new ArrayList<>();
+            if(userId!=null){
+                int userid_int=Integer.parseInt(userId);
+                listsql=userTasteService.getpostidlistbyuserid(userid_int);
+                for(int i=0;i<listsql.size();i++){
+                    for(int j=0;j<list.size();j++){
+                        if(listsql.get(i).getObjectid()==list.get(j).getId()){
+                            list.get(j).setTasteCountForPerson(listsql.get(i).getCount());
+                            break;
+                        }
+                    }
+                }
+                Collections.sort(list);
+            }
+            res.setPostlist(list);
+            return res;
+        }catch (Exception e){
+            e.printStackTrace();
+            res.setResultCode(ResultCode.data_parse_error.getCode());
+            res.setResultMessage(ResultCode.data_parse_error.getMessage());
+            return res;
+        }
+
+    }
     @RequestMapping("/getPostByTopicId")
-    public PostResponse getPostByTopicId(@RequestParam String topicId){
+    public PostResponse getPostByTopicId(@RequestParam String topicId,@RequestParam(value = "userId",required = false)String userId){
         PostResponse res=new PostResponse();
         try {
             int topic_id=Integer.parseInt(topicId);
+            Topic gettopic=topicService.findbyid(topic_id);
+            gettopic.setClickNum(gettopic.getClickNum()+1);
+            topicService.updatetopicbyid(gettopic);
             List<Post> list=postService.getpostbytopicid(topic_id);
+            List<Listbysql> listsql=new ArrayList<>();
+            if(userId!=null){
+                int userid_int=Integer.parseInt(userId);
+                listsql=userTasteService.getpostidlistbyuserid(userid_int);
+                for(int i=0;i<listsql.size();i++){
+                    for(int j=0;j<list.size();j++){
+                        if(listsql.get(i).getObjectid()==list.get(j).getId()){
+                            list.get(j).setTasteCountForPerson(listsql.get(i).getCount());
+                            break;
+                        }
+                    }
+                }
+                Collections.sort(list);
+                //收集兴趣
+                userTaste userTaste=new userTaste();
+                userTaste.setUserId(userid_int);
+                userTaste.setTopicId(topic_id);
+                userTaste.setPostId(-1);
+                if(!userTasteService.addtaste(userTaste)){
+                    res.setResultCode(ResultCode.db_opterror.getCode());
+                    res.setResultMessage(ResultCode.db_opterror.getMessage());
+                    return res;
+                }else {
+                    return res;
+                }
+            }
             res.setPostlist(list);
 
             return res;

@@ -22,4 +22,6 @@ public interface AdviceDao {
     int dealadvice(int id);
     @Select("select * from advice where id =#{id}")
     Advice getbyid(int id);
+    @Select("select *,deal.content as answer from advice left join deal on advice.id = deal.adviceId limit #{page},#{limit} ")
+    List<Advice> gethasansweradvices(@Param("page") int page, @Param("limit") int limit);
 }

@@ -29,7 +29,7 @@ public class AdviceServiceImpl implements AdviceService {
 
     @Override
     public List<Advice> getadvices(int page, int limit) {
-        return adviceDao.getadvices(page,limit);
+        return adviceDao.getadvices((page-1)*limit, limit);
     }
 
     @Override
@@ -44,5 +44,10 @@ public class AdviceServiceImpl implements AdviceService {
     @Override
     public Advice getbyid(int id) {
         return adviceDao.getbyid(id);
+    }
+
+    @Override
+    public List<Advice> gethasansweradvice(int page, int limit) {
+        return adviceDao.gethasansweradvices((page-1)*limit, limit);
     }
 }

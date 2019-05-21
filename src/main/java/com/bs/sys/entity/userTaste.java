@@ -8,6 +8,15 @@ public class userTaste {
     private int userId;
     private long collectTime;
     private int topicId;
+    private int postId;
+
+    public int getPostId() {
+        return postId;
+    }
+
+    public void setPostId(int postId) {
+        this.postId = postId;
+    }
 
     public int getId() {
         return id;

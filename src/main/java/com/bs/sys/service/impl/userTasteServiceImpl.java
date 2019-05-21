@@ -28,4 +28,9 @@ public class userTasteServiceImpl implements userTasteServiceInf {
         return userTasteDao.getbyuserid(userId);
     }
 
+    @Override
+    public List<Listbysql> getpostidlistbyuserid(int userId) {
+        return null;
+    }
+
 }

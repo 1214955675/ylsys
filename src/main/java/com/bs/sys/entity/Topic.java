@@ -13,6 +13,16 @@ public class Topic implements Comparable<Topic>{
     private String postNum;
     private String imgUrl;
     private int tasteCountForPerson;
+    private int clickNum;
+
+    public int getClickNum() {
+        return clickNum;
+    }
+
+    public void setClickNum(int clickNum) {
+        this.clickNum = clickNum;
+    }
+
     @Override
     public int compareTo(Topic topic) {           //重写Comparable接口的compareTo方法，
         return  topic.getTasteCountForPerson()-this.tasteCountForPerson ;   // 根据用户自己的兴趣点击量降序排列，降序修改相减顺序即可

@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
  * 2019/4/15 10:20
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class Post {
+public class Post implements Comparable<Post>{
     private Integer id;
     private String postName;
     private String content;
@@ -15,7 +15,20 @@ public class Post {
     private Integer topicId;
     private Integer clickNum;
     private String postImg;
+    private int tasteCountForPerson;
 
+    public int getTasteCountForPerson() {
+        return tasteCountForPerson;
+    }
+
+    public void setTasteCountForPerson(int tasteCountForPerson) {
+        this.tasteCountForPerson = tasteCountForPerson;
+    }
+
+    @Override
+    public int compareTo(Post post) {           //重写Comparable接口的compareTo方法，
+        return  post.getTasteCountForPerson()-this.tasteCountForPerson ;   // 根据用户自己的兴趣点击量降序排列，降序修改相减顺序即可
+    }
     public String getPostImg() {
         return postImg;
     }

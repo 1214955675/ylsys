@@ -13,4 +13,5 @@ public interface AdviceService {
         List<Advice> getadvices(int page,int limit);
         boolean dealadvice(int id);
         Advice getbyid(int id);
+        List<Advice> gethasansweradvice(int page,int limit);
 }

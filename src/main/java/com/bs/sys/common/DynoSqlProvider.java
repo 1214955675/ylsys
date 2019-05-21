@@ -3,10 +3,7 @@ package com.bs.sys.common;
 import com.bs.sys.entity.Post;
 import com.bs.sys.entity.Topic;
 import com.bs.sys.entity.User;
-import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.jdbc.SQL;
-
-import java.util.Map;
 
 public class DynoSqlProvider {
     //方法中的关键字是区分大小写的  SQL SELECT WHERE
@@ -72,6 +69,9 @@ public class DynoSqlProvider {
                 }
                 if(topic.getPostNum()!=null) {
                     SET("postNum=#{postNum}");
+                }
+                if(topic.getClickNum()!=0) {
+                    SET("clickNum=#{clickNum}");
                 }
                 if(topic.getImgUrl()!=null) {
                     SET("imgUrl=#{imgUrl}");

@@ -15,4 +15,5 @@ public interface PostService {
     boolean updatepost(Post post);
     Post getpostbypostid(Integer id);
     List<Post> searchall(String key);
+    List<Post> gethotpost(int page, int limit);
 }

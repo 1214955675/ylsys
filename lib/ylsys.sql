@@ -11,7 +11,7 @@
  Target Server Version : 80013
  File Encoding         : 65001
 
- Date: 21/05/2019 22:41:09
+ Date: 23/05/2019 20:42:05
 */
 
 SET NAMES utf8mb4;
@@ -28,12 +28,13 @@ CREATE TABLE `advice`  (
   `contactWay` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `isDeal` int(10) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of advice
 -- ----------------------------
 INSERT INTO `advice` VALUES (1, 1555507484488, 'asdasadasd', '1214@qq.com', 1);
+INSERT INTO `advice` VALUES (2, 1558614811350, '这是什么', '3221242625@qq.com', 1);
 
 -- ----------------------------
 -- Table structure for comment
@@ -49,7 +50,7 @@ CREATE TABLE `comment`  (
   `content` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `commentTime` bigint(50) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of comment
@@ -62,7 +63,7 @@ INSERT INTO `comment` VALUES (2, NULL, NULL, NULL, 0, 1, '你好', NULL);
 -- ----------------------------
 DROP TABLE IF EXISTS `deal`;
 CREATE TABLE `deal`  (
-  `id` int(50) NOT NULL,
+  `id` int(50) NOT NULL AUTO_INCREMENT,
   `content` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `adviceId` int(50) NULL DEFAULT NULL,
   `dealTime` bigint(50) NULL DEFAULT NULL,
@@ -73,6 +74,7 @@ CREATE TABLE `deal`  (
 -- Records of deal
 -- ----------------------------
 INSERT INTO `deal` VALUES (1, '1111111111', 1, 1385431);
+INSERT INTO `deal` VALUES (2, '123', 2, 1558615152064);
 
 -- ----------------------------
 -- Table structure for message
@@ -87,7 +89,7 @@ CREATE TABLE `message`  (
   `messageDate` bigint(50) NULL DEFAULT NULL,
   `formatDate` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`messageId`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of message
@@ -117,13 +119,13 @@ CREATE TABLE `post`  (
   `clickNum` int(50) NULL DEFAULT NULL,
   `postImg` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of post
 -- ----------------------------
 INSERT INTO `post` VALUES (1, 'test', '23sdas<p><img src=\"\" style=\"max-width:100%;\"><img src=\"http://localhost:8080/upload/b9b2e998bfe585b9e7b1b3e59388e9b281b344.jpg\" style=\"max-width: 100%;\"><br></p>', 1555506286899, 1, 2, NULL);
-INSERT INTO `post` VALUES (2, '123123问问', '<p><img style=\"max-width: 100%;\" src=\"http://localhost:8080/upload/b9b2e998bfe585b9e7b1b3e59388e9b281b344.jpg\">啊实打实大<br></p>', 1557407854219, 1, 12, NULL);
+INSERT INTO `post` VALUES (2, '123123问问', '<p><img style=\"max-width: 100%;\" src=\"http://localhost:8080/upload/b9b2e998bfe585b9e7b1b3e59388e9b281b344.jpg\">啊实打实大<br></p>', 1557407854219, 1, 15, NULL);
 INSERT INTO `post` VALUES (3, '试试撒', '<p>阿萨1是多少</p>', 1557416861770, 1, 1, NULL);
 INSERT INTO `post` VALUES (5, '521', '<p>硕大的</p>', 1558442519858, 2, 1, 'http://localhost:8080/upload/b9b2e998bfe585b9e7b1b3e59388e9b281b344.jpg');
 INSERT INTO `post` VALUES (6, '请问', '<p>方法方法</p>', 1558442754036, 2, 1, 'http://localhost:8080/upload/b9b2e998bfe585b9e7b1b3e59388e9b281b344.jpg');
@@ -139,13 +141,13 @@ CREATE TABLE `topic`  (
   `imgUrl` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `clickNum` int(50) NULL DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of topic
 -- ----------------------------
-INSERT INTO `topic` VALUES (1, 'testtest', 3, '', 36);
-INSERT INTO `topic` VALUES (2, 'test', 2, '', 21);
+INSERT INTO `topic` VALUES (1, 'testtest', 3, '', 47);
+INSERT INTO `topic` VALUES (2, 'test', 2, '', 23);
 
 -- ----------------------------
 -- Table structure for user
@@ -159,7 +161,7 @@ CREATE TABLE `user`  (
   `phone` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `userImg` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of user
@@ -180,7 +182,7 @@ CREATE TABLE `usertaste`  (
   `topicId` int(50) NULL DEFAULT -1,
   `postId` int(50) NULL DEFAULT -1,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 25 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of usertaste
@@ -207,5 +209,15 @@ INSERT INTO `usertaste` VALUES (21, 1, 1558445673489, 1, -1);
 INSERT INTO `usertaste` VALUES (22, 1, 1558445874899, -1, 2);
 INSERT INTO `usertaste` VALUES (23, 1, 1558446264424, -1, 2);
 INSERT INTO `usertaste` VALUES (24, 1, 1558446270690, -1, 2);
+INSERT INTO `usertaste` VALUES (25, 1, 0, 1, -1);
+INSERT INTO `usertaste` VALUES (26, 1, 0, 1, -1);
+INSERT INTO `usertaste` VALUES (27, 1, 0, 2, -1);
+INSERT INTO `usertaste` VALUES (28, 1, 1558614509551, -1, 2);
+INSERT INTO `usertaste` VALUES (29, 1, 0, 1, -1);
+INSERT INTO `usertaste` VALUES (30, 1, 0, 1, -1);
+INSERT INTO `usertaste` VALUES (31, 1, 0, 1, -1);
+INSERT INTO `usertaste` VALUES (32, 1, 0, 1, -1);
+INSERT INTO `usertaste` VALUES (33, 3, 0, 1, -1);
+INSERT INTO `usertaste` VALUES (34, 1, 0, 1, -1);
 
 SET FOREIGN_KEY_CHECKS = 1;

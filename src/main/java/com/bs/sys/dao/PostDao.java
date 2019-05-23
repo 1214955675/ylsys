@@ -26,6 +26,6 @@ public interface PostDao {
     @Select("select * from post where postName like CONCAT('%',#{key},'%') or content like CONCAT('%',#{key},'%') ")
     List<Post> searchpost(String key);
     void addclicknum(int id);
-    @Select("select * from post where ORDER BY clickNum limit #{page},#{limit} ")
+    @Select("select * from post  ORDER BY clickNum limit #{page},#{limit} ")
     List<Post> gethotpost(@Param("page")int page, @Param("limit")int limit);
 }

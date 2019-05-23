@@ -175,8 +175,6 @@ public class PostController {
                     res.setResultCode(ResultCode.db_opterror.getCode());
                     res.setResultMessage(ResultCode.db_opterror.getMessage());
                     return res;
-                }else {
-                    return res;
                 }
             }
             res.setPostlist(list);

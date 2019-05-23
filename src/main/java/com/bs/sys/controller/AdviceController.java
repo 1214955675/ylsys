@@ -61,7 +61,10 @@ public class AdviceController {
         deal.setAdviceId(needdeal.getId());
         deal.setDealTime(System.currentTimeMillis());
         dealService.adddeal(deal);
-        SendEmailUtil.send(needdeal.getContactWay(),subject,content);
+        try {
+            SendEmailUtil.send(needdeal.getContactWay(),subject,content);
+        }catch (Exception e){
+        }
         if(!adviceService.dealadvice(advice.getId())){
             res.setResultCode(ResultCode.db_opterror.getCode());
             res.setResultMessage(ResultCode.db_opterror.getMessage());

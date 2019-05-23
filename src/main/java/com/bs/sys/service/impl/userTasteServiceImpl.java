@@ -30,7 +30,7 @@ public class userTasteServiceImpl implements userTasteServiceInf {
 
     @Override
     public List<Listbysql> getpostidlistbyuserid(int userId) {
-        return null;
+        return userTasteDao.getpostidbyuserid(userId);
     }
 
 }

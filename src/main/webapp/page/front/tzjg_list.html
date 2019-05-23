@@ -235,9 +235,11 @@ $.ajax({
     if(data && data.resultCode == 200){
       data.adviceList.forEach(function (item) {
         $("#listBox").append('<div class="label-div b-30 border-all pb-20 pt-5" style="padding: 10px;margin-top: 20px">' +
-            '<div style="font-size: 18px;margin-bottom: 10px;">'+item.content+'</div>' +
+            '<div style="font-size: 18px;margin-bottom: 10px;">问：'+item.content+'</div>' +
             '<div style="display: flex;justify-content: space-between;align-items: center">' +
-            '<div><img src="../../images/yh.png" style="width: 16px;margin-right: 5px;" alt="">'+item.answer+' <img src="../../images/yx.png" style="width: 16px;margin-left: 25px;margin-right: 5px;" alt="">'+item.contactWay+'</div>' +
+            '<div>' +
+//						'<img src="../../images/yh.png" style="width: 16px;margin-right: 5px;" alt="">' +
+						'答：'+item.answer+' <img src="../../images/yx.png" style="width: 16px;margin-left: 25px;margin-right: 5px;" alt="">'+item.contactWay+'</div>' +
         '<div>'+getMyDate(item.createTime)+'</div>' +
         '</div>' +
         '</div>')

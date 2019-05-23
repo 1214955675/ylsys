@@ -12,8 +12,8 @@ var headData = '<div class="navbar navbar-fixed-top" style="_position: relative;
     '<div class="nav-collapse">' +
     '<ul class="nav" id="navID">' +
     '<li class=""><a href="../../index.html"><b>首页</b></a></li>' +
-    '<li name="cxzx_list" class=""><a href="cxzx_list.html"><b>医疗资讯</b></a></li>' +
-    '<li name="cxfw_list" class=""><a href="cxfw_list.html"><b>热门文章</b></a></li>' +
+    // '<li name="cxzx_list" class=""><a href="cxzx_list.html"><b>医疗资讯</b></a></li>' +
+    // '<li name="cxfw_list" class=""><a href="cxfw_list.html"><b>热门文章</b></a></li>' +
     '<li name="xmdata" class=""><a href="xmdata.html"><b>内容查找</b></a></li>' +
     '<li name="tzjg_list" class=""><a href="tzjg_list.html"><b>常见问题</b></a></li>' +
     // '<li name="xm_write" class=""><a href="xm_write.html"><b>xm_write</b></a></li>' +

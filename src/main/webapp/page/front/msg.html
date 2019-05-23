@@ -252,7 +252,7 @@
     data: getChatformData,
     success: function (data) {
       data.userList.forEach(function (item, index) {
-        $("#chatHistory").append("<div data-name='"+item.userName+"' data-id='"+item.id+"' class=\"hz-group-list\"><span class='hz-group-list-username'>" + item.nickName + "</span><span id=\"" + item.id + "-status\">[在线]"+item.id+"</span><div id=\"hz-badge-" + item.id + "\" class='hz-badge'>0</div></div>");
+        $("#chatHistory").append("<div data-name='"+item.userName+"' data-id='"+item.id+"' class=\"hz-group-list\"><span class='hz-group-list-username'>" + item.nickName + "</span><span id=\"" + item.id + "-status\">[在线]</span><div id=\"hz-badge-" + item.id + "\" class='hz-badge'>0</div></div>");
       })
       $(".hz-group-list[data-id="+userId+"]").css('cursor', 'no-drop')
     },
@@ -385,7 +385,7 @@
           if (arr.length > 0) {
             Object.keys(data).forEach(function(key){
               console.log(key, data[key]);
-              $("#hz-group-body").append("<div data-name='"+data[key]+"' data-id='"+key+"' class=\"hz-group-list\"><span class='hz-group-list-username'>" + data[key] + "</span><span id=\"" + data[key] + "-status\">[在线]"+key+"</span><div id=\"hz-badge-" + data[key] + "\" class='hz-badge'>0</div></div>");
+              $("#hz-group-body").append("<div data-name='"+data[key]+"' data-id='"+key+"' class=\"hz-group-list\"><span class='hz-group-list-username'>" + data[key] + "</span><span id=\"" + data[key] + "-status\">[在线]</span><div id=\"hz-badge-" + data[key] + "\" class='hz-badge'>0</div></div>");
             });
             $(".hz-group-list[data-id="+userId+"]").css('cursor', 'no-drop')
           }

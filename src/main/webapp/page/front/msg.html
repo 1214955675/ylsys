@@ -406,7 +406,7 @@
     console.log('messageJson=', messageJson)
     console.log('messageJson=', messageJson.messageText)
     if (messageJson.toId != 0) {
-      setMessageInnerHTML(messageJson.formId, messageJson.toId, messageJson.messageText, messageJson.formId);
+      setMessageInnerHTML(messageJson.fromName, messageJson.toId, messageJson.messageText, messageJson.formId);
     }
     //普通消息(私聊)
     if (messageJson.type == "1") {

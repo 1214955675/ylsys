@@ -241,8 +241,10 @@
     $.jqPaginator.defaultOptions = {
         wrapper: '',
         // first: '<li class="first"><a href="javascript:;">&lt;&lt;</a></li>',
-        prev: '<li class="prev"><a href="javascript:void(0);"><img src="../../images/arrow-left.png" alt="上一页"></a></li>',
-        next: '<li class="next"><a href="javascript:void(0);"><img src="../../images/arrow-right.png" alt="下一页"></a></li>',
+        // prev: '<li class="prev"><a href="javascript:void(0);"><img src="../../images/arrow-left.png" alt="上一页"></a></li>',
+        prev: '<li class="prev"><a href="javascript:void(0);">&lt;</a></li>',
+        // next: '<li class="next"><a href="javascript:void(0);"><img src="../../images/arrow-right.png" alt="下一页"></a></li>',
+        next: '<li class="next"><a href="javascript:void(0);">&gt;</a></li>',
         // last: '<li class="last"><a href="javascript:;">&gt;&gt;</a></li>',
         page: '<li class="page"><a href="javascript:void(0);">{{page}}</a></li>',
         totalPages: 0,

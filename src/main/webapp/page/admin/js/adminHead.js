@@ -11,7 +11,7 @@ var headData = '<nav class="top1 navbar navbar-default navbar-static-top" role="
 
 '<ul class="nav navbar-nav navbar-right">' +
     '<li class="dropdown">' +
-    '<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-comments-o"></i><span class="badge">4</span></a>' +
+    // '<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-comments-o"></i><span class="badge">4</span></a>' +
     '<ul class="dropdown-menu">' +
     '<li class="dropdown-menu-header">' +
     '<strong>Messages</strong>' +
@@ -71,7 +71,7 @@ var headData = '<nav class="top1 navbar navbar-default navbar-static-top" role="
 '</ul>' +
 '</li>' +
 '<li class="dropdown">' +
-    '<a href="#" class="dropdown-toggle avatar" data-toggle="dropdown"><img src="images/1.png"><span class="badge">9</span></a>' +
+    // '<a href="#" class="dropdown-toggle avatar" data-toggle="dropdown"><img src="images/1.png"><span class="badge">9</span></a>' +
     '<ul class="dropdown-menu">' +
     '<li class="dropdown-menu-header text-center">' +
     '<strong>Account</strong>' +
@@ -93,9 +93,9 @@ var headData = '<nav class="top1 navbar navbar-default navbar-static-top" role="
     '</ul>' +
     '</li>' +
     '</ul>' +
-    '<form class="navbar-form navbar-right">' +
-    '<input type="text" class="form-control" value="Search...">' +
-    '</form>' +
+    // '<form class="navbar-form navbar-right">' +
+    // '<input type="text" class="form-control" value="Search...">' +
+    // '</form>' +
     '<div class="navbar-default sidebar" role="navigation">' +
     '<div class="sidebar-nav navbar-collapse">' +
     '<ul class="nav" id="side-menu">' +

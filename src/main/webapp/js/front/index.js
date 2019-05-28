@@ -147,7 +147,7 @@ $(function () {
   // 获取热门圈子
   var alltopicData = new FormData();
   alltopicData.append("page", 1);
-  alltopicData.append("limit", 10);
+  alltopicData.append("limit", 20);
   $.ajax({
     type: "post",
     url: "../../topic/getalltopic",
@@ -184,7 +184,7 @@ $(function () {
   // 获取热门新闻
   var updatePostData = new FormData();
   updatePostData.append("page", '1');
-  updatePostData.append("limit", '10');
+  updatePostData.append("limit", '20');
   $.ajax({
     type: "post",
     url: "../../post/getHotPost",
@@ -224,7 +224,7 @@ $(function () {
   // 获取用户喜欢的圈子
   var userTopicData = new FormData();
   userTopicData.append("page", 1);
-  userTopicData.append("limit", 10);
+  userTopicData.append("limit", 20);
   if (userId) {
     userTopicData.append("userId", userId);
   }
@@ -248,7 +248,7 @@ $(function () {
   // 获取用户喜欢的新闻
   var userNewsData = new FormData();
   userNewsData.append("page", '1');
-  userNewsData.append("limit", '10');
+  userNewsData.append("limit", '20');
   if (userId) {
     userNewsData.append("userId", userId);
   }

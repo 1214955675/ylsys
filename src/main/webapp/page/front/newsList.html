@@ -137,18 +137,20 @@ DD_belatedPNG.fix('img,.ie6png');
   <!--列表结束-->         
             
  
-<div class="pagination center pagination-large pt-20">
-<ul id="yw1" class="yiiPager">
-<li class="previous"><a href="javascript:;">《</a></li>
-<li class="page"><a href="?page=1">1</a></li>
-<li class="page selected"><a href="?page=2">2</a></li>
-<li class="page"><a href="?page=3">3</a></li>
-<li class="page"><a href="?page=4">4</a></li>
-<li class="page"><a href="?page=5">5</a></li>
-<li class="page"><a href="?page=6">6</a></li>
-<li class="page"><a href="?page=7">7</a></li>
-<li class="next"><a href="javascript:;">》</a></li>
-</ul>		    </div>
+		<div class="pagination center pagination-large pt-20">
+			<ul id="yw1" class="yiiPager">
+				<!--<li class="previous"><a href="javascript:;">《</a></li>-->
+				<!--<li class="page"><a href="?page=1">1</a></li>-->
+				<!--<li class="page selected"><a href="?page=2">2</a></li>-->
+				<!--<li class="page"><a href="?page=3">3</a></li>-->
+				<!--<li class="page"><a href="?page=4">4</a></li>-->
+				<!--<li class="page"><a href="?page=5">5</a></li>-->
+				<!--<li class="page"><a href="?page=6">6</a></li>-->
+				<!--<li class="page"><a href="?page=7">7</a></li>-->
+				<!--<li class="next"><a href="javascript:;">》</a></li>-->
+			</ul>
+		</div>
+
 		</div>
         
 	</div>
@@ -184,7 +186,9 @@ DD_belatedPNG.fix('img,.ie6png');
 		
 	</ul>
 </div>
-  <script type="text/javascript">
+	<script src="../../lib/jquery-paginator/jqPaginator.js"></script>
+
+	<script type="text/javascript">
 	$(document).ready(function(){
     var userId = window.sessionStorage.getItem("userId");
     var flag = 0;
@@ -231,6 +235,33 @@ DD_belatedPNG.fix('img,.ie6png');
       return num;
     }
 
+		function appendData(list) {
+      $(".topicTbody").html('')
+      list.forEach(function (item, index) {
+        $(".topicTbody").append('<div class="label-div b-30 border-all pb-20 pt-5" style="position: relative; padding-left: 0;">' +
+            '<div class="news-list">' +
+            '<div class="clearfix pt-3">' +
+            '<div class="index-news-img spanm3 pull-left pt-5" style="margin-right: 10px;">' +
+            '<a href="news.html?id=' + item.id + '&topicid='+item.topicId+'">' +
+            '<img style="width: 200px;height:120px;" class="lazyloadimg" src="'+item.postImg+'"/>' +
+            '</a>' +
+            '</div>' +
+            '<div class="intro">' +
+            '<h1>' +
+            '<a href="news.html?id=' + item.id + '&topicid='+item.topicId+'">' + item.postName + '</a>' +
+            '</h1>' +
+//                '<p class="t-1" style="margin: 20px 0;">' + getMyDate(item.createTime) + '</p>' +
+            '<a class="read-btn ie6png" href="javascript:void(0);">'+(item.clickNum || 0)+'</a>' +
+            '<div class="clearfix">' +
+//                '<a href="news.html?id=' + item.id + '" class="read-all pull-left">阅读全文</a>' +
+            '</div>' +
+            '</div>' +
+            '</div>' +
+            '</div>' +
+            '</div>');
+      });
+    }
+
     //获取圈子里所有新闻
     var getPostByTopicIdData = new FormData();
     getPostByTopicIdData.append("topicId", urlId);
@@ -247,29 +278,57 @@ DD_belatedPNG.fix('img,.ie6png');
       data: getPostByTopicIdData,
       success: function (data) {
         if(data && data.resultCode == 200){
-          data.postlist.forEach(function (item, index) {
-            $(".topicTbody").append('<div class="label-div b-30 border-all pb-20 pt-5" style="position: relative; padding-left: 0;">' +
-                '<div class="news-list">' +
-                '<div class="clearfix pt-3">' +
-                '<div class="index-news-img spanm3 pull-left pt-5" style="margin-right: 10px;">' +
-                '<a href="news.html?id=' + item.id + '&topicid='+item.topicId+'">' +
-                '<img style="width: 200px;height:120px;" class="lazyloadimg" src="'+item.postImg+'"/>' +
-                '</a>' +
-                '</div>' +
-                '<div class="intro">' +
-                '<h1>' +
-                '<a href="news.html?id=' + item.id + '&topicid='+item.topicId+'">' + item.postName + '</a>' +
-                '</h1>' +
-//                '<p class="t-1" style="margin: 20px 0;">' + getMyDate(item.createTime) + '</p>' +
-                '<a class="read-btn ie6png" href="javascript:void(0);">'+(item.clickNum || 0)+'</a>' +
-                '<div class="clearfix">' +
-//                '<a href="news.html?id=' + item.id + '" class="read-all pull-left">阅读全文</a>' +
-                '</div>' +
-                '</div>' +
-                '</div>' +
-                '</div>' +
-                '</div>');
+
+          var result = [];
+          for(var i = 0; i < data.postlist.length; i += 10){
+            result.push(data.postlist.slice(i,i+10));
+          }
+					var num = 0
+					var pages = 0
+					if (data.postlist.length) {
+            num = data.postlist.length
+            if(num > 0){
+              if(num % 10 > 0){
+                pages = parseInt(num / 10) + 1;
+              }else{
+                pages = parseInt(num / 10);
+              }
+            }
+					}
+
+          $('#yw1').jqPaginator({
+            totalPages: pages,
+            visiblePages: 10,
+            currentPage: 1,
+            pageSize: 4,
+            onPageChange: function (num, type) {
+              appendData(result[(num - 1)])
+            }
           });
+
+//          data.postlist.forEach(function (item, index) {
+//            $(".topicTbody").append('<div class="label-div b-30 border-all pb-20 pt-5" style="position: relative; padding-left: 0;">' +
+//                '<div class="news-list">' +
+//                '<div class="clearfix pt-3">' +
+//                '<div class="index-news-img spanm3 pull-left pt-5" style="margin-right: 10px;">' +
+//                '<a href="news.html?id=' + item.id + '&topicid='+item.topicId+'">' +
+//                '<img style="width: 200px;height:120px;" class="lazyloadimg" src="'+item.postImg+'"/>' +
+//                '</a>' +
+//                '</div>' +
+//                '<div class="intro">' +
+//                '<h1>' +
+//                '<a href="news.html?id=' + item.id + '&topicid='+item.topicId+'">' + item.postName + '</a>' +
+//                '</h1>' +
+////                '<p class="t-1" style="margin: 20px 0;">' + getMyDate(item.createTime) + '</p>' +
+//                '<a class="read-btn ie6png" href="javascript:void(0);">'+(item.clickNum || 0)+'</a>' +
+//                '<div class="clearfix">' +
+////                '<a href="news.html?id=' + item.id + '" class="read-all pull-left">阅读全文</a>' +
+//                '</div>' +
+//                '</div>' +
+//                '</div>' +
+//                '</div>' +
+//                '</div>');
+//          });
         }
       }
     });

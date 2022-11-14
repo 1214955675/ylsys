@@ -11,7 +11,7 @@
     <!-- 版本参量设置-->
     <properties>
         <!--<spring-version>3.0.5</spring-version>-->
-        <spring-version>4.2.5.RELEASE</spring-version>
+        <spring-version>4.2.7.RELEASE</spring-version>
         <mybatis-version>3.4.1</mybatis-version>
     </properties>
 <dependencies>
